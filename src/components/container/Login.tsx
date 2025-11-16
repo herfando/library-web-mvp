@@ -19,7 +19,7 @@ export default function Login() {
         </div>
         {/* Login */}
         <h2 className='text-sm-lh mb-2 font-bold md:mb-8'>Login</h2>
-        <p className='text-md mb-20 font-semibold text-[#414651]'>
+        <p className='text-md text-\[\#414651\] mb-20 font-semibold'>
           Sign in to manage your library account.
         </p>
         {/* Email */}
@@ -38,11 +38,13 @@ export default function Login() {
             />
           </div>
         </div>
-        <Button className='text-md mb-16 h-48 w-full rounded-full bg-[#1C65DA] text-[#FDFDFD]'>
+        {/* Button */}
+        <Button className='text-md mb-16 h-48 w-full rounded-full bg-[#1C65DA] text-[#FDFDFD] hover:cursor-pointer'>
           Login
         </Button>
+        {/* Don't have an account?Register */}
         <p className='text-md text-center font-semibold'>
-          Don't have an account?{' '}
+          Don't have an account?
           <Link to='/register' className='font-bold text-[#1C65DA]'>
             Register
           </Link>
