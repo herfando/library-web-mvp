@@ -8,7 +8,7 @@ export default function Login() {
   const [show, setShow] = useState(false);
   return (
     <section className='pr-11xl flex h-auto w-full items-center justify-center pt-217 pb-216 pl-34 md:px-520 md:pt-295 md:pb-298'>
-      <div className='h-419 w-324 md:h-431 md:w-400'>
+      <div className='h-419 w-324 whitespace-nowrap md:h-431 md:w-400'>
         {/* Booky */}
         <div className='mb-20 flex gap-x-11.5'>
           <img
@@ -43,9 +43,9 @@ export default function Login() {
           Login
         </Button>
         {/* Don't have an account?Register */}
-        <p className='text-md text-center font-semibold'>
+        <p className='text-md gap-x-4 text-center font-semibold'>
           Don't have an account?
-          <Link to='/register' className='font-bold text-[#1C65DA]'>
+          <Link to='/register' className='ml-4 font-bold text-[#1C65DA]'>
             Register
           </Link>
         </p>
