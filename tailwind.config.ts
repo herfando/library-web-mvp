@@ -1,0 +1,106 @@
+// tailwind.config.ts
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: ['./src/**/*.{html,js,ts,jsx,tsx,vue}', './index.html'],
+  theme: {
+    borderRadius: {
+      none: '0rem',
+      xxs: '0.125rem',
+      xs: '0.25rem',
+      sm: '0.375rem',
+      DEFAULT: '0.5rem', // md
+      lg: '0.625rem',
+      xl: '0.75rem',
+      '2xl': '1rem',
+      '3xl': '1.25rem',
+      '4xl': '1.5rem',
+      full: '9999px',
+    },
+    spacing: {
+      none: '0rem',
+      xxs: '0.125rem',
+      xs: '0.25rem',
+      sm: '0.375rem',
+      md: '0.5rem',
+      lg: '0.75rem',
+      xl: '1rem',
+      '2xl': '1.25rem',
+      '3xl': '1.5rem',
+      '4xl': '2rem',
+      '5xl': '2.5rem',
+      '6xl': '3rem',
+      '7xl': '4rem',
+      '8xl': '5rem',
+      '9xl': '6rem',
+      '10xl': '8rem',
+      '11xl': '8.75rem',
+    },
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+
+      neutral: {
+        25: '#FDFDFD',
+        50: '#FAFAFA',
+        100: '#F5F5F5',
+        200: '#E9EAEB',
+        300: '#D5D7DA',
+        500: '#A4A7AE',
+        600: '#717680',
+        700: '#535862',
+        800: '#414651',
+        900: '#252B37',
+        950: '#181D27',
+        1000: '#0A0D12',
+      },
+      primary: {
+        100: '#F6F9FE',
+        200: '#D2E3FF',
+        500: '#1C65DA',
+      },
+      red: '#D9206E',
+      green: '#079455',
+      yellow: '#FDB022',
+      white: '#FFFFFF',
+      black: '#000000',
+
+      // Alias
+      bg: '#FDFDFD',
+      surface: '#FFFFFF',
+      text: '#0A0D12',
+      border: '#E9EAEB',
+      danger: '#D9206E',
+      success: '#079455',
+      warning: '#FDB022',
+    },
+    fontFamily: {
+      sans: ['"Quicksand"', 'system-ui', 'sans-serif'],
+    },
+    fontSize: {
+      xs: ['0.75rem', { lineHeight: '1.5rem' }],
+      sm: ['0.875rem', { lineHeight: '1.75rem' }],
+      md: ['1rem', { lineHeight: '1.875rem' }],
+      lg: ['1.125rem', { lineHeight: '2rem' }],
+      xl: ['1.25rem', { lineHeight: '2.125rem' }],
+
+      'display-xs': ['1.5rem', { lineHeight: '2.25rem' }],
+      'display-sm': ['1.75rem', { lineHeight: '2.375rem' }],
+      'display-md': ['2rem', { lineHeight: '2.5rem' }],
+      'display-lg': ['2.25rem', { lineHeight: '2.75rem' }],
+      'display-xl': ['2.5rem', { lineHeight: '3rem' }],
+      'display-2xl': ['3rem', { lineHeight: '3.75rem', letterSpacing: '-2%' }],
+      'display-3xl': ['3.75rem', { lineHeight: '4.5rem' }],
+    },
+    fontWeight: {
+      regular: '400',
+      medium: '500',
+      semibold: '600',
+      bold: '700',
+      extrabold: '800',
+    },
+  },
+  plugins: [],
+};
+
+export default config;
