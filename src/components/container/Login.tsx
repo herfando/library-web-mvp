@@ -1,6 +1,10 @@
 import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { Eye } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Login() {
+  const [show, setShow] = useState(false);
   return (
     <section className='pr-11xl flex h-auto w-full items-center justify-center pt-217 pb-216 pl-34 md:px-520 md:pt-295 md:pb-298'>
       <div className='h-419 w-324 bg-amber-300 md:h-431 md:w-400'>
@@ -10,16 +14,32 @@ export default function Login() {
             src='../../../public/icons/01_logo company.svg'
             className='h-33 w-33'
           />
-          <div className='md:text-25.14 self-center font-bold'>Booky</div>
+          <div className='self-center text-[25.14px] font-bold'>Booky</div>
         </div>
         {/* Login */}
-        <h2 className='text-28 mb-2 font-bold md:mb-8'>Login</h2>
+        <h2 className='text-sm-lh mb-2 font-bold md:mb-8'>Login</h2>
         <p className='text-md mb-20 font-semibold text-[#414651]'>
           Sign in to manage your library account.
         </p>
         {/* Email */}
-        <div className='mb-2 text-sm font-bold'>Email</div>
-        <Input />
+        <div className='mb-16'>
+          <div className='mb-2 text-sm font-bold'>Email</div>
+          <Input />
+        </div>
+        {/* Password */}
+        <div className='mb-16'>
+          <div className='mb-2 text-sm font-bold'>Password </div>
+          <div className='relative w-full'>
+            <Input type={show ? 'text' : 'password'} />
+            <Eye
+              onClick={() => setShow(!show)}
+              className='absolute top-1/2 right-14 -translate-y-1/2 cursor-pointer text-[#0A0D12]'
+            />
+          </div>
+        </div>
+        <Button className='text-md h-48 w-full rounded-full bg-[#1C65DA] text-[#FDFDFD]'>
+          Login
+        </Button>
       </div>
     </section>
   );
