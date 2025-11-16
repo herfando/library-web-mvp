@@ -1,5 +1,5 @@
 import './index.css';
-import Login from './component/container/Login';
+import Login from './components/container/Login';
 
 function App() {
   return (
