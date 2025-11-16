@@ -317,11 +317,20 @@ button:focus-visible {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  .custom-container {
+    margin: 0 auto;
+    @apply max-w-1232 pr-16 pl-16;
   }
-  body {
-    @apply bg-background text-foreground;
+}
+body {
+  @apply bg-background text-foreground;
+
+  .dark & {
+    @apply bg-black text-white;
   }
 }

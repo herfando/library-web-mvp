@@ -39,7 +39,6 @@ const config: Config = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-
       neutral: {
         25: '#FDFDFD',
         50: '#FAFAFA',
