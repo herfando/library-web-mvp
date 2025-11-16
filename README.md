@@ -1,113 +1,102 @@
-📚 Library Web MVP
+🎉 Library Web MVP — Modern Frontend for Digital Libraries
 
-Welcome to Library Web MVP — a polished, modern, and production-minded frontend for a digital library. This repository showcases a clean architecture, great developer experience, and UX-first features built with today's best frontend stack.
+A lightweight, fast, and scalable MVP frontend built for digital library systems. Designed with a clean architecture, smooth UX, and production-ready patterns — perfect for real projects or portfolio showcases.
 
-Live demo: ./assets/demo.gif (drop an animated GIF here to show core flows)
+⚡ Built using today’s best frontend stack: React, TypeScript, Vite, Tailwind, Redux Toolkit, TanStack Query, shadcn/ui.
 
-✨ Highlights
+🚀 Live Preview
 
-UX-first: Optimistic UI for instant feedback (stock updates immediately on borrow)
+(Drop your GIF or video demo here)
 
-Type-safe: React + TypeScript for predictable development
+./assets/demo.gif
 
-Blazing dev experience: Vite-powered fast reloads
+✨ Key Features
+🌟 UX & Performance
 
-Resilient data layer: TanStack Query for fetching, caching & background refetch
+⚡ Optimistic UI — instant feedback on borrow actions
 
-Solid state: Redux Toolkit for auth tokens, filters, cart, and UI state
+🔁 Smart caching & refetch with TanStack Query
 
-Design system: Tailwind CSS + shadcn/ui components for consistent UI
+🧩 Reusable & composable UI components via shadcn/ui
 
-Polished micro-interactions: Optional Framer Motion animations
+🎬 Optional Framer Motion animations for micro-interactions
 
-Small & focused: MVP mindset — core features, extensible architecture
+🧱 Architecture
 
-🚀 Demo & Animations
+🧠 Redux Toolkit for global state (auth, filters, cart, UI)
 
-Include an animated demo in assets/demo.gif or assets/demo.mp4. Example markdown to embed:
+🔌 API layer with typed TanStack Query hooks
 
-![Core Flow Demo](./assets/demo.gif)
+🗂️ Feature-based folder structure for scalability
 
-For animated SVGs or Lottie, drop files into assets/ and reference them from the README or the app.
+✨ Type-safe development with React + TypeScript
+
+🚀 Blazing fast Vite DX
+
+🎨 Design
+
+Tailwind CSS utility styling
+
+Clean, modern, responsive layout
+
+Accessible and keyboard-friendly components
 
 🧭 Tech Stack
+Category Tools
+UI React, shadcn/ui, Tailwind CSS
+State Redux Toolkit, TanStack Query
+Animations Framer Motion (optional)
+Tooling TypeScript, Vite
+Utilities Day.js
+QA Jest, React Testing Library, Playwright
+🛠️ Getting Started
 
-React + TypeScript — UI and types
+1. Clone & Install
+   git clone https://github.com/<your-username>/library-web-mvp.git
+   cd library-web-mvp
+   npm install
 
-Vite — dev server & build tooling
+2. Run Dev Server
+   npm run dev
 
-Tailwind CSS — utility-first styling
+Visit: http://localhost:5173
 
-shadcn/ui — composable UI components
+3. Build for Production
+   npm run build
+   npm run preview
 
-Redux Toolkit — centralized app state (tokens, filters, cart, UI)
+4. Formatting & Linting
+   npm run lint
+   npm run format
 
-TanStack Query — async fetching, caching, retries
+🔧 Environment Variables
 
-Day.js — lightweight date formatting
-
-Framer Motion (optional) — polished transitions & motion
-
-🛠️ Getting Started (developer)
-
-Clone & install
-
-git clone https://github.com/<your-username>/library-web-mvp.git
-cd library-web-mvp
-npm install
-
-Development
-
-npm run dev
-
-# open http://localhost:5173
-
-Build
-
-npm run build
-npm run preview
-
-Format & lint
-
-npm run format
-npm run lint
-🔧 Configuration
-
-Create a .env (example .env.example provided):
+Create .env (or copy from .env.example):
 
 VITE_API_BASE_URL=https://api.example.com
 VITE_DEFAULT_PAGE_SIZE=12
 VITE_FEATURE_FLAGS_ENABLE_ANIMATIONS=true
 
-Important env variables
+Vars Explained
 
-VITE_API_BASE_URL — base API endpoint
+VITE_API_BASE_URL — backend URL
 
-VITE_DEFAULT_PAGE_SIZE — pagination size for lists
+VITE_DEFAULT_PAGE_SIZE — pagination limit
 
-VITE_FEATURE_FLAGS_ENABLE_ANIMATIONS — toggle Framer Motion animations
+VITE_FEATURE_FLAGS_ENABLE_ANIMATIONS — enable/disable Framer Motion
 
-📐 Project Structure (suggested)
+📁 Project Structure
 src/
-├─ api/ # api clients (TanStack Query hooks)
-├─ components/ # shared presentational components
-├─ features/ # feature slices + pages (books, borrow, account)
+├─ api/ # API hooks (TanStack Query)
+├─ components/ # shared UI components
+├─ features/ # domain modules: books, borrow, account
 ├─ hooks/ # custom hooks
-├─ store/ # redux-toolkit slices & store setup
-├─ styles/ # global tailwind config & theme
-├─ utils/ # helpers & date utils
+├─ store/ # Redux slices
+├─ styles/ # Tailwind/theme config
+├─ utils/ # helpers, date utils
 └─ App.tsx
-💡 Patterns & Decisions
 
-Optimistic UI for borrow flow — when a user borrows a book, UI decrements available stock immediately. TanStack Query handles rollbacks if server fails.
-
-Normalized cache — keep minimal duplication, derive UI state from the store and queries.
-
-Feature folders — group logic per domain (features/books, features/borrow) for scalability.
-
-Small components, composition-first — favor composition over prop-drilling.
-
-🔁 Data Flow (Mermaid)
+🔁 Data Flow
 flowchart LR
 UI[User Interface]
 subgraph Client
@@ -117,130 +106,108 @@ end
 Query --> |fetch| API[Backend API]
 API --> DB[(Database)]
 Store --> |reads| Query
-Store --> |informs| UI
-
-If your GitHub supports Mermaid, this renders as an interactive diagram. Otherwise the ASCII flow remains useful.
+Store --> |updates| UI
 
 ✅ Core Features
 
-Browse books with filters & search
+🔍 Browse books with search & filters
 
-Borrow flow with optimistic stock updates
+📚 Borrow/return books with optimistic updates
 
-Cart for reservations
+🛒 Reservation cart system
 
-User auth & token persistence (Redux Toolkit + secure storage)
+🔐 Auth & token persistence (secure storage)
 
-Pagination and infinite scroll patterns
+📄 Pagination & infinite scroll
 
-Date formatting with Day.js
+🗓️ Date formatting via Day.js
 
-Accessible components via shadcn/ui
+♿ Accessible UI components
 
-Configurable animations via feature flag
-
-📦 API Contract (example)
-
+📦 API Example
 GET /books
-
 {
 "data": [
-{ "id": "string", "title": "string", "available": 3, "publishedAt": "2025-05-01T00:00:00Z" }
+{ "id": "1", "title": "Book Title", "available": 3, "publishedAt": "2025-05-01T00:00:00Z" }
 ],
 "meta": { "total": 100 }
 }
 
 POST /borrow
+{ "bookId": "1", "userId": "42" }
 
-{ "bookId": "string", "userId": "string" }
+Response:
 
-Response: 200 OK with updated stock or 4xx/5xx on error. TanStack Query rollback handles retries.
+200 OK → updated stock
 
-🎨 Animations (how to enable)
+4xx/5xx → rollback handled by TanStack Query
 
-Use Framer Motion only when VITE_FEATURE_FLAGS_ENABLE_ANIMATIONS=true.
+🎨 Animations
 
-Example component:
+Enable in .env:
+
+VITE_FEATURE_FLAGS_ENABLE_ANIMATIONS=true
+
+Component example:
 
 import { motion } from 'framer-motion'
 
 export function BookCard({ book }) {
 return (
-<motion.div layout whileHover={{ scale: 1.02 }} className="card">
+<motion.div
+layout
+whileHover={{ scale: 1.02 }}
+className="card" >
+
 <h3>{book.title}</h3>
 </motion.div>
 )
 }
 
-Pro tip: Use layout and AnimatePresence for list reordering and entrance/exit animations.
-
 🧪 Testing
-
-Unit tests: Jest + React Testing Library
-
-Integration: Playwright for end-to-end flows
-
-Setup (example):
-
 npm run test
 npm run test:coverage
 npm run e2e
-🧰 Developer Tools & Scripts
 
-npm run dev — dev server
+Unit tests (Jest + RTL)
 
-npm run build — production build
+E2E (Playwright)
 
-npm run preview — preview build
-
-npm run lint — ESLint
-
-npm run format — Prettier
-
-npm run test — run tests
-
-npm run e2e — end-to-end tests
-
-♻️ CI / CD
-
-Example GitHub Actions steps (brief):
+♻️ CI/CD (Recommended)
 
 Install dependencies
 
-Lint & format check
+Run lint & tests
 
-Run unit tests
+Build artifacts
 
-Build static assets
-
-Deploy to static host (Vercel / Netlify / Cloud Run)
+Deploy (Vercel, Netlify, Cloud Run, etc.)
 
 ♟️ Performance & Accessibility
 
-Preload critical fonts and images
+Preload fonts & critical assets
 
-Use code-splitting for large pages
+Code-splitting per route
 
-Ensure contrast & keyboard navigability for accessibility
+Minimum 80+ Lighthouse score for PWA, accessibility, performance
 
-Use Lighthouse in CI to keep performance budgets
+ARIA-compliant UI
 
-📣 Contributing
+🤝 Contributing
 
-Fork the repo
+Fork
 
-Create a feature branch: feat/your-feature
+Create feature branch feat/<feature>
 
-Run tests & linters
+Run tests
 
-Open a PR with clear description & screenshots/gif
+Open PR — include screenshots or GIF
 
 📜 License
 
-MIT © [Herfando]
+MIT © Herfando
 
-🧾 Acknowledgements
+🙌 Acknowledgements
 
-Built with best-of-breed tools: React, Vite, Tailwind, TanStack Query, Redux Toolkit, shadcn/ui.
-
-Need a custom README variant (shorter, badge-heavy, or focused on onboarding)? Tell me the flavor — I'll tailor it.
+Thanks to the ecosystem:
+React, Vite, Tailwind, TanStack Query, Redux Toolkit, shadcn/ui, Framer Motion.
