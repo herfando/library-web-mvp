@@ -1,12 +1,8 @@
 import './index.css';
-import Login from './components/container/Login';
+import AppRoutes from './components/routes/Router';
 
 function App() {
-  return (
-    <>
-      <Login />
-    </>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
