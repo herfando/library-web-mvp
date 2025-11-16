@@ -66,7 +66,7 @@ export default function Register() {
         {/* Already have an account?Log In */}
         <p className='text-md text-center font-semibold'>
           Already have an account?
-          <Link to='/register' className='ml-4 font-bold text-[#1C65DA]'>
+          <Link to='/' className='ml-4 font-bold text-[#1C65DA]'>
             Log In
           </Link>
         </p>
