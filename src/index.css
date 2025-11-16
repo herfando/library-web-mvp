@@ -141,8 +141,7 @@ button:focus-visible {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  /* spacing unit */
-  --spacing: 1px;
+
   /* ==================== RADIUS ==================== */
   --radius: 0.5rem; /* Base radius (radius-md = 8px) */
   --radius-none: 0rem;
@@ -177,6 +176,8 @@ button:focus-visible {
   --spacing-9xl: calc(var(--spacing) * 24); /* 96px */
   --spacing-10xl: calc(var(--spacing) * 32); /* 128px */
   --spacing-11xl: calc(var(--spacing) * 35); /* 140px */
+
+  --spacing: 1px; /* Base spacing unit */
 
   /* ==================== COLORS ==================== */
 
