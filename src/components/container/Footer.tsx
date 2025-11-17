@@ -19,10 +19,22 @@ export default function Footer() {
         Follow on Social Media
       </h3>
       {/* Sosmed */}
-      <div>
+      <div className='flex space-x-12'>
         {/* facebook */}
         <div className='flex h-40 w-40 items-center justify-center rounded-full border border-[#D5D7DA]'>
           <img src='../../icons/03_fb.png' alt='facebook' />
+        </div>
+        {/* instagram */}
+        <div className='flex h-40 w-40 items-center justify-center rounded-full border border-[#D5D7DA]'>
+          <img src='../../icons/04_ig.png' alt='instagram' />
+        </div>
+        {/* linkedid */}
+        <div className='flex h-40 w-40 items-center justify-center rounded-full border border-[#D5D7DA]'>
+          <img src='../../icons/05_in.png' alt='linkedid' />
+        </div>
+        {/* tiktok */}
+        <div className='flex h-40 w-40 items-center justify-center rounded-full border border-[#D5D7DA]'>
+          <img src='../../icons/06_tiktok.png' alt='tiktok' />
         </div>
       </div>
     </section>
