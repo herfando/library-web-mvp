@@ -1,4 +1,3 @@
-import { Input } from '../ui/input';
 import { Search } from 'lucide-react';
 import SearchInput from '../ui/search_input';
 
@@ -13,9 +12,14 @@ export default function Navbar() {
         />
         <div className='text-lg-lh self-center font-bold'>Booky</div>
       </div>
+      {/* Search book */}
       <div className='relative h-44 w-500'>
         <SearchInput placeholder='Search book' className='px-42' />
         <Search className='absolute top-1/2 left-16 -translate-y-1/2 text-[#D5D7DA]' />
+      </div>
+      {/* bag & profil */}
+      <div>
+        <img src='../../icons/02_bag.svg' alt='cart bag' />
       </div>
     </section>
   );
