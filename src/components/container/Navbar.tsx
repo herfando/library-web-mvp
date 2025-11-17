@@ -13,25 +13,30 @@ export default function Navbar() {
         <div className='text-lg-lh self-center font-bold'>Booky</div>
       </div>
       {/* Search book */}
-      <div className='relative h-44 w-500'>
+      <div className='relative hidden h-44 w-500 md:flex'>
         <SearchInput placeholder='Search book' className='px-42' />
         <Search className='absolute top-1/2 left-16 -translate-y-1/2 text-[#D5D7DA]' />
       </div>
+      <Search className='flex h-18 w-18 text-[#0A0D12] md:hidden' />
       {/* bag & profil */}
       <div className='flex items-center'>
+        {/* bag */}
         <img
           src='../../icons/02_bag.svg'
           alt='cart bag'
-          className='h-32 w-32'
+          className='mr-24 h-32 w-32'
         />
+        {/* picture account */}
         <img
           src='../../images/01_foto profil.png'
           alt='foto profil'
-          className='h-48 w-48'
+          className='mr-16 h-48 w-48'
         />
         {/* Name Profil account */}
-        <p>John Doe</p>
-        <ChevronDown />
+        <p className='mr-16 hidden text-[18px] font-semibold md:flex'>
+          John Doe
+        </p>
+        <ChevronDown className='hidden h-24 w-24 md:flex' />
       </div>
     </section>
   );
