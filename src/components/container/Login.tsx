@@ -10,7 +10,7 @@ export default function Login() {
     <section className='pr-11xl flex h-auto w-full items-center justify-center pt-217 pb-216 pl-34 md:px-520 md:pt-295 md:pb-298'>
       <div className='h-419 w-324 whitespace-nowrap md:h-431 md:w-400'>
         {/* Booky */}
-        <div className='mb-20 flex gap-x-11.5'>
+        <div className='mb-20 flex items-center gap-x-11.5'>
           <img
             src='../../../public/icons/01_logo company.svg'
             className='h-33 w-33'

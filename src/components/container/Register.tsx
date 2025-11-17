@@ -10,7 +10,7 @@ export default function Register() {
     <section className='flex h-auto w-full items-center justify-center pt-75 pr-34 pb-76 pl-24 md:px-520 md:pt-95 md:pb-217'>
       <div className='h-701 w-345 md:h-713 md:w-400'>
         {/* Booky */}
-        <div className='mb-20 flex gap-x-11.5'>
+        <div className='mb-20 flex items-center gap-x-11.5'>
           <img
             src='../../../public/icons/01_logo company.svg'
             className='h-33 w-33'
