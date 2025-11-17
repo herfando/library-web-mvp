@@ -17,9 +17,11 @@ export default function Navbar() {
         <SearchInput placeholder='Search book' className='px-42' />
         <Search className='absolute top-1/2 left-16 -translate-y-1/2 text-[#D5D7DA]' />
       </div>
-      <Search className='flex h-18 w-18 text-[#0A0D12] md:hidden' />
+
       {/* bag & profil */}
       <div className='flex items-center'>
+        {/* Search */}
+        <Search className='mr-16 flex h-24 w-24 text-[Neutral/950] md:hidden' />
         {/* bag */}
         <img
           src='../../icons/02_bag.svg'
