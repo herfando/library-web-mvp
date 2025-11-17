@@ -1,13 +1,15 @@
-// import Footer from './components/container/Footer';
 import './index.css';
-import AppRoutes from './components/routes/Router';
+// import AppRoutes from './components/routes/Router';
 // import Navbar from './components/container/Navbar';
+import Home from './components/container/Home';
+// import Footer from './components/container/Footer';
 
 function App() {
   return (
     <>
-      <AppRoutes />
+      {/* <AppRoutes /> */}
       {/* <Navbar /> */}
+      <Home />
       {/* <Footer /> */}
     </>
   );

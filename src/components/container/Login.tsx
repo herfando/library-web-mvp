@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  // 1. code navigate from login to home
+  // 1. code navigate from  to home
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //TODO:
     navigate('/home');
