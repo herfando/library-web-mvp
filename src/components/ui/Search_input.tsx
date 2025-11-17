@@ -5,11 +5,11 @@ interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 export default function SearchInput(props: SearchInputProps) {
   return (
-    <div className='relative'>
+    <div className='relative h-44 w-500'>
       <Input
         {...props}
         style={{ paddingLeft: '42px' }}
-        className={` ${props.className ?? ''}`}
+        className={`h-full w-full pl-42 ${props.className ?? ''}`}
       />
     </div>
   );
