@@ -2,9 +2,18 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Eye } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  // 1. code navigate from login to home
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //TODO:
+    navigate('/home');
+  };
+
+  // 2.code show password
   const [show, setShow] = useState(false);
   return (
     <section className='pr-11xl flex h-auto w-full items-center justify-center pt-217 pb-216 pl-34 md:px-520 md:pt-295 md:pb-298'>
@@ -23,25 +32,30 @@ export default function Login() {
           Sign in to manage your library account.
         </p>
         {/* Email */}
-        <div className='mb-16'>
-          <div className='mb-2 text-sm font-bold'>Email</div>
-          <Input />
-        </div>
-        {/* Password */}
-        <div className='mb-16'>
-          <div className='mb-2 text-sm font-bold'>Password </div>
-          <div className='relative w-full'>
-            <Input type={show ? 'text' : 'password'} />
-            <Eye
-              onClick={() => setShow(!show)}
-              className='absolute top-1/2 right-14 -translate-y-1/2 cursor-pointer text-[#0A0D12]'
-            />
+        <form onSubmit={handleSubmit}>
+          <div className='mb-16'>
+            <div className='mb-2 text-sm font-bold'>Email</div>
+            <Input />
           </div>
-        </div>
-        {/* Button */}
-        <Button className='text-md mb-16 h-48 w-full rounded-full bg-[#1C65DA] text-[#FDFDFD] hover:cursor-pointer'>
-          Login
-        </Button>
+          {/* Password */}
+          <div className='mb-16'>
+            <div className='mb-2 text-sm font-bold'>Password </div>
+            <div className='relative w-full'>
+              <Input type={show ? 'text' : 'password'} />
+              <Eye
+                onClick={() => setShow(!show)}
+                className='absolute top-1/2 right-14 -translate-y-1/2 cursor-pointer text-[#0A0D12]'
+              />
+            </div>
+          </div>
+          {/* Button */}
+          <Button
+            type='submit'
+            className='text-md mb-16 h-48 w-full rounded-full bg-[#1C65DA] text-[#FDFDFD] hover:cursor-pointer'
+          >
+            Login
+          </Button>
+        </form>
         {/* Don't have an account?Register */}
         <p className='text-md gap-x-4 text-center font-semibold'>
           Don't have an account?
