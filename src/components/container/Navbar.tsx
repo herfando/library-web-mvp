@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 import SearchInput from '../ui/search_input';
 
 export default function Navbar() {
@@ -18,8 +18,20 @@ export default function Navbar() {
         <Search className='absolute top-1/2 left-16 -translate-y-1/2 text-[#D5D7DA]' />
       </div>
       {/* bag & profil */}
-      <div>
-        <img src='../../icons/02_bag.svg' alt='cart bag' />
+      <div className='flex items-center'>
+        <img
+          src='../../icons/02_bag.svg'
+          alt='cart bag'
+          className='h-32 w-32'
+        />
+        <img
+          src='../../images/01_foto profil.png'
+          alt='foto profil'
+          className='h-48 w-48'
+        />
+        {/* Name Profil account */}
+        <p>John Doe</p>
+        <ChevronDown />
       </div>
     </section>
   );
