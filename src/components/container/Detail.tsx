@@ -1,4 +1,4 @@
-import { ChevronRight, Star } from 'lucide-react';
+import { ChevronRight, Star, Stars } from 'lucide-react';
 import { Button } from '../ui/button';
 
 export default function Detail() {
@@ -146,6 +146,26 @@ export default function Detail() {
       </div>
       {/* line */}
       <div className='mt-64 w-full border-b border-[#D5D7DA]'></div>
+      {/* Related Books */}
+      <div className='mt-24 mb-20 text-[36px] font-bold md:mt-64 md:mb-40'>
+        Related Books
+      </div>
+      {/* Card Book's detail */}
+      <div className='h-370 w-172 md:h-468 md:w-224'>
+        <img
+          className='rounded-t-2xl md:h-336 md:w-224'
+          src='../../images/04_img dummy2 recommendation.png'
+          alt='related books'
+        />
+        <div className='space-y-4 p-16'>
+          <h4 className='text-lg font-bold'>Book Name</h4>
+          <p className='text-md font-medium'>Author name</p>
+          <div>
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />{' '}
+            <span className='text-md font-semibold'>4.9</span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
