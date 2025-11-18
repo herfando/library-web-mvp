@@ -40,8 +40,10 @@ export default function Detail() {
         {/* Detail */}
         <div className='bg-accent-green h-462 w-827 self-center'>
           <h4 className='text-sm font-bold'>Business & Economics</h4>
-          <h2 className='text-sm-lh font-bold'>The Psychology of Money</h2>
-          <h3 className='mb-4 font-semibold text-[text-neutral-800]'>
+          <h2 className='md:text-sm-lh text-xs-lh font-bold'>
+            The Psychology of Money
+          </h2>
+          <h3 className='md:text-md mb-4 text-sm font-semibold text-[text-neutral-800]'>
             Morgan Housel
           </h3>
           {/* Star */}
@@ -52,25 +54,25 @@ export default function Detail() {
           {/* Page, rating, reviews */}
           <div className='mt-12 flex md:mt-22'>
             {/* Page */}
-            <div className='w-94.67 h-60 md:h-66 md:w-102'>
-              <p className='text-xs-lh font-bold'>320</p>
-              <p className='text-md font-medium'>Page</p>
+            <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
+              <p className='md:text-xs-lh text-lg font-bold'>320</p>
+              <p className='md:text-md text-sm font-medium'>Page</p>
             </div>
             {/* Rating */}
-            <div className='w-94.67 h-60 md:h-66 md:w-102'>
-              <p className='text-xs-lh font-bold'>212</p>
-              <p className='text-md font-medium'>Rating</p>
+            <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
+              <p className='md:text-xs-lh text-lg font-bold'>212</p>
+              <p className='md:text-md text-sm font-medium'>Rating</p>
             </div>
             {/* Reviews */}
-            <div className='w-94.67 h-60 md:h-66 md:w-102'>
-              <p className='text-xs-lh font-bold'>179</p>
-              <p className='text-md font-medium'>Reviews</p>
+            <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
+              <p className='md:text-xs-lh text-lg font-bold'>179</p>
+              <p className='md:text-md text-sm font-medium'>Reviews</p>
             </div>
           </div>
           {/* Description */}
           <div className='mt-16 mb-24 md:mt-20 md:mb-20'>
             <h2 className='text-xl font-bold'>Description</h2>
-            <p className='text-md mt-4 font-medium text-[#0A0D12]'>
+            <p className='md:text-md mt-4 text-sm font-medium text-[#0A0D12]'>
               The Psychology of Money” explores how emotions, biases, and human
               behavior shape the way we think about money, investing, and
               financial decisions. Morgan Housel shares timeless lessons on
