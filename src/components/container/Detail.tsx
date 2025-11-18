@@ -1,4 +1,4 @@
-import { ChevronRight, Star, Stars } from 'lucide-react';
+import { ChevronRight, Star } from 'lucide-react';
 import { Button } from '../ui/button';
 
 export default function Detail() {
@@ -52,27 +52,31 @@ export default function Detail() {
             <p className='text-md self-center font-bold'>4.9</p>
           </div>
           {/* Page, rating, reviews */}
-          <div className='relative mt-12 flex md:mt-22'>
+          <div className='relative mt-12 flex space-x-20 md:mt-22'>
             {/* Page */}
             <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
               <p className='md:text-xs-lh text-lg font-bold'>320</p>
               <p className='md:text-md text-sm font-medium'>Page</p>
             </div>
+            {/* line samping */}
+            <div className='border-r border-r-[#D5D7DA]'></div>
             {/* Rating */}
             <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
               <p className='md:text-xs-lh text-lg font-bold'>212</p>
               <p className='md:text-md text-sm font-medium'>Rating</p>
             </div>
+            {/* line samping */}
+            <div className='border-r border-r-[#D5D7DA]'></div>
             {/* Reviews */}
-            <div className='h-60 w-[94.67px] md:mb-20 md:h-66 md:w-102'>
+            <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
               <p className='md:text-xs-lh text-lg font-bold'>179</p>
               <p className='md:text-md text-sm font-medium'>Reviews</p>
             </div>
             {/* line bawah */}
-            <div className='absolute bottom-0 w-full border-b border-b-[#D5D7DA] md:w-3/4'></div>
+            <div className='absolute top-[140%] w-full border-b border-b-[#D5D7DA] md:w-3/4'></div>
           </div>
           {/* Description */}
-          <div className='mt-16 mb-24 md:mt-20 md:mb-20'>
+          <div className='mt-32 mb-24 md:mt-40 md:mb-20'>
             <h2 className='text-xl font-bold'>Description</h2>
             <p className='md:text-md mt-4 text-sm font-medium text-[#0A0D12]'>
               The Psychology of Money” explores how emotions, biases, and human
@@ -149,7 +153,7 @@ export default function Detail() {
       {/* line */}
       <div className='mt-64 w-full border-b border-[#D5D7DA]'></div>
       {/* Related Books */}
-      <div className='mt-24 mb-20 text-[24px] font-bold md:mt-64 md:mb-40 md:text-[36px]'>
+      <div className='text-xs-lh mt-24 mb-20 font-bold md:mt-64 md:mb-40 md:text-[36px]'>
         Related Books
       </div>
       {/* Card Book's detail */}
