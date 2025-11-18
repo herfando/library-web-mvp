@@ -91,15 +91,40 @@ export default function Home() {
           </div>
         </div>
         {/* Button Load More */}
-        <div className='flex items-center justify-center md:pb-48'>
-          <Button className='h-48 w-200 border border-[#D5D7DA] bg-white text-[#0A0D12] hover:text-white'>
+        <div className='flex items-center justify-center pb-24 md:pb-48'>
+          <Button className='md:text-md h-40 w-150 border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
             Load more{' '}
           </Button>
         </div>
         <div className='mb-24 border-b border-[#D5D7DA] md:mb-48'></div>
       </div>
       {/* Popular Authors */}
-      <div></div>
+      <div>
+        {/* Title */}
+        <h2 className='text-xs-lh mb-24 font-bold md:mb-40 md:text-[36px]'>
+          Popular Authors
+        </h2>
+        {/* total author */}
+        <div className='mb-116'>
+          {/* card author */}
+          <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
+            {/* image author */}
+            <img
+              src='../../images/05_img dummy3 author.png'
+              alt='author'
+              className='h-60 w-60 md:h-81 md:w-81'
+            />
+            {/* Author name */}
+            <div className='ml-16'>
+              <p>Author name</p>
+              <div className='flex'>
+                <img src='' alt='' />
+                <p>5 books</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
