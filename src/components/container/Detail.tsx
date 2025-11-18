@@ -147,7 +147,7 @@ export default function Detail() {
       {/* line */}
       <div className='mt-64 w-full border-b border-[#D5D7DA]'></div>
       {/* Related Books */}
-      <div className='mt-24 mb-20 text-[36px] font-bold md:mt-64 md:mb-40'>
+      <div className='mt-24 mb-20 text-[24px] font-bold md:mt-64 md:mb-40 md:text-[36px]'>
         Related Books
       </div>
       {/* Card Book's detail */}
