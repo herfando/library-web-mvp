@@ -38,7 +38,7 @@ export default function Detail() {
           </div>
         </div>
         {/* Detail */}
-        <div className='bg-accent-green h-462 w-827 self-center'>
+        <div className='h-462 w-827 self-center'>
           <h4 className='text-sm font-bold'>Business & Economics</h4>
           <h2 className='md:text-sm-lh text-xs-lh font-bold'>
             The Psychology of Money
@@ -94,7 +94,7 @@ export default function Detail() {
         <div className='mt-64 w-full border-b-2 text-[#D5D7DA]'></div>
       </div>
       {/* 3. Review */}
-      <div className='mt-64 h-822 w-full bg-blue-400'>
+      <div className='mt-64 h-822 w-full'>
         <h2 className='text-xs-lh mb-4 font-bold md:mb-12 md:text-[36px]'>
           Review
         </h2>
@@ -151,18 +151,18 @@ export default function Detail() {
         Related Books
       </div>
       {/* Card Book's detail */}
-      <div className='h-370 w-172 md:h-468 md:w-224'>
+      <div className='h-370 w-172 md:mb-118 md:h-468 md:w-224 md:space-y-16 md:space-x-16'>
         <img
-          className='rounded-t-2xl md:h-336 md:w-224'
+          className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
           src='../../images/04_img dummy2 recommendation.png'
           alt='related books'
         />
-        <div className='space-y-4 p-16'>
-          <h4 className='text-lg font-bold'>Book Name</h4>
-          <p className='text-md font-medium'>Author name</p>
-          <div>
+        <div className='space-y-4 p-12 md:p-16'>
+          <h4 className='text-sm font-bold md:text-lg'>Book Name</h4>
+          <p className='md:text-md text-sm font-medium'>Author name</p>
+          <div className='flex items-center space-x-3'>
             <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />{' '}
-            <span className='text-md font-semibold'>4.9</span>
+            <span className='md:text-md text-sm font-semibold'>4.9</span>
           </div>
         </div>
       </div>
