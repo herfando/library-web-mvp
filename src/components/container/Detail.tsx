@@ -38,8 +38,8 @@ export default function Detail() {
         </div>
         {/* Detail */}
         <div className='bg-accent-green h-462 w-827 self-center'>
-          <h4>Business & Economics</h4>
-          <h2>The Psychology of Money</h2>
+          <h4 className='text-sm font-bold'>Business & Economics</h4>
+          <h2 className='text-sm-lh font-bold'>The Psychology of Money</h2>
         </div>
       </div>
     </section>
