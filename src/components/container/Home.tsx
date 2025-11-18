@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <section className='custom-container h-auto w-full'>
-      {/* Banner Highlight */}
+      {/* 1. Banner Highlight */}
       <div
         onClick={handleClickImage}
         className='relative mt-16 inline-block w-full md:mt-48'
@@ -54,7 +54,18 @@ export default function Home() {
         activeIndex={active}
         onChange={setActive}
       />
-      {/* Categories */}
+      {/* 2. Categories */}
+      <div className='mt-48'>
+        <div className='flex h-64 w-162 items-center justify-center rounded-2xl bg-[#E0ECFF]'>
+          <img
+            src='../../images/03_fiksi.png'
+            alt='fiction'
+            className='w-51.2 h-51.2'
+          />
+        </div>
+        {/* title categories */}
+        <h3 className='text-md font-semibold'>Fiction</h3>
+      </div>
     </section>
   );
 }
