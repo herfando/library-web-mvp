@@ -1,4 +1,5 @@
 import { ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Detail() {
   return (
@@ -6,20 +7,28 @@ export default function Detail() {
       {/* 1. Book's link */}
       <div className='mb-16 flex items-center space-x-4 md:mb-24'>
         {/* Home */}
-        <a className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'>
+        <Link
+          to='#'
+          className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'
+        >
           Home
-        </a>
+        </Link>
         <ChevronRight className='h-16 w-16' />
         {/* Category */}
-        <a className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'>
+        <Link
+          to='#'
+          className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'
+        >
           Category
-        </a>
+        </Link>
         <ChevronRight className='h-16 w-16' />
         {/* Book's title */}
-        <a className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'>
+        <Link
+          to='#'
+          className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'
+        >
           The Psychology of Money
-        </a>
-        <ChevronRight className='h-16 w-16' />
+        </Link>
       </div>
       {/* 2. Book's detail */}
       {/* Book's image */}
