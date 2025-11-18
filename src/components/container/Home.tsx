@@ -30,7 +30,7 @@ export default function Home() {
           className='h-[132.67px] w-full rounded-2xl md:h-441 md:rounded-4xl'
         ></img>
         <div
-          className='pointer-events-none absolute inset-0 top-0 left-0 flex flex-col items-center justify-center text-[82.52px] font-bold text-[#6597E8]'
+          className='pointer-events-none absolute inset-0 top-0 left-0 flex flex-col items-center justify-center text-[25px] font-bold text-[#6597E8] md:text-[82.52px]'
           style={{
             textShadow: `
               1px 1px 0 #FFFFFF,
@@ -77,7 +77,7 @@ export default function Home() {
         <img
           src='../../images/04_img dummy2 recommendation.png'
           alt='img dummy'
-          className='h-336 w-224 rounded-t-2xl'
+          className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
         />
         <div className='space-y-4 p-16'>
           {/* Book Nama */}
@@ -96,8 +96,10 @@ export default function Home() {
             Load more{' '}
           </Button>
         </div>
+        <div className='mb-24 border-b border-[#D5D7DA] md:mb-48'></div>
       </div>
       {/* Popular Authors */}
+      <div></div>
     </section>
   );
 }
