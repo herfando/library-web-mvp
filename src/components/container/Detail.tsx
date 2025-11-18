@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 
 export default function Detail() {
   return (
-    <section className='custom-container mt-16 h-auto w-full bg-amber-300 md:mt-48'>
+    <section className='custom-container mt-16 h-auto w-full md:mt-48'>
       {/* 1. Book's link */}
       <div className='mb-16 flex items-center space-x-4 whitespace-nowrap md:mb-24'>
         {/* Home */}
@@ -136,6 +136,7 @@ export default function Detail() {
             ante.
           </p>
         </div>
+
         {/* Button Load More */}
         <div className='flex items-center justify-center pb-24 md:pb-48'>
           <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
@@ -143,6 +144,8 @@ export default function Detail() {
           </Button>
         </div>
       </div>
+      {/* line */}
+      <div className='mt-64 w-full border-b border-[#D5D7DA]'></div>
     </section>
   );
 }
