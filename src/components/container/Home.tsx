@@ -69,7 +69,7 @@ export default function Home() {
         <h3 className='text-md font-semibold'>Fiction</h3>
       </div>
       {/* 3. Recommendation */}
-      <div className='mt-24 md:mt-48'>
+      <div className='mt-24 space-x-20 md:mt-48'>
         <h2 className='text-xs-lh mb-20 font-bold md:mb-40 md:text-[36px]'>
           Recommendation
         </h2>
@@ -92,11 +92,12 @@ export default function Home() {
         </div>
         {/* Button Load More */}
         <div className='flex items-center justify-center md:pb-48'>
-          <Button className='h-48 w-200 border border-[#D5D7DA] bg-white text-[#0A0D12]'>
+          <Button className='h-48 w-200 border border-[#D5D7DA] bg-white text-[#0A0D12] hover:text-white'>
             Load more{' '}
           </Button>
         </div>
       </div>
+      {/* Popular Authors */}
     </section>
   );
 }
