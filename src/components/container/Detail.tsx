@@ -130,11 +130,17 @@ export default function Detail() {
             <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
           </div>
           {/* detail review */}
-          <p className='text-md font-semibold'>
+          <p className='text-md mt-8 font-semibold'>
             Lorem ipsum dolor sit amet consectetur. Pulvinar porttitor aliquam
             viverra nunc sed facilisis. Integer tristique nullam morbi mauris
             ante.
           </p>
+        </div>
+        {/* Button Load More */}
+        <div className='flex items-center justify-center pb-24 md:pb-48'>
+          <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
+            Load more{' '}
+          </Button>
         </div>
       </div>
     </section>
