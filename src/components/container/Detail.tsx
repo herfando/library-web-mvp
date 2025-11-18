@@ -1,4 +1,4 @@
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Star } from 'lucide-react';
 
 export default function Detail() {
   return (
@@ -40,6 +40,22 @@ export default function Detail() {
         <div className='bg-accent-green h-462 w-827 self-center'>
           <h4 className='text-sm font-bold'>Business & Economics</h4>
           <h2 className='text-sm-lh font-bold'>The Psychology of Money</h2>
+          <h3 className='mb-4 font-semibold text-[text-neutral-800]'>
+            Morgan Housel
+          </h3>
+          {/* Star */}
+          <div className='flex space-x-2 px-3'>
+            <Star className='h-24 w-24 fill-[#FFAB0D] text-[#FFAB0D]' />
+            <p className='text-md font-bold'>4.9</p>
+          </div>
+          {/* Page, rating, reviews */}
+          <div className='mt-12 flex md:mt-22'>
+            {/* Page */}
+            <div className='w-94.67 h-60 md:h-66 md:w-102'>
+              <p className='text-xs-lh font-bold'>320</p>
+              <p className='text-md font-medium'>Page</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
