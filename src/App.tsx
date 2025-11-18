@@ -2,8 +2,9 @@ import './index.css';
 // import AppRoutes from './components/routes/Router';
 // import Navbar from './components/container/Navbar';
 // import Home from './components/container/Home';
+import Category from './components/container/Category';
+// import Detail from './components/container/Detail';
 // import Footer from './components/container/Footer';
-import Detail from './components/container/Detail';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       {/* <AppRoutes /> */}
       {/* <Navbar /> */}
       {/* <Home /> */}
-      <Detail />
+      {/* <Detail /> */}
+      <Category />
       {/* <Footer /> */}
     </>
   );
