@@ -17,7 +17,7 @@ export default function PaginationBullets({
         <button
           key={index}
           onClick={() => onChange(index)}
-          className={`h-10 w-10 rounded-full transition-colors ${activeIndex === index ? 'bg-blue-500' : 'bg-gray-300'}`}
+          className={`mt-16 h-10 w-10 rounded-full transition-colors ${activeIndex === index ? 'bg-blue-500' : 'bg-gray-300'}`}
         />
       ))}
     </div>
