@@ -49,10 +49,10 @@ export default function Detail() {
           {/* Star */}
           <div className='flex items-center space-x-2 px-3'>
             <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <p className='text-md font-bold'>4.9</p>
+            <p className='text-md self-center font-bold'>4.9</p>
           </div>
           {/* Page, rating, reviews */}
-          <div className='mt-12 flex md:mt-22'>
+          <div className='relative mt-12 flex md:mt-22'>
             {/* Page */}
             <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
               <p className='md:text-xs-lh text-lg font-bold'>320</p>
@@ -64,10 +64,12 @@ export default function Detail() {
               <p className='md:text-md text-sm font-medium'>Rating</p>
             </div>
             {/* Reviews */}
-            <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
+            <div className='h-60 w-[94.67px] md:mb-20 md:h-66 md:w-102'>
               <p className='md:text-xs-lh text-lg font-bold'>179</p>
               <p className='md:text-md text-sm font-medium'>Reviews</p>
             </div>
+            {/* line bawah */}
+            <div className='absolute bottom-0 w-full border-b border-b-[#D5D7DA] md:w-3/4'></div>
           </div>
           {/* Description */}
           <div className='mt-16 mb-24 md:mt-20 md:mb-20'>
