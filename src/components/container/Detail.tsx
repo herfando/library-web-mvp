@@ -5,25 +5,25 @@ export default function Detail() {
   return (
     <section className='custom-container mt-16 h-auto w-full bg-amber-300 md:mt-48'>
       {/* 1. Book's link */}
-      <div className='mb-16 flex items-center space-x-4 md:mb-24'>
+      <div className='mb-16 flex items-center space-x-4 whitespace-nowrap md:mb-24'>
         {/* Home */}
-        <a className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'>
+        <a className='text-sm font-semibold hover:cursor-pointer hover:text-[#1C65DA]'>
           Home
         </a>
         <ChevronRight className='h-16 w-16' />
         {/* Category */}
-        <a className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'>
+        <a className='text-sm font-semibold hover:cursor-pointer hover:text-[#1C65DA]'>
           Category
         </a>
         <ChevronRight className='h-16 w-16' />
         {/* Book's title */}
-        <a className='font-semibold hover:cursor-pointer hover:text-[#1C65DA] md:text-sm'>
+        <a className='text-sm font-semibold hover:cursor-pointer hover:text-[#1C65DA]'>
           The Psychology of Money
         </a>
       </div>
       {/* 2. Book's detail */}
       {/* Book's image */}
-      <div className='flex space-x-16'>
+      <div className='flex flex-wrap items-center justify-center space-y-36 space-x-16'>
         <div>
           {/* outline */}
           <div className='relative flex h-498 w-337 bg-[#E9EAEB]'>
