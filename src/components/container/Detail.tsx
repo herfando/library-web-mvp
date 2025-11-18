@@ -47,8 +47,8 @@ export default function Detail() {
             Morgan Housel
           </h3>
           {/* Star */}
-          <div className='flex space-x-2 px-3'>
-            <Star className='h-24 w-24 fill-[#FFAB0D] text-[#FFAB0D]' />
+          <div className='flex items-center space-x-2 px-3'>
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
             <p className='text-md font-bold'>4.9</p>
           </div>
           {/* Page, rating, reviews */}
@@ -100,8 +100,41 @@ export default function Detail() {
         </h2>
         {/* Star */}
         <div className='flex items-center space-x-4 px-3'>
-          <Star className='h-24 w-24 fill-[#FFAB0D] text-[#FFAB0D] md:h-34 md:w-34' />
+          <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
           <p className='text-md font-bold md:text-xl'>4.9 (24 Ulasan)</p>
+        </div>
+        {/* total reviewer */}
+        <div className='mb-116'>
+          {/* card reviewer */}
+          <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
+            {/* image reviewer */}
+            <img
+              src='../../images/05_img dummy3 author.png'
+              alt='reviewer'
+              className='h-58 w-58 md:h-64 md:w-64'
+            />
+            {/* reviewer name */}
+            <div className='ml-16'>
+              <p className='text-sm font-bold md:text-lg'>John Doe</p>
+              <p className='md:text-md flex text-sm font-medium whitespace-nowrap'>
+                25 August 2025, 13:38
+              </p>
+            </div>
+          </div>
+          {/* 5 stars */}
+          <div className='mt-16 flex items-center space-x-4 px-3'>
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+          </div>
+          {/* detail review */}
+          <p className='text-md font-semibold'>
+            Lorem ipsum dolor sit amet consectetur. Pulvinar porttitor aliquam
+            viverra nunc sed facilisis. Integer tristique nullam morbi mauris
+            ante.
+          </p>
         </div>
       </div>
     </section>
