@@ -90,6 +90,19 @@ export default function Detail() {
             </Button>
           </div>
         </div>
+        {/* Line buttom */}
+        <div className='mt-64 w-full border-b-2 text-[#D5D7DA]'></div>
+      </div>
+      {/* 3. Review */}
+      <div className='mt-64 h-822 w-full bg-blue-400'>
+        <h2 className='text-xs-lh mb-4 font-bold md:mb-12 md:text-[36px]'>
+          Review
+        </h2>
+        {/* Star */}
+        <div className='flex items-center space-x-4 px-3'>
+          <Star className='h-24 w-24 fill-[#FFAB0D] text-[#FFAB0D] md:h-34 md:w-34' />
+          <p className='text-md font-bold md:text-xl'>4.9 (24 Ulasan)</p>
+        </div>
       </div>
     </section>
   );
