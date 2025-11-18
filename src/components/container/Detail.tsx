@@ -23,7 +23,7 @@ export default function Detail() {
       </div>
       {/* 2. Book's detail */}
       {/* Book's image */}
-      <div className='flex flex-wrap items-center justify-center space-y-36 space-x-16'>
+      <div className='flex flex-wrap items-center justify-center space-y-36 space-x-16 lg:space-y-0'>
         <div>
           {/* outline */}
           <div className='relative flex h-498 w-337 bg-[#E9EAEB]'>
