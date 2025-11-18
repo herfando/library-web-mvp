@@ -86,7 +86,7 @@ export default function Home() {
           <p>Author name</p>
           {/* Star */}
           <div className='flex space-x-5.5'>
-            <Star className='h-24 w-24 fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
             <p>4.9</p>
           </div>
         </div>
@@ -118,7 +118,7 @@ export default function Home() {
             <div className='ml-16'>
               <p>Author name</p>
               <div className='flex'>
-                <img src='' alt='' />
+                <img src='../../images/07_img dummy5 books.png' alt='books' />
                 <p>5 books</p>
               </div>
             </div>
