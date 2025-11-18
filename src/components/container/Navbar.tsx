@@ -1,5 +1,5 @@
 import { Search, ChevronDown } from 'lucide-react';
-import SearchInput from '';
+import SearchInput from '../ui/search_input';
 
 export default function Navbar() {
   return (
