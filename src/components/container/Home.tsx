@@ -54,6 +54,7 @@ export default function Home() {
         activeIndex={active}
         onChange={setActive}
       />
+      {/* Categories */}
     </section>
   );
 }
