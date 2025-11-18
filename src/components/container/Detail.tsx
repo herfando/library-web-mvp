@@ -1,4 +1,5 @@
 import { ChevronRight, Star } from 'lucide-react';
+import { Button } from '../ui/button';
 
 export default function Detail() {
   return (
@@ -55,6 +56,36 @@ export default function Detail() {
               <p className='text-xs-lh font-bold'>320</p>
               <p className='text-md font-medium'>Page</p>
             </div>
+            {/* Rating */}
+            <div className='w-94.67 h-60 md:h-66 md:w-102'>
+              <p className='text-xs-lh font-bold'>212</p>
+              <p className='text-md font-medium'>Rating</p>
+            </div>
+            {/* Reviews */}
+            <div className='w-94.67 h-60 md:h-66 md:w-102'>
+              <p className='text-xs-lh font-bold'>179</p>
+              <p className='text-md font-medium'>Reviews</p>
+            </div>
+          </div>
+          {/* Description */}
+          <div className='mt-16 mb-24 md:mt-20 md:mb-20'>
+            <h2 className='text-xl font-bold'>Description</h2>
+            <p className='text-md mt-4 font-medium text-[#0A0D12]'>
+              The Psychology of Money” explores how emotions, biases, and human
+              behavior shape the way we think about money, investing, and
+              financial decisions. Morgan Housel shares timeless lessons on
+              wealth, greed, and happiness, showing that financial success is
+              not about knowledge, but about behavior.
+            </p>
+          </div>
+          {/* Button */}
+          <div className='hidden md:flex'>
+            <Button className='h-48 w-200 rounded-full bg-white font-bold text-black hover:cursor-pointer hover:bg-gray-700 hover:text-white'>
+              Add to Cart
+            </Button>
+            <Button className='ml-12 h-48 w-200 rounded-full font-bold hover:cursor-pointer hover:bg-[#7FB0FF] hover:text-black'>
+              Borrow Book
+            </Button>
           </div>
         </div>
       </div>
