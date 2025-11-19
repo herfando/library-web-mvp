@@ -2,7 +2,7 @@ import { Star } from 'lucide-react';
 
 export default function Category() {
   return (
-    <section className='custom-container mt-16 h-auto w-full bg-blue-400 md:mt-48'>
+    <section className='custom-container mt-16 h-auto w-full md:mt-48'>
       <div>
         <div className='text-xs-lh mb-16 font-bold md:mb-32 md:text-[36px]'>
           Book List
@@ -22,7 +22,7 @@ export default function Category() {
                     <input
                       id='fiction'
                       type='checkbox'
-                      className='text-md font-medium'
+                      className='text-md h-14 w-14 self-center rounded-2xl font-medium'
                     />
                     Fiction
                   </label>
@@ -31,12 +31,9 @@ export default function Category() {
                 <div className='space-y-10'>
                   <h4 className='text-lg font-bold'>Rating</h4>
                   <div>
-                    <label
-                      htmlFor='fiction'
-                      className='flex items-center gap-8'
-                    >
+                    <label htmlFor='star 5' className='flex items-center gap-8'>
                       <input
-                        id='fiction'
+                        id='star 5'
                         type='checkbox'
                         className='text-md h-14 w-14 self-center rounded-2xl font-medium'
                       />
