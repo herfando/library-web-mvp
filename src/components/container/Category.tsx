@@ -51,7 +51,7 @@ export default function Category() {
 
           {/* ----------------- BOOK DISPLAY KANAN ----------------- */}
           <div>
-            <div className='h-370 w-172 md:mb-118 md:h-439 md:w-204.75 md:space-y-16 md:space-x-16'>
+            <div className='h-370 w-172 md:mb-118 md:h-439 md:w-204.75 md:space-x-16'>
               <img
                 className='h-258 w-172 rounded-t-2xl md:h-[307.12px] md:w-[204.8px]'
                 src='../../images/04_img dummy2 recommendation.png'
