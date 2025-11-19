@@ -46,7 +46,7 @@ export default function Cart() {
             <span className='text-medium text-md'>Total Book</span>
             <span className='text-md font-bold'>2 Items</span>
           </p>
-          <Button className='h-48 w-full rounded-full text-white hover:bg-gray-800'>
+          <Button className='h-48 w-full rounded-full border border-[#D5D7DA] font-bold text-white hover:cursor-pointer hover:bg-[#82AEFF] hover:text-black'>
             Borrow Book
           </Button>
         </div>
