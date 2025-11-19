@@ -7,7 +7,8 @@ import './index.css';
 // import BookByAuthor from './components/container/Book_byAuthor';
 // import Cart from './components/container/Cart';
 // import Footer from './components/container/Footer';
-import Checkout from './components/container/Checkout';
+import Success from './components/container/Succsess';
+// import Checkout from './components/container/Checkout';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       {/* <Category /> */}
       {/* <BookByAuthor /> */}
       {/* <Cart /> */}
-      <Checkout />
+      {/* <Checkout /> */}
+      <Success />
       {/* <Footer /> */}
     </>
   );
