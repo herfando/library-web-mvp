@@ -34,12 +34,12 @@ export default function Checkout() {
 
       {/* 2. Start Right section completer your borrow request */}
       {/* Select per catagory */}
-      <h3>Book List</h3>
+      <h3 className='md:text-xs-lh text-lg font-bold'>Book List</h3>
       <div className='mt-16 flex md:mt-24'>
         <img
           src='../../images/08_img dummy6 my cart.png'
           alt='books my cart'
-          className='ml-16'
+          className='space-y-16'
         />
         {/* card Detail */}
         <div className='ml-12 md:ml-16'>
