@@ -118,6 +118,14 @@ export default function Checkout() {
                     I accept the library borrowing policy.
                   </span>
                 </div>
+                {/* end agreement and policy */}
+
+                {/* Button confirm & borrow */}
+                <div className='mt-16 md:mt-24'>
+                  <Button className='h-48 w-full rounded-full hover:cursor-pointer'>
+                    Confirm & Borrow
+                  </Button>
+                </div>
               </div>
             </p>
           </div>
