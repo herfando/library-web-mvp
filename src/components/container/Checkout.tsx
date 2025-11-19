@@ -75,6 +75,26 @@ export default function Checkout() {
                 className='absolute top-0 right-0 mt-14 mr-14'
               />
             </div>
+            <p className='md:text-md mt-16 flex flex-col gap-y-12 text-sm font-bold md:mt-24'>
+              Borrow Duration
+              {/* 3 days */}
+              <div className='flex items-center gap-x-15 md:gap-x-8'>
+                <input type='radio' className='h-24 w-24' />
+                <span className='md:text-md text-sm font-semibold'>3 Days</span>
+              </div>
+              {/* 5 days */}
+              <div className='flex items-center gap-x-15 md:gap-x-8'>
+                <input type='radio' className='h-24 w-24' />
+                <span className='md:text-md text-sm font-semibold'>5 Days</span>
+              </div>
+              {/* 10 days */}
+              <div className='flex items-center gap-x-15 md:gap-x-8'>
+                <input type='radio' className='h-24 w-24' />
+                <span className='md:text-md text-sm font-semibold'>
+                  10 Days
+                </span>
+              </div>
+            </p>
           </div>
         </div>
         {/* 2. End Right section completer your borrow request */}
