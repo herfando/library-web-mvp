@@ -1,4 +1,5 @@
 import { Button } from '../ui/button';
+import { Calendar } from 'lucide-react';
 
 export default function Checkout() {
   return (
@@ -55,10 +56,26 @@ export default function Checkout() {
         {/* 1. End Left section User information */}
 
         {/* 2. Start Right section completer your borrow request */}
-        <div className='bg-accent-red'>
+        <div className='bg-accent-red p-20'>
           <h2 className='md:text-sm-lh items-center font-bold'>
             Complete Your Borrow Request
           </h2>
+          <div className='mt-16 md:mt-24'>
+            <p className='text-sm font-bold'>Borrow Date</p>
+            <div className='relative mt-2'>
+              <Button className='flex h-48 w-full border border-[#D5D7DA] bg-[#F5F5F5] text-black hover:bg-[#F5F5F5]'>
+                <input
+                  type='text'
+                  placeholder='28 Aug 2024'
+                  className='text-md my-9 mr-44 ml-16 h-30 w-full font-semibold'
+                ></input>
+              </Button>
+              <Calendar
+                size={20}
+                className='absolute top-0 right-0 mt-14 mr-14'
+              />
+            </div>
+          </div>
         </div>
         {/* 2. End Right section completer your borrow request */}
       </div>
