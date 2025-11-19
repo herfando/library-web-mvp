@@ -106,7 +106,7 @@ export default function Home() {
         </h2>
         {/* total author */}
         <div className='mb-116'>
-          {/* card author */}
+          {/* start card author */}
           <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
             {/* image author */}
             <img
@@ -123,6 +123,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          {/* end card author */}
         </div>
       </div>
     </section>

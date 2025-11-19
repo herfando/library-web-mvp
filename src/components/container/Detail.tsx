@@ -152,7 +152,7 @@ export default function Detail() {
       </div>
       {/* line */}
       <div className='mt-64 w-full border-b border-[#D5D7DA]'></div>
-      {/* Related Books */}
+      {/* Start Related Books */}
       <div className='text-xs-lh mt-24 mb-20 font-bold md:mt-64 md:mb-40 md:text-[36px]'>
         Related Books
       </div>
@@ -172,6 +172,7 @@ export default function Detail() {
           </div>
         </div>
       </div>
+      {/* End Related books */}
     </section>
   );
 }
