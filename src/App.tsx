@@ -4,7 +4,8 @@ import './index.css';
 // import Home from './components/container/Home';
 // import Category from './components/container/Category';
 // import Detail from './components/container/Detail';
-import BookByAuthor from './components/container/Book_byAuthor';
+// import BookByAuthor from './components/container/Book_byAuthor';
+import Cart from './components/container/Cart';
 // import Footer from './components/container/Footer';
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       {/* <Home /> */}
       {/* <Detail /> */}
       {/* <Category /> */}
-      <BookByAuthor />
+      {/* <BookByAuthor /> */}
+      <Cart />
       {/* <Footer /> */}
     </>
   );
