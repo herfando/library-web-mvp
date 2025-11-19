@@ -95,12 +95,29 @@ export default function Checkout() {
                 </span>
               </div>
               {/* announcement */}
-              <div>
+              <div className='mt-16 flex h-92 w-full flex-col justify-center rounded-2xl bg-[#F6F9FE] p-16 md:mt-24'>
                 <h3 className='md:text-md text-sm font-bold'>Return Date</h3>
                 <p className='md:text-md text-sm font-medium'>
                   Please return the book no later than
                   <span className='ml-4 text-[#EE1D52]'>31 August 2025 </span>
                 </p>
+              </div>
+              {/* agreement and policy */}
+              <div className='mt-16 space-y-8 md:mt-24'>
+                {/* agreement */}
+                <div className='flex items-center gap-x-15 md:gap-x-8'>
+                  <input type='checkbox' className='h-24 w-24' />
+                  <span className='md:text-md text-sm font-semibold'>
+                    I agree to return the book(s) before the due date.
+                  </span>
+                </div>
+                {/* policy */}
+                <div className='flex items-center gap-x-15 md:gap-x-8'>
+                  <input type='checkbox' className='h-24 w-24' />
+                  <span className='md:text-md text-sm font-semibold'>
+                    I accept the library borrowing policy.
+                  </span>
+                </div>
               </div>
             </p>
           </div>
