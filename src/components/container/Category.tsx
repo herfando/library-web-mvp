@@ -11,7 +11,7 @@ export default function Category() {
         {/* WRAPPER FLEX UNTUK MEMBUAT KIRI - KANAN */}
         <div className='md:flex md:items-start md:gap-32'>
           {/* ----------------- FILTER KIRI ----------------- */}
-          <div className='w-226'>
+          <div className='mb-60 w-226'>
             <h4 className='text-md font-bold'>FILTER</h4>
             <div className='hidden md:flex'>
               <div className='space-y-10'>
@@ -51,9 +51,9 @@ export default function Category() {
 
           {/* ----------------- BOOK DISPLAY KANAN ----------------- */}
           <div>
-            <div className='h-370 w-172 md:mb-118 md:h-468 md:w-224 md:space-y-16 md:space-x-16'>
+            <div className='h-370 w-172 md:mb-118 md:h-439 md:w-204.75 md:space-y-16 md:space-x-16'>
               <img
-                className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
+                className='h-258 w-172 rounded-t-2xl md:h-[307.12px] md:w-[204.8px]'
                 src='../../images/04_img dummy2 recommendation.png'
                 alt='related books'
               />
