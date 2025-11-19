@@ -2,7 +2,7 @@ import { Button } from '../ui/button';
 
 export default function Cart() {
   return (
-    <section className='mx-auto mt-16 h-auto w-full max-w-1000 items-center md:mt-48'>
+    <section className='mx-auto mt-16 h-auto w-full max-w-1032 items-center pr-16 pl-16 md:mt-48'>
       {/* Title My Cart */}
       <div className='text-xs-lh mb-16 font-bold md:mb-32 md:text-[36px]'>
         My Cart
@@ -40,7 +40,16 @@ export default function Cart() {
         {/* End Cart left section */}
 
         {/* Start Loan Summary right section */}
-        <div className='ml-40 hidden h-200 w-318 bg-amber-300 md:flex'></div>
+        <div className='ml-40 hidden h-200 w-318 flex-col space-y-24 p-20 md:flex'>
+          <h3 className='text-xl font-bold'>Loan Summary</h3>
+          <p className='flex justify-between'>
+            <span className='text-medium text-md'>Total Book</span>
+            <span className='text-md font-bold'>2 Items</span>
+          </p>
+          <Button className='h-48 w-full rounded-full text-white hover:bg-gray-800'>
+            Borrow Book
+          </Button>
+        </div>
         {/* End Loan Summary right section */}
       </div>
     </section>
