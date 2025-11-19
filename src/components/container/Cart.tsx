@@ -8,7 +8,7 @@ export default function Cart() {
         My Cart
       </div>
       <div className='flex flex-wrap'>
-        {/* Start Cart left section */}
+        {/* 1. Start Cart left section */}
         <div className='w-642'>
           {/* Select all */}
           <label htmlFor='select all' className='flex gap-x-5'>
@@ -37,9 +37,9 @@ export default function Cart() {
           {/* underline */}
           <div className='mt-16 w-full border-b border-b-[#D5D7DA] md:mt-24'></div>
         </div>
-        {/* End Cart left section */}
+        {/* 1. End Cart left section */}
 
-        {/* Start Loan Summary right section */}
+        {/* 2. Start Loan Summary right section */}
         <div className='ml-40 hidden h-200 w-318 flex-col space-y-24 p-20 md:flex'>
           <h3 className='text-xl font-bold'>Loan Summary</h3>
           <p className='flex justify-between'>
@@ -50,7 +50,7 @@ export default function Cart() {
             Borrow Book
           </Button>
         </div>
-        {/* End Loan Summary right section */}
+        {/* 2. End Loan Summary right section */}
       </div>
     </section>
   );
