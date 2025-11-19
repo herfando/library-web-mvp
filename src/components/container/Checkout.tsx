@@ -3,7 +3,7 @@ import { Calendar } from 'lucide-react';
 
 export default function Checkout() {
   return (
-    <section className='bg-accent-green mx-auto mt-16 h-auto max-w-1034 pr-16 pl-16 md:mt-48'>
+    <section className='mx-auto mt-16 h-auto max-w-1034 pr-16 pl-16 md:mt-48'>
       <h2 className='md:text-36 text-24 mb-16 font-bold md:mb-32'>Checkout</h2>
       <div className='flex flex-wrap space-x-58'>
         {/* 1. Start Left section User information */}
@@ -14,19 +14,19 @@ export default function Checkout() {
               User Information
             </h3>
             {/* Name */}
-            <div className='flex w-full justify-between bg-amber-300'>
+            <div className='flex w-full justify-between'>
               <h4 className='md:text-md text-sm font-medium'>Name</h4>
               <span className='md:text-md text-sm font-bold'>Johndoe</span>
             </div>
             {/* Email */}
-            <div className='flex w-full justify-between bg-amber-300'>
+            <div className='flex w-full justify-between'>
               <h4 className='md:text-md text-sm font-medium'>Email</h4>
               <span className='md:text-md text-sm font-bold'>
                 johndoe@email.com
               </span>
             </div>
             {/* Nomor Handphone */}
-            <div className='flex w-full justify-between bg-amber-300'>
+            <div className='flex w-full justify-between'>
               <h4 className='md:text-md text-sm font-medium'>
                 Nomor Handphone
               </h4>
@@ -56,7 +56,7 @@ export default function Checkout() {
         {/* 1. End Left section User information */}
 
         {/* 2. Start Right section completer your borrow request */}
-        <div className='bg-accent-red p-20'>
+        <div className='p-20'>
           <h2 className='md:text-sm-lh items-center font-bold'>
             Complete Your Borrow Request
           </h2>
@@ -93,6 +93,14 @@ export default function Checkout() {
                 <span className='md:text-md text-sm font-semibold'>
                   10 Days
                 </span>
+              </div>
+              {/* announcement */}
+              <div>
+                <h3 className='md:text-md text-sm font-bold'>Return Date</h3>
+                <p className='md:text-md text-sm font-medium'>
+                  Please return the book no later than
+                  <span className='ml-4 text-[#EE1D52]'>31 August 2025 </span>
+                </p>
               </div>
             </p>
           </div>
