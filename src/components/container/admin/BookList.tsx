@@ -1,5 +1,5 @@
 import { Button } from '../../ui/button';
-import { Search } from 'lucide-react';
+import { Search, Star } from 'lucide-react';
 
 export default function BookList() {
   return (
@@ -71,20 +71,25 @@ export default function BookList() {
             />
             {/* card Detail */}
             <div className='ml-12 flex flex-col justify-between md:ml-16'>
-              <Button className='h-28 w-78 items-center rounded-2xl border-[Neutral/300] bg-white font-bold text-black hover:text-white'>
-                <span>Category</span>
+              <Button className='h-28 w-158 items-center rounded-2xl border-[Neutral/300] bg-white font-bold text-black hover:text-white'>
+                <span>Business & Economics</span>
               </Button>
-              <h3 className='text-md font-bold md:text-lg'>Book Name</h3>
-              <h3 className='md:text-md text-sm font-medium'>Author name</h3>
-              <h4 className='md:text-md flex gap-x-18 text-sm font-bold'>
-                29 Aug 2025 • Duration 3 Day
-              </h4>
+              <h3 className='text-md font-bold md:text-lg'>
+                The Psychology of Money
+              </h3>
+              <h3 className='md:text-md text-sm font-medium'>Morgan Housel</h3>
+              <div className='flex items-center space-x-3'>
+                <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />{' '}
+                <span className='md:text-md text-sm font-semibold'>4.9</span>
+              </div>
             </div>
           </div>
           {/* Button give review*/}
-          <Button className='text-md mt-26 h-40 w-full rounded-full font-bold md:mt-0 md:w-182'>
-            Give Review
-          </Button>
+          <div>
+            <Button className='text-md h-48 w-95 rounded-full border border-[#D5D7DA] bg-white font-bold text-[#0A0D12] hover:cursor-pointer hover:text-white'>
+              Preview
+            </Button>
+          </div>
         </div>
         {/* end Booklist */}
       </div>
