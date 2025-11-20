@@ -8,7 +8,8 @@ import './index.css';
 // import Cart from './components/container/Cart';
 // import Footer from './components/container/Footer';
 // import Success from './components/container/Succsess';
-import BorrowedList from './components/container/BorrowedList';
+// import BorrowedList from './components/container/BorrowedList';
+import Profile from './components/container/Profile';
 // import Checkout from './components/container/Checkout';
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
       {/* <Cart /> */}
       {/* <Checkout /> */}
       {/* <Success /> */}
-      <BorrowedList />
+      {/* <BorrowedList /> */}
+      <Profile />
       {/* <Footer /> */}
     </>
   );
