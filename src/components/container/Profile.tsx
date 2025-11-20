@@ -2,7 +2,7 @@ import { Button } from '../ui/button';
 
 export default function Profile() {
   return (
-    <section className='mx-auto mt-16 mb-58 w-full -translate-x-[43%] px-16 md:mt-40 md:mb-110 md:h-440 md:w-557'>
+    <section className='mx-auto mt-16 mb-58 w-full -translate-x-0 px-16 md:mt-40 md:mb-110 md:h-440 md:w-557 md:-translate-x-[43%]'>
       {/* start navigasi 1 */}
       <div className='flex h-56 items-center justify-center gap-x-8 bg-[#F5F5F5] md:w-557'>
         <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>

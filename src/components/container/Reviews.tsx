@@ -1,7 +1,7 @@
 import { Button } from '../ui/button';
 import { Search } from 'lucide-react';
 
-export default function BorrowedList() {
+export default function Reviews() {
   return (
     <section className='mx-auto mt-16 max-w-1032 pr-16 pl-16 md:mt-48'>
       {/* start navigasi 1 */}
