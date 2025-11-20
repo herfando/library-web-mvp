@@ -1,6 +1,6 @@
 import './index.css';
 // import AppRoutes from './components/routes/Router';
-import Navbar from './components/container/Navbar';
+// import Navbar from './components/container/Navbar';
 // import Home from './components/container/Home';
 // import Category from './components/container/Category';
 // import Detail from './components/container/Detail';
@@ -9,14 +9,15 @@ import Navbar from './components/container/Navbar';
 // import Checkout from './components/container/Checkout';
 // import Success from './components/container/Succsess';
 // import BorrowedList from './components/container/BorrowedList';
-import Profile from './components/container/Profile';
-import Footer from './components/container/Footer';
+// import Profile from './components/container/Profile';
+import Reviews from './components/container/Reviews';
+// import Footer from './components/container/Footer';
 
 function App() {
   return (
     <>
       {/* <AppRoutes /> */}
-      <Navbar />
+      {/* <Navbar /> */}
       {/* <Home /> */}
       {/* <Detail /> */}
       {/* <Category /> */}
@@ -25,8 +26,9 @@ function App() {
       {/* <Checkout /> */}
       {/* <Success /> */}
       {/* <BorrowedList /> */}
-      <Profile />
-      <Footer />
+      {/* <Profile /> */}
+      <Reviews />
+      {/* <Footer /> */}
     </>
   );
 }
