@@ -79,7 +79,7 @@ export default function BorrowedList() {
         </div>
         {/* end card status active borrow list */}
         {/* start Booklist */}
-        <div>
+        <div className='flex flex-wrap items-center justify-between'>
           <div className='mt-16 flex md:mt-24'>
             <img
               src='../../images/08_img dummy6 my cart.png'
@@ -98,6 +98,10 @@ export default function BorrowedList() {
               </h4>
             </div>
           </div>
+          {/* Button give review*/}
+          <Button className='text-md mt-26 h-40 w-full rounded-full font-bold md:mt-0 md:w-182'>
+            Give Review
+          </Button>
         </div>
         {/* end Booklist */}
       </div>
