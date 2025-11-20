@@ -104,6 +104,14 @@ export default function BorrowedList() {
           </Button>
         </div>
         {/* end Booklist */}
+
+        {/* Start Button Load More */}
+        <div className='mt-16 hidden items-center justify-center pb-24 md:flex md:pb-48'>
+          <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
+            Load more{' '}
+          </Button>
+        </div>
+        {/* End Button Load More */}
       </div>
     </section>
   );
