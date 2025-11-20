@@ -17,7 +17,8 @@ import './index.css';
 // import NavbarAdmin from './components/container/admin/NavbarAdmin';
 // import UserList from './components/container/admin/UserList';
 // import BookList from './components/container/admin/BookList';
-import Preview from './components/container/admin/Preview';
+// import Preview from './components/container/admin/Preview';
+import AddBook from './components/container/admin/AddBook';
 // import Footer from './components/container/user/Footer';
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
       {/* <NavbarAdmin /> */}
       {/* <UserList /> */}
       {/* <BookList /> */}
-      <Preview />
+      {/* <Preview /> */}
+      <AddBook />
       {/* <Footer /> */}
     </>
   );
