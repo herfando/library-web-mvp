@@ -13,7 +13,8 @@ import './index.css';
 // import Reviews from './components/container/user/Reviews';
 // import GiveReview from './components/container/user/GiveReview';
 // import DropdownMenu from './components/container/user/DropdownMenu';
-import LoginAdmin from './components/container/admin/LoginAdmin';
+// import LoginAdmin from './components/container/admin/LoginAdmin';
+import NavbarAdmin from './components/container/admin/NavbarAdmin';
 // import Footer from './components/container/user/Footer';
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
       {/* <Reviews /> */}
       {/* <GiveReview /> */}
       {/* <DropdownMenu /> */}
-      <LoginAdmin />
+      {/* <LoginAdmin /> */}
+      <NavbarAdmin />
       {/* <Footer /> */}
     </>
   );
