@@ -18,7 +18,19 @@ export default function Profile() {
       {/* end navigasi 1*/}
 
       {/* start profile */}
-
+      <h2 className='md:text-sm-lh text-xs-lh` font-bold'>Profile</h2>
+      {/* profil card */}
+      <div className='mt-15 p-20 md:mt-24'>
+        <img
+          src='../../images/01_foto profil.png'
+          alt='profil'
+          className='h-64 w-64'
+        />
+        <div className='flex w-full items-center justify-between'>
+          <p>Name</p>
+          <p>Johndoe</p>
+        </div>
+      </div>
       {/* end profile */}
     </section>
   );
