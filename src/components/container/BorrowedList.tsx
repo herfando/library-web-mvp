@@ -56,13 +56,25 @@ export default function BorrowedList() {
         {/* end navigasi 2 */}
 
         {/* start status active borrow list */}
-        <div className='mt-15 flex h-auto w-846 gap-x-12 md:mt-24'>
-          <Button className='md:text-md mt-15 h-40 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500] md:mt-24'>
-            Status
-          </Button>
-          <Button className='md:text-md mt-15 h-40 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500] md:mt-24'>
-            Active
-          </Button>
+        <div className='mt-15 flex h-auto w-846 items-center md:mt-24'>
+          <div className='flex w-full justify-between p-20'>
+            <div className='flex items-center gap-x-12'>
+              <Button className='md:text-md h-32 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500]'>
+                Status
+              </Button>
+              <Button className='md:text-md h-32 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500]'>
+                Active
+              </Button>
+            </div>
+            <div className='flex gap-x-12'>
+              <Button className='md:text-md h-32 w-62 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500] md:w-72'>
+                Due Date
+              </Button>
+              <Button className='h-32 w-116 rounded-xl bg-[#EE1D521A] text-sm font-bold text-[#EE1D52] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500]'>
+                31 August 2025
+              </Button>
+            </div>
+          </div>
         </div>
         {/* end status active borrow list */}
       </div>
