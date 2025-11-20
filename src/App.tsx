@@ -1,4 +1,3 @@
-import UserList from './components/container/admin/UserList';
 import './index.css';
 // import AppRoutes from './components/routes/Router';
 // import Navbar from './components/container/user/Navbar';
@@ -16,6 +15,8 @@ import './index.css';
 // import DropdownMenu from './components/container/user/DropdownMenu';
 // import LoginAdmin from './components/container/admin/LoginAdmin';
 // import NavbarAdmin from './components/container/admin/NavbarAdmin';
+// import UserList from './components/container/admin/UserList';
+import BookList from './components/container/admin/BookList';
 // import Footer from './components/container/user/Footer';
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
       {/* <DropdownMenu /> */}
       {/* <LoginAdmin /> */}
       {/* <NavbarAdmin /> */}
-      <UserList />
+      {/* <UserList /> */}
+      <BookList />
       {/* <Footer /> */}
     </>
   );
