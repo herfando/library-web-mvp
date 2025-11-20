@@ -3,7 +3,7 @@ import { Search, Star } from 'lucide-react';
 
 export default function Reviews() {
   return (
-    <section className='mx-auto mt-16 mb-48 max-w-1032 pr-16 pl-16 md:mt-48 md:mb-36'>
+    <section className='mx-auto mt-16 mb-48 h-auto max-w-1032 pr-16 pl-16 md:mt-48 md:mb-36'>
       {/* start navigasi 1 */}
       <div className='flex h-56 items-center justify-center gap-x-8 bg-[#F5F5F5] md:w-557'>
         <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
