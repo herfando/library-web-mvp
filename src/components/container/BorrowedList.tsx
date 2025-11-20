@@ -39,21 +39,32 @@ export default function BorrowedList() {
         {/* end borrowed list + search */}
 
         {/* start navigasi 2 */}
-        <div className='flex gap-12'>
-          <Button className='md:text-md mt-15 h-40 w-51 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24'>
+        <div className='flex gap-x-12'>
+          <Button className='md:text-md mt-15 h-40 w-51 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24'>
             All
           </Button>
-          <Button className='md:text-md mt-15 h-40 w-72 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-77'>
+          <Button className='md:text-md mt-15 h-40 w-72 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-77'>
             Active
           </Button>
-          <Button className='md:text-md mt-15 h-40 w-93 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-101'>
+          <Button className='md:text-md mt-15 h-40 w-93 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-101'>
             Returned
           </Button>
-          <Button className='md:text-md mt-15 h-40 w-88 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-96'>
+          <Button className='md:text-md mt-15 h-40 w-88 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-96'>
             Overdue
           </Button>
         </div>
         {/* end navigasi 2 */}
+
+        {/* start status active borrow list */}
+        <div className='mt-15 flex h-auto w-846 gap-x-12 md:mt-24'>
+          <Button className='md:text-md mt-15 h-40 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500] md:mt-24'>
+            Status
+          </Button>
+          <Button className='md:text-md mt-15 h-40 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500] md:mt-24'>
+            Active
+          </Button>
+        </div>
+        {/* end status active borrow list */}
       </div>
     </section>
   );
