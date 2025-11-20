@@ -2,9 +2,9 @@ import { Button } from '../ui/button';
 
 export default function Profile() {
   return (
-    <section className='bg-accent-green absolute mt-16 w-full md:right-1/2 md:mt-40 md:h-440 md:w-557'>
+    <section className='mx-auto mt-16 mb-58 w-full -translate-x-[43%] px-16 md:mt-40 md:mb-110 md:h-440 md:w-557'>
       {/* start navigasi 1 */}
-      <div className='flex h-56 items-center justify-center bg-[#F5F5F5] md:w-557'>
+      <div className='flex h-56 items-center justify-center gap-x-8 bg-[#F5F5F5] md:w-557'>
         <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
           Profile
         </Button>
@@ -42,7 +42,7 @@ export default function Profile() {
           <p className='md:text-md text-sm font-medium'>Nomor Handphone</p>
           <p className='md:text-md text-sm font-bold'>081234567890</p>
         </div>
-        <Button className='text-md mt-24 h-48 w-full rounded-full font-bold hover:cursor-pointer md:mt-32'>
+        <Button className='text-md mt-16 h-48 w-full rounded-full font-bold hover:cursor-pointer md:mt-24'>
           Update Profile{' '}
         </Button>
       </div>
