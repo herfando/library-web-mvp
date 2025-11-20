@@ -85,9 +85,15 @@ export default function BookList() {
             </div>
           </div>
           {/* Button give review*/}
-          <div>
+          <div className='space-x-13'>
             <Button className='text-md h-48 w-95 rounded-full border border-[#D5D7DA] bg-white font-bold text-[#0A0D12] hover:cursor-pointer hover:text-white'>
               Preview
+            </Button>
+            <Button className='text-md h-48 w-95 rounded-full border border-[#D5D7DA] bg-white font-bold text-[#0A0D12] hover:cursor-pointer hover:text-white'>
+              Edit
+            </Button>
+            <Button className='text-md h-48 w-95 rounded-full border border-[#D5D7DA] bg-white font-bold text-[#EE1D52] hover:cursor-pointer'>
+              Delete
             </Button>
           </div>
         </div>

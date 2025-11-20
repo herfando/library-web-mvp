@@ -96,7 +96,7 @@ export default function Detail() {
             </Button>
             <div className='ml-12 flex h-40 w-40 items-center justify-center self-center rounded-full border border-[#D5D7DA]'>
               <img src='../../icons/07_Icon share.svg' alt='icon share' />
-            </div>{' '}
+            </div>
           </div>
         </div>
         {/* Line buttom */}
