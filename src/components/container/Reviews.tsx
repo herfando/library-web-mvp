@@ -1,9 +1,9 @@
 import { Button } from '../ui/button';
-import { Search } from 'lucide-react';
+import { Search, Star } from 'lucide-react';
 
 export default function Reviews() {
   return (
-    <section className='mx-auto mt-16 max-w-1032 pr-16 pl-16 md:mt-48'>
+    <section className='mx-auto mt-16 mb-48 max-w-1032 pr-16 pl-16 md:mt-48 md:mb-36'>
       {/* start navigasi 1 */}
       <div className='flex h-56 items-center justify-center gap-x-8 bg-[#F5F5F5] md:w-557'>
         <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
@@ -43,6 +43,8 @@ export default function Reviews() {
           <div className='md:text-md text-sm font-semibold'>
             25 August 2025, 13:38
           </div>
+          {/* line bottom */}
+          <div className='mt-16 w-full border-b border-b-[#D5D7DA] md:mt-20'></div>
           <div className='mt-16 flex md:mt-24'>
             <img
               src='../../images/08_img dummy6 my cart.png'
@@ -58,6 +60,23 @@ export default function Reviews() {
               <h3 className='md:text-md text-sm font-medium'>Author name</h3>
             </div>
           </div>
+          {/* line bottom */}
+          <div className='mt-16 w-full border-b border-b-[#D5D7DA] md:mt-20'></div>
+          {/* 5 star */}
+          <div className='mt-16 flex items-center space-x-4 px-3'>
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+          </div>
+
+          {/* lorem paragraf */}
+          <p className='md:text-md mt-8 text-sm font-semibold'>
+            Lorem ipsum dolor sit amet consectetur. Pulvinar porttitor aliquam
+            viverra nunc sed facilisis. Integer tristique nullam morbi mauris
+            ante.
+          </p>
         </div>
         {/* end reviews Booklist */}
       </div>
