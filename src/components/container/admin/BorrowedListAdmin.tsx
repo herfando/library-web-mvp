@@ -1,7 +1,7 @@
 import { Button } from '../../ui/button';
 import { Search } from 'lucide-react';
 
-export default function BorrowedList() {
+export default function BorrowedListAdmin() {
   return (
     <section className='mx-auto mt-16 max-w-1032 pr-16 pl-16 md:mt-48'>
       {/* start navigasi 1 */}
@@ -98,20 +98,13 @@ export default function BorrowedList() {
               </h4>
             </div>
           </div>
-          {/* Button give review*/}
-          <Button className='text-md mt-26 h-40 w-full rounded-full font-bold md:mt-0 md:w-182'>
-            Give Review
-          </Button>
+          {/* borrower's name*/}
+          <div>
+            <h4 className='text-md font-semibold'>borrower's name</h4>
+            <h3 className='text-xl font-bold'>John Doee</h3>
+          </div>
         </div>
         {/* end Booklist */}
-
-        {/* Start Button Load More */}
-        <div className='mt-16 hidden items-center justify-center pb-24 md:flex md:pb-48'>
-          <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
-            Load more{' '}
-          </Button>
-        </div>
-        {/* End Button Load More */}
       </div>
     </section>
   );
