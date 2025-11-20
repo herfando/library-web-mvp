@@ -1,3 +1,4 @@
+import UserList from './components/container/admin/UserList';
 import './index.css';
 // import AppRoutes from './components/routes/Router';
 // import Navbar from './components/container/user/Navbar';
@@ -14,7 +15,7 @@ import './index.css';
 // import GiveReview from './components/container/user/GiveReview';
 // import DropdownMenu from './components/container/user/DropdownMenu';
 // import LoginAdmin from './components/container/admin/LoginAdmin';
-import NavbarAdmin from './components/container/admin/NavbarAdmin';
+// import NavbarAdmin from './components/container/admin/NavbarAdmin';
 // import Footer from './components/container/user/Footer';
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
       {/* <GiveReview /> */}
       {/* <DropdownMenu /> */}
       {/* <LoginAdmin /> */}
-      <NavbarAdmin />
+      {/* <NavbarAdmin /> */}
+      <UserList />
       {/* <Footer /> */}
     </>
   );
