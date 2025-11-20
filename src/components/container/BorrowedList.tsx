@@ -6,13 +6,13 @@ export default function BorrowedList() {
     <section className='mx-auto mt-16 max-w-1032 pr-16 pl-16 md:mt-48'>
       {/* start navigasi 1 */}
       <div className='flex h-56 items-center justify-center bg-[#F5F5F5] md:w-557'>
-        <Button className='md:text-md h-40 w-[109.67px] bg-[#FFFFFF] text-sm text-neutral-700 md:w-175'>
+        <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
           Profile
         </Button>
-        <Button className='md:text-md h-40 w-[109.67px] bg-[#FFFFFF] text-sm font-bold text-black md:w-175'>
+        <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
           Borrowed List
         </Button>
-        <Button className='md:text-md h-40 w-[109.67px] bg-[#FFFFFF] text-sm text-neutral-700 md:w-175'>
+        <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
           Reviews
         </Button>
       </div>
@@ -39,9 +39,9 @@ export default function BorrowedList() {
         {/* end borrowed list + search */}
 
         {/* start navigasi 2 */}
-        <div>
-          <Button className='md:text-md h-40 w-[109.67px] bg-[#FFFFFF] text-sm text-neutral-700 md:w-175'>
-            Profile
+        <div className='flex'>
+          <Button className='md:text-md mt-15 h-40 w-40 rounded-2xl border bg-[#FFFFFF] text-sm text-neutral-700 hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24'>
+            All
           </Button>
         </div>
         {/* end navigasi 2 */}
