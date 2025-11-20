@@ -7,7 +7,8 @@ import './index.css';
 // import BookByAuthor from './components/container/Book_byAuthor';
 // import Cart from './components/container/Cart';
 // import Footer from './components/container/Footer';
-import Success from './components/container/Succsess';
+// import Success from './components/container/Succsess';
+import BorrowedList from './components/container/BorrowedList';
 // import Checkout from './components/container/Checkout';
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
       {/* <BookByAuthor /> */}
       {/* <Cart /> */}
       {/* <Checkout /> */}
-      <Success />
+      {/* <Success /> */}
+      <BorrowedList />
       {/* <Footer /> */}
     </>
   );
