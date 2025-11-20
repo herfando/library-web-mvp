@@ -75,8 +75,31 @@ export default function BorrowedList() {
               </Button>
             </div>
           </div>
+          <div className='mt-16 border-b border-b-[#D5D7DA] md:mt-20'></div>
         </div>
         {/* end card status active borrow list */}
+        {/* start Booklist */}
+        <div>
+          <div className='mt-16 flex md:mt-24'>
+            <img
+              src='../../images/08_img dummy6 my cart.png'
+              alt='books my cart'
+              className='space-y-16'
+            />
+            {/* card Detail */}
+            <div className='ml-12 flex flex-col justify-between md:ml-16'>
+              <Button className='h-28 w-78 items-center rounded-2xl border-[Neutral/300] bg-white font-bold text-black hover:text-white'>
+                <span>Category</span>
+              </Button>
+              <h3 className='text-md font-bold md:text-lg'>Book Name</h3>
+              <h3 className='md:text-md text-sm font-medium'>Author name</h3>
+              <h4 className='md:text-md flex gap-x-18 text-sm font-bold'>
+                29 Aug 2025 • Duration 3 Day
+              </h4>
+            </div>
+          </div>
+        </div>
+        {/* end Booklist */}
       </div>
     </section>
   );
