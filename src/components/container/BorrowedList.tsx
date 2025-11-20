@@ -39,9 +39,18 @@ export default function BorrowedList() {
         {/* end borrowed list + search */}
 
         {/* start navigasi 2 */}
-        <div className='flex'>
-          <Button className='md:text-md mt-15 h-40 w-40 rounded-2xl border bg-[#FFFFFF] text-sm text-neutral-700 hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24'>
+        <div className='flex gap-12'>
+          <Button className='md:text-md mt-15 h-40 w-51 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24'>
             All
+          </Button>
+          <Button className='md:text-md mt-15 h-40 w-72 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-77'>
+            Active
+          </Button>
+          <Button className='md:text-md mt-15 h-40 w-93 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-101'>
+            Returned
+          </Button>
+          <Button className='md:text-md mt-15 h-40 w-88 rounded-full border bg-[#FFFFFF] text-sm text-neutral-700 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-96'>
+            Overdue
           </Button>
         </div>
         {/* end navigasi 2 */}
