@@ -11,7 +11,8 @@ import './index.css';
 // import BorrowedList from './components/container/BorrowedList';
 // import Profile from './components/container/Profile';
 // import Reviews from './components/container/Reviews';
-import GiveReview from './components/container/GiveReview';
+// import GiveReview from './components/container/GiveReview';
+import DropdownMenu from './components/container/DropdownMenu';
 // import Footer from './components/container/Footer';
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
       {/* <BorrowedList /> */}
       {/* <Profile /> */}
       {/* <Reviews /> */}
-      <GiveReview />
+      {/* <GiveReview /> */}
+      <DropdownMenu />
       {/* <Footer /> */}
     </>
   );
