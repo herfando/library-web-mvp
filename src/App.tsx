@@ -10,7 +10,8 @@ import './index.css';
 // import Success from './components/container/Succsess';
 // import BorrowedList from './components/container/BorrowedList';
 // import Profile from './components/container/Profile';
-import Reviews from './components/container/Reviews';
+// import Reviews from './components/container/Reviews';
+import GiveReview from './components/container/GiveReview';
 // import Footer from './components/container/Footer';
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
       {/* <Success /> */}
       {/* <BorrowedList /> */}
       {/* <Profile /> */}
-      <Reviews />
+      {/* <Reviews /> */}
+      <GiveReview />
       {/* <Footer /> */}
     </>
   );
