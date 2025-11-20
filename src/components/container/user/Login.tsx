@@ -1,5 +1,5 @@
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
+import { Input } from '../../ui/input';
+import { Button } from '../../ui/button';
 import { Eye } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';

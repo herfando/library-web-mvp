@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import PaginationBullets from '../ui/paginationBullets';
+import PaginationBullets from '../../ui/paginationBullets';
 import { Star } from 'lucide-react';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 
 export default function Home() {
   // code pagination image
