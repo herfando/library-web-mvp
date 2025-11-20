@@ -55,8 +55,8 @@ export default function BorrowedList() {
         </div>
         {/* end navigasi 2 */}
 
-        {/* start status active borrow list */}
-        <div className='mt-15 flex h-auto w-846 items-center md:mt-24'>
+        {/* start card status active borrow list */}
+        <div className='mt-15 flex h-auto w-846 items-center rounded-2xl shadow-lg md:mt-24'>
           <div className='flex w-full justify-between p-20'>
             <div className='flex items-center gap-x-12'>
               <Button className='md:text-md h-32 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500]'>
@@ -76,7 +76,7 @@ export default function BorrowedList() {
             </div>
           </div>
         </div>
-        {/* end status active borrow list */}
+        {/* end card status active borrow list */}
       </div>
     </section>
   );
