@@ -4,11 +4,11 @@ import {
   Route,
   Outlet,
 } from 'react-router-dom';
-import Login from '../components/container/user/Login';
-import Register from '../components/container/user/Register';
-import Home from '../components/container/user/Home';
-import Navbar from '../components/container/user/Navbar';
-import Footer from '../components/container/user/Footer';
+import Login from '../components/container/user/01_Login';
+import Register from '../components/container/user/02_Register';
+import Home from '../components/container/user/03_Home';
+import Navbar from '../components/container/user/00_Navbar';
+import Footer from '../components/container/user/00_Footer';
 
 const AuthLayout = () => (
   <div>
