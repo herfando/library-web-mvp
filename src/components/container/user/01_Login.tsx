@@ -3,18 +3,32 @@ import { Button } from '../../ui/button';
 import { Eye } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useLoginMutation } from '../../../redux/services/authApi';
+import { useAppDispatch } from '../../../redux/hooks/useAuth';
+import { setCredentials } from '../../../redux/slices/authSlice';
+import { toast } from 'react-hot-toast';
 
 export default function Login() {
-  // 1. code navigate from  to home
   const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //TODO:
-    navigate('/home');
-  };
+  const dispatch = useAppDispatch();
+  const [login, { isLoading }] = useLoginMutation();
 
-  // 2.code show password
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const userData = await login({ email, password }).unwrap();
+      // simpan ke redux
+      dispatch(setCredentials(userData));
+      toast.success('Login sukses!');
+      navigate('/home');
+    } catch (err: any) {
+      toast.error(err?.data?.message || 'Login gagal');
+    }
+  };
   return (
     <section className='pr-11xl flex h-auto w-full items-center justify-center pt-217 pb-216 pl-34 md:px-520 md:pt-295 md:pb-298'>
       <div className='h-419 w-324 whitespace-nowrap md:h-431 md:w-400'>
@@ -35,13 +49,17 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Email</div>
-            <Input />
+            <Input value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           {/* Password */}
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Password </div>
             <div className='relative w-full'>
-              <Input type={show ? 'text' : 'password'} />
+              <Input
+                type={show ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <Eye
                 onClick={() => setShow(!show)}
                 className='absolute top-1/2 right-14 -translate-y-1/2 cursor-pointer text-[#0A0D12]'
@@ -51,8 +69,10 @@ export default function Login() {
           {/* Button */}
           <Button
             type='submit'
+            disabled={isLoading}
             className='text-md mb-16 h-48 w-full rounded-full bg-[#1C65DA] text-[#FDFDFD] hover:cursor-pointer'
           >
+            {isLoading ? 'Loading...' : 'Login'}
             Login
           </Button>
         </form>
