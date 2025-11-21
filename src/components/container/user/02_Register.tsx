@@ -36,7 +36,7 @@ export default function Register() {
 
       dispatch(setCredentials(userData));
       toast.success('Register sukses!');
-      navigate('/home');
+      navigate('/');
     } catch (err: any) {
       toast.error(err?.data?.message || 'Register gagal');
     }
