@@ -73,7 +73,6 @@ export default function Login() {
             className='text-md mb-16 h-48 w-full rounded-full bg-[#1C65DA] text-[#FDFDFD] hover:cursor-pointer'
           >
             {isLoading ? 'Loading...' : 'Login'}
-            Login
           </Button>
         </form>
         {/* Don't have an account?Register */}
