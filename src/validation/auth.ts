@@ -23,8 +23,8 @@ export const registerSchema = z
     confirm: z.string().min(1, 'Konfirmasi password wajib diisi'),
     phone: z
       .string()
-      .optional()
-      .refine((v) => !v || /^\d{8,15}$/.test(v), 'Nomor handphone tidak valid'),
+      .min(1, 'Nomor handphone wajib diisi')
+      .refine((v) => /^\d{8,15}$/.test(v), 'Nomor handphone tidak valid'),
   })
   .refine((data) => data.password === data.confirm, {
     path: ['confirm'],
@@ -32,3 +32,5 @@ export const registerSchema = z
   });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
+export type LoginSchema = z.infer<typeof loginSchema>;
+export type RegisterSchema = z.infer<typeof registerSchema>;

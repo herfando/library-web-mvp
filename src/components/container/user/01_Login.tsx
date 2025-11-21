@@ -7,21 +7,32 @@ import { useLoginMutation } from '../../../redux/services/authApi';
 import { useAppDispatch } from '../../../redux/hooks/useAuth';
 import { setCredentials } from '../../../redux/slices/authSlice';
 import { toast } from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, type LoginSchema } from '../../../validation/auth';
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = async (data: LoginSchema) => {
     try {
-      const userData = await login({ email, password }).unwrap();
-      // simpan ke redux
+      const userData = await login({
+        email: data.email,
+        password: data.password,
+      }).unwrap();
+
       dispatch(setCredentials(userData));
       toast.success('Login sukses!');
       navigate('/home');
@@ -29,6 +40,7 @@ export default function Login() {
       toast.error(err?.data?.message || 'Login gagal');
     }
   };
+
   return (
     <section className='pr-11xl flex h-auto w-full items-center justify-center pt-217 pb-216 pl-34 md:px-520 md:pt-295 md:pb-298'>
       <div className='h-419 w-324 whitespace-nowrap md:h-431 md:w-400'>
@@ -46,24 +58,34 @@ export default function Login() {
           Sign in to manage your library account.
         </p>
         {/* Email */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Email</div>
-            <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input {...register('email')} />
+            {errors.email && (
+              <p className='mt-1 text-xs text-red-500'>
+                {errors.email.message}
+              </p>
+            )}
           </div>
+
           {/* Password */}
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Password </div>
             <div className='relative w-full'>
               <Input
                 type={show ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register('password')}
               />
               <Eye
                 onClick={() => setShow(!show)}
                 className='absolute top-1/2 right-14 -translate-y-1/2 cursor-pointer text-[#0A0D12]'
               />
+              {errors.password && (
+                <p className='mt-1 text-xs text-red-500'>
+                  {errors.password.message}
+                </p>
+              )}
             </div>
           </div>
           {/* Button */}
