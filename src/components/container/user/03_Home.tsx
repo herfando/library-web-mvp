@@ -119,7 +119,7 @@ export default function Home() {
               <p>Author name</p>
               <div className='flex'>
                 <img src='../../images/07_img dummy5 books.png' alt='books' />
-                <p>5 books</p>
+                <p className='ml-5'>5 books</p>
               </div>
             </div>
           </div>
