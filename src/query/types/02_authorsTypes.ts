@@ -1,4 +1,4 @@
-// === Author type from API ===
+// === AUTHOR ENTITY ===
 export interface Author {
   id: number;
   name: string;
@@ -7,26 +7,17 @@ export interface Author {
   updatedAt: string;
 }
 
-// === Create / Update input ===
+// === CREATE / UPDATE INPUT ===
 export interface AuthorCreateInput {
   name: string;
   bio: string;
 }
 
-// === List Authors Response ===
+// === PAGINATED LIST (kalau suatu hari pakai pagination) ===
 export interface AuthorsListResponse {
   success: boolean;
   message: string;
   data: {
     authors: Author[];
-  };
-}
-
-// === Books by Author Response ===
-export interface BooksByAuthorResponse {
-  success: boolean;
-  message: string;
-  data: {
-    books: any[];
   };
 }
