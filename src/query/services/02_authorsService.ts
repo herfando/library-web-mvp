@@ -3,41 +3,43 @@ import type {
   Author,
   AuthorCreateInput,
   AuthorsListResponse,
-  BooksByAuthorResponse,
 } from '../types/02_authorsTypes';
 
-// === 1. Get authors list ===
+// === LIST AUTHORS ===
 export const fetchAuthors = async (): Promise<Author[]> => {
   const res = await apiClient.get<AuthorsListResponse>('/authors');
   return res.data.data.authors;
 };
 
-// === 2. Create new author ===
+// === CREATE AUTHOR ===
 export const createAuthor = async (
-  payload: AuthorCreateInput
+  author: AuthorCreateInput
 ): Promise<Author> => {
-  const res = await apiClient.post<{ data: Author }>('/authors', payload);
+  const res = await apiClient.post<{ data: Author }>('/authors', author);
   return res.data.data;
 };
 
-// === 3. Get books by author ===
-export const fetchBooksByAuthor = async (id: number): Promise<any[]> => {
-  const res = await apiClient.get<BooksByAuthorResponse>(
-    `/authors/${id}/books`
-  );
-  return res.data.data.books;
+// === GET AUTHOR DETAIL (BOOKS BY AUTHOR) ===
+// API RESPONSE:
+// { success: false, message: "Author not found" }
+// Tidak ada data struktur buku → return kosong
+export const fetchAuthorBooks = async (
+  id: number
+): Promise<{ books: any[] }> => {
+  const res = await apiClient.get(`/authors/${id}/books`);
+  return res.data?.data ?? { books: [] };
 };
 
-// === 4. Update author ===
+// === UPDATE AUTHOR ===
 export const updateAuthor = async (
   id: number,
-  payload: AuthorCreateInput
+  author: AuthorCreateInput
 ): Promise<Author> => {
-  const res = await apiClient.put<{ data: Author }>(`/authors/${id}`, payload);
+  const res = await apiClient.put<{ data: Author }>(`/authors/${id}`, author);
   return res.data.data;
 };
 
-// === 5. Delete author ===
+// === DELETE AUTHOR ===
 export const deleteAuthor = async (
   id: number
 ): Promise<{ success: boolean; message: string }> => {
