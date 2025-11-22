@@ -1,20 +1,32 @@
-// src/query/hooks/useHome.ts
 import { useQuery } from '@tanstack/react-query';
 import {
   fetchBooks,
   fetchCategories,
   fetchRecommendations,
   fetchPopularAuthors,
-} from '../service/homeApi';
+} from '../services/homeApi';
+import type { Book, Category, Author } from '../types/homeTypes';
 
-export const useBooksQuery = (params?: { page?: number; category?: string }) =>
-  useQuery(['books', params], () => fetchBooks(params));
+export const useBooksQuery = () =>
+  useQuery<Book[], Error>({
+    queryKey: ['books'],
+    queryFn: fetchBooks,
+  });
 
 export const useCategoriesQuery = () =>
-  useQuery(['categories'], fetchCategories);
+  useQuery<Category[], Error>({
+    queryKey: ['categories'],
+    queryFn: fetchCategories,
+  });
 
 export const useRecommendationsQuery = () =>
-  useQuery(['recommendations'], fetchRecommendations);
+  useQuery<Book[], Error>({
+    queryKey: ['recommendations'],
+    queryFn: fetchRecommendations,
+  });
 
 export const usePopularAuthorsQuery = () =>
-  useQuery(['popularAuthors'], fetchPopularAuthors);
+  useQuery<Author[], Error>({
+    queryKey: ['popularAuthors'],
+    queryFn: fetchPopularAuthors,
+  });
