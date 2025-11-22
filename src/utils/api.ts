@@ -1,58 +1,74 @@
-export const API = {
+export const ENDPOINTS = {
   AUTH: {
-    REGISTER: '/api/auth/register',
-    LOGIN: '/api/auth/login',
-    ME: '/api/me', // get my profile + stats
-    UPDATE_ME: '/api/me', // patch
-    MY_LOANS: '/api/me/loans', // get my loans (active & history)
-    MY_REVIEWS: '/api/me/reviews', // get my reviews
+    REGISTER: '/api/auth/register', // POST register user baru
+    LOGIN: '/api/auth/login', // POST login user
+    LOGOUT: '/api/auth/logout', // POST logout user
   },
 
   BOOKS: {
-    LIST: '/api/books', // get list with filters & pagination
-    DETAIL: (id: number) => `/api/books/${id}`, // get book detail
-    CREATE: '/api/books', // post
-    UPDATE: (id: number) => `/api/books/${id}`, // put
-    DELETE: (id: number) => `/api/books/${id}`, // delete
-    RECOMMEND: '/api/books/recommend', // get recommend
+    LIST: '/api/books', // GET daftar buku + filter + pagination
+    DETAIL: (id: number) => `/api/books/${id}`, // GET detail buku
+    CREATE: '/api/books', // POST tambah buku (admin)
+    UPDATE: (id: number) => `/api/books/${id}`, // PUT update buku
+    DELETE: (id: number) => `/api/books/${id}`, // DELETE hapus buku
+
+    SEARCH: '/api/books/search', // GET search buku
+
+    INCREASE_STOCK: (id: number) => `/api/books/${id}/increase`, // PATCH tambah stok
+    DECREASE_STOCK: (id: number) => `/api/books/${id}/decrease`, // PATCH kurangi stok
+
+    UPLOAD_IMAGE: (id: number) => `/api/books/${id}/images`, // POST upload gambar
+    DELETE_IMAGE: (id: number, imageId: number) =>
+      `/api/books/${id}/images/${imageId}`, // DELETE gambar tertentu
   },
 
   AUTHORS: {
-    LIST: '/api/authors',
-    DETAIL_BOOKS: (id: number) => `/api/authors/${id}/books`, // get books by author
-    CREATE: '/api/authors', // post
-    UPDATE: (id: number) => `/api/authors/${id}`, // put
-    DELETE: (id: number) => `/api/authors/${id}`, // delete
+    LIST: '/api/authors', // GET list penulis
+    CREATE: '/api/authors', // POST tambah penulis (admin)
+    DETAIL: (id: number) => `/api/authors/${id}`, // GET detail penulis
+    UPDATE: (id: number) => `/api/authors/${id}`, // PUT update data penulis
+    DELETE: (id: number) => `/api/authors/${id}`, // DELETE hapus penulis
   },
 
   CATEGORIES: {
-    LIST: '/api/categories',
-    CREATE: '/api/categories', // post
-    UPDATE: (id: number) => `/api/categories/${id}`, // put
-    DELETE: (id: number) => `/api/categories/${id}`, // delete
+    LIST: '/api/categories', // GET list kategori
+    CREATE: '/api/categories', // POST tambah kategori
+    DETAIL: (id: number) => `/api/categories/${id}`, // GET detail kategori
+    UPDATE: (id: number) => `/api/categories/${id}`, // PUT update kategori
+    DELETE: (id: number) => `/api/categories/${id}`, // DELETE kategori
   },
 
   LOANS: {
-    BORROW: '/api/loans', // post borrow a book
-    RETURN: (id: number) => `/api/loans/${id}/return`, // patch return
-    MY_LOANS: '/api/loans/my', // get my loans
-    ADMIN_CREATE: '/api/admin/loans', // post create loan
-    ADMIN_UPDATE: (id: number) => `/api/admin/loans/${id}`, // patch update loan
-    ADMIN_OVERDUE: '/api/admin/loans/overdue', // get overdue loans
-    ADMIN_OVERVIEW: '/api/admin/overview', // get admin overview
+    LIST: '/api/loans', // GET semua peminjaman
+    DETAIL: (id: number) => `/api/loans/${id}`, // GET detail pinjaman
+    CREATE: '/api/loans', // POST buat peminjaman baru
+    UPDATE: (id: number) => `/api/loans/${id}`, // PATCH update status
+    DELETE: (id: number) => `/api/loans/${id}`, // DELETE pinjaman
+
+    RETURN: (id: number) => `/api/loans/${id}/return`, // PATCH kembalikan buku
+    EXTEND: (id: number) => `/api/loans/${id}/extend`, // PATCH perpanjang peminjaman
   },
 
   REVIEWS: {
-    CREATE_OR_UPDATE: '/api/reviews', // post review
-    LIST_BY_BOOK: (bookId: number) => `/api/reviews/book/${bookId}`, // get reviews by book
-    DELETE: (id: number) => `/api/reviews/${id}`, // delete review
+    LIST: '/api/reviews', // GET semua review
+    DETAIL: (id: number) => `/api/reviews/${id}`, // GET detail review
+    CREATE: '/api/reviews', // POST buat review
+    UPDATE: (id: number) => `/api/reviews/${id}`, // PUT update review
+    DELETE: (id: number) => `/api/reviews/${id}`, // DELETE review
+
+    FOR_BOOK: (bookId: number) => `/api/books/${bookId}/reviews`, // GET review by book
   },
 
   CART: {
-    GET: '/api/cart',
-    CLEAR: '/api/cart',
-    ADD_ITEM: '/api/cart/items', // post add item
-    UPDATE_ITEM: (itemId: number) => `/api/cart/items/${itemId}`, // patch
-    DELETE_ITEM: (itemId: number) => `/api/cart/items/${itemId}`, // delete
+    GET: '/api/cart', // GET cart user
+    ADD: '/api/cart', // POST tambah item
+    UPDATE: (itemId: number) => `/api/cart/${itemId}`, // PATCH update qty item
+    REMOVE: (itemId: number) => `/api/cart/${itemId}`, // DELETE item dari cart
+    CHECKOUT: '/api/cart/checkout', // POST checkout transaksi
+  },
+
+  ME: {
+    PROFILE: '/api/me', // GET profil user login
+    UPDATE: '/api/me', // PATCH update profil saya
   },
 };
