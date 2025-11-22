@@ -9,7 +9,10 @@ import { setCredentials } from '../../../redux/slices/authSlice';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { registerSchema, type RegisterSchema } from '../../../validation/auth';
+import {
+  registerSchema,
+  type RegisterSchema,
+} from '../../../redux/validation/auth';
 
 export default function Register() {
   const navigate = useNavigate();
