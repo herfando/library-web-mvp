@@ -2,24 +2,31 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   fetchAuthors,
   createAuthor,
-  fetchBooksByAuthor,
+  fetchAuthorBooks,
   updateAuthor,
   deleteAuthor,
 } from '../services/02_authorsService';
 import type { Author, AuthorCreateInput } from '../types/02_authorsTypes';
 
-// === GET AUTHORS LIST ===
+// === LIST AUTHORS ===
 export const useAuthorsQuery = () =>
   useQuery<Author[], Error>({
     queryKey: ['authors'],
     queryFn: fetchAuthors,
   });
 
+// === AUTHOR BOOKS ===
+export const useAuthorBooksQuery = (id: number) =>
+  useQuery({
+    queryKey: ['authorBooks', id],
+    queryFn: () => fetchAuthorBooks(id),
+  });
+
 // === CREATE AUTHOR ===
 export const useCreateAuthor = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (payload: AuthorCreateInput) => createAuthor(payload),
+    mutationFn: (author: AuthorCreateInput) => createAuthor(author),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['authors'] });
     },
@@ -30,8 +37,8 @@ export const useCreateAuthor = () => {
 export const useUpdateAuthor = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: AuthorCreateInput }) =>
-      updateAuthor(id, data),
+    mutationFn: ({ id, author }: { id: number; author: AuthorCreateInput }) =>
+      updateAuthor(id, author),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['authors'] });
     },
@@ -48,11 +55,3 @@ export const useDeleteAuthor = () => {
     },
   });
 };
-
-// === GET BOOKS BY AUTHOR ===
-export const useBooksByAuthorQuery = (authorId: number) =>
-  useQuery<any[], Error>({
-    queryKey: ['authors-books', authorId],
-    queryFn: () => fetchBooksByAuthor(authorId),
-    enabled: !!authorId,
-  });
