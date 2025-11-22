@@ -26,7 +26,7 @@ export interface BookCreateInput {
   availableCopies: number;
 }
 
-// Tipe untuk response API jika ingin type-safe saat fetch list
+// Optional: Tipe untuk response API jika ingin type-safe saat fetch list
 export interface PaginatedBooksResponse {
   success: boolean;
   message: string;
