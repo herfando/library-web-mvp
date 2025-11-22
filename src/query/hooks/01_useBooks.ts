@@ -6,8 +6,8 @@ import {
   fetchBookById,
   updateBook,
   deleteBook,
-} from '../services/booksService';
-import type { Book, BookCreateInput } from '../types/booksTypes';
+} from '../services/01_booksService';
+import type { Book, BookCreateInput } from '../types/01_booksTypes';
 
 // === LIST BOOKS ===
 export const useBooksQuery = (page = 1, limit = 50) =>
