@@ -6,9 +6,9 @@ export const ENDPOINTS = {
 
   BOOKS: {
     LIST: '/api/books', // GET daftar buku + filter + pagination
+    CREATE: '/api/books', // POST tambah buku (admin)
     RECOMMEND: '/api/books/recommend', // GET recommend books
     DETAIL: (id: number) => `/api/books/${id}`, // GET detail buku (author, category, reviews)
-    CREATE: '/api/books', // POST tambah buku (admin)
     UPDATE: (id: number) => `/api/books/${id}`, // PUT update buku
     DELETE: (id: number) => `/api/books/${id}`, // DELETE hapus buku (blocked if active loans)
   },
@@ -34,14 +34,18 @@ export const ENDPOINTS = {
     MY_LOANS: '/api/loans/my', // GET my loans (active & history)
   },
 
-  ADMIN_LOANS: {
-    CREATE: '/api/admin/loans', // POST create loan (admin)
-    UPDATE: (id: number) => `/api/admin/loans/${id}`, // PATCH update loan (admin)
-    OVERDUE: '/api/admin/loans/overdue', // GET overdue loans (admin)
-  },
-
   ADMIN: {
-    OVERVIEW: '/api/admin/overview', // GET admin overview (totals, top borrowed)
+    CREATE_LOAN: '/api/admin/loans', // Create a loan manually (admin only)
+    UPDATE_LOAN: (id: number) => `/api/admin/loans/${id}`, // Update an existing loan — change dueAt or status
+    OVERDUE_LOANS: '/api/admin/loans/overdue', // List overdue loans (loan not returned + due date passed)
+    ADMIN_OVERVIEW: '/api/admin/overview', // Admin dashboard summary (totals, overdue, top borrowed)
+    CREATE_AUTHOR: '/api/authors', // Create author (admin only)
+    UPDATE_AUTHOR: (id: number) => `/api/authors/${id}`, // Update author data by ID (admin only)
+    DELETE_AUTHOR: (id: number) => `/api/authors/${id}`, // Delete author — blocked if author still has active books
+    DELETE_BOOK: (id: number) => `/api/books/${id}`, // Delete book — blocked if book has active loans
+    CREATE_CATEGORY: '/api/categories', // Create category (admin only)
+    UPDATE_CATEGORY: (id: number) => `/api/categories/${id}`, // Update category by ID (admin only)
+    DELETE_CATEGORY: (id: number) => `/api/categories/${id}`, // Delete category — blocked if still contains books
   },
 
   ME: {

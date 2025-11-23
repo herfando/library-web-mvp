@@ -1,4 +1,5 @@
 import { apiClient } from '../../utils/apiClient';
+import { ENDPOINTS } from '../../utils/api';
 import type {
   Category,
   CategoryCreateInput,
@@ -7,7 +8,9 @@ import type {
 
 // === LIST CATEGORIES ===
 export const fetchCategories = async (): Promise<Category[]> => {
-  const res = await apiClient.get<CategoriesListResponse>('/categories');
+  const res = await apiClient.get<CategoriesListResponse>(
+    ENDPOINTS.CATEGORIES.LIST
+  );
   return res.data.data.categories;
 };
 
@@ -15,7 +18,10 @@ export const fetchCategories = async (): Promise<Category[]> => {
 export const createCategory = async (
   payload: CategoryCreateInput
 ): Promise<Category> => {
-  const res = await apiClient.post<{ data: Category }>('/categories', payload);
+  const res = await apiClient.post<{ data: Category }>(
+    ENDPOINTS.CATEGORIES.CREATE,
+    payload
+  );
   return res.data.data;
 };
 
@@ -25,7 +31,7 @@ export const updateCategory = async (
   payload: CategoryCreateInput
 ): Promise<Category> => {
   const res = await apiClient.put<{ data: Category }>(
-    `/categories/${id}`,
+    ENDPOINTS.CATEGORIES.UPDATE(id),
     payload
   );
   return res.data.data;
@@ -36,7 +42,7 @@ export const deleteCategory = async (
   id: number
 ): Promise<{ success: boolean; message: string }> => {
   const res = await apiClient.delete<{ success: boolean; message: string }>(
-    `/categories/${id}`
+    ENDPOINTS.CATEGORIES.DELETE(id)
   );
   return res.data;
 };

@@ -6,7 +6,7 @@ import type {
   Review,
 } from '../types/07_reviewsTypes';
 
-// GET reviews by book
+// === GET reviews by book ===
 export function useReviews(bookId: number) {
   return useQuery<Review[]>({
     queryKey: ['reviews', bookId],
@@ -15,25 +15,27 @@ export function useReviews(bookId: number) {
   });
 }
 
-// CREATE
+// === CREATE or UPDATE review ===
 export function useCreateReview() {
-  return useMutation({
-    mutationFn: (payload: CreateReviewPayload) =>
-      reviewsService.createReview(payload),
+  return useMutation<Review, unknown, CreateReviewPayload>({
+    mutationFn: (payload) => reviewsService.createOrUpdateReview(payload),
   });
 }
 
-// UPDATE
+// === UPDATE review ===
 export function useUpdateReview() {
-  return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: UpdateReviewPayload }) =>
-      reviewsService.updateReview(id, data),
+  return useMutation<
+    Review,
+    unknown,
+    { id: number; data: UpdateReviewPayload }
+  >({
+    mutationFn: ({ id, data }) => reviewsService.updateReview(id, data),
   });
 }
 
-// DELETE
+// === DELETE review ===
 export function useDeleteReview() {
-  return useMutation({
-    mutationFn: (id: number) => reviewsService.deleteReview(id),
+  return useMutation<{ success: boolean }, unknown, number>({
+    mutationFn: (id) => reviewsService.deleteReview(id),
   });
 }

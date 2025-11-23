@@ -1,4 +1,5 @@
 import { apiClient } from '../../utils/apiClient';
+import { ENDPOINTS } from '../../utils/api';
 import type {
   Review,
   CreateReviewPayload,
@@ -8,13 +9,18 @@ import type {
 export const reviewsService = {
   // === 1. GET reviews by book ===
   getReviewsByBook: async (bookId: number): Promise<Review[]> => {
-    const res = await apiClient.get(`/books/${bookId}/reviews`);
+    const res = await apiClient.get(ENDPOINTS.REVIEWS.LIST_BY_BOOK(bookId));
     return res.data.data.reviews;
   },
 
-  // === 2. CREATE review ===
-  createReview: async (payload: CreateReviewPayload): Promise<Review> => {
-    const res = await apiClient.post('/reviews', payload);
+  // === 2. CREATE or UPDATE my review ===
+  createOrUpdateReview: async (
+    payload: CreateReviewPayload
+  ): Promise<Review> => {
+    const res = await apiClient.post(
+      ENDPOINTS.REVIEWS.CREATE_OR_UPDATE,
+      payload
+    );
     return res.data.data;
   },
 
@@ -29,7 +35,7 @@ export const reviewsService = {
 
   // === 4. DELETE review ===
   deleteReview: async (id: number): Promise<{ success: boolean }> => {
-    const res = await apiClient.delete(`/reviews/${id}`);
+    const res = await apiClient.delete(ENDPOINTS.REVIEWS.DELETE(id));
     return res.data;
   },
 };

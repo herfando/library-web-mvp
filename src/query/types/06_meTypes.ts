@@ -1,3 +1,4 @@
+// === 1. My profile ===
 export interface MeProfile {
   id: string;
   name: string;
@@ -6,6 +7,7 @@ export interface MeProfile {
   created_at: string;
 }
 
+// === 2. Payload update profile ===
 export interface UpdateMePayload {
   name?: string;
   avatar?: string;
