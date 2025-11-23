@@ -1,6 +1,6 @@
 // src/redux/services/authApi.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API } from '../../utils/api';
+import { ENDPOINTS } from '../../utils/api';
 
 interface User {
   name: string;
@@ -29,14 +29,14 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     register: builder.mutation<AuthResponse, RegisterRequest>({
       query: (body) => ({
-        url: API.AUTH.REGISTER,
+        url: ENDPOINTS.AUTH.REGISTER,
         method: 'POST',
         body,
       }),
     }),
     login: builder.mutation<AuthResponse, LoginRequest>({
       query: (body) => ({
-        url: API.AUTH.LOGIN,
+        url: ENDPOINTS.AUTH.LOGIN,
         method: 'POST',
         body,
       }),
