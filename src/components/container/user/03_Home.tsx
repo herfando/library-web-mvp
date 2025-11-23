@@ -2,8 +2,15 @@ import { useState } from 'react';
 import PaginationBullets from '../../ui/paginationBullets';
 import { Star } from 'lucide-react';
 import { Button } from '../../ui/button';
+import { useRecommendationsQuery } from '../../../query/hooks/01_useBooks';
 
 export default function Home() {
+  const {
+    data: recommendedBooks,
+    isLoading,
+    isError,
+  } = useRecommendationsQuery();
+
   // code pagination image
   const images = [
     '/images/02_img dummy1.png',
@@ -69,27 +76,39 @@ export default function Home() {
         <h3 className='text-md font-semibold'>Fiction</h3>
       </div>
       {/* 3. Recommendation */}
-      <div className='mt-24 space-x-20 md:mt-48'>
+      <div className='mt-24 w-full space-x-20 md:mt-48'>
         <h2 className='text-xs-lh mb-20 font-bold md:mb-40 md:text-[36px]'>
           Recommendation
         </h2>
-        {/* Book */}
-        <img
-          src='../../images/04_img dummy2 recommendation.png'
-          alt='img dummy'
-          className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
-        />
-        <div className='space-y-4 p-16'>
-          {/* Book Nama */}
-          <p>Book Name</p>
-          {/* Author Name */}
-          <p>Author name</p>
-          {/* Star */}
-          <div className='flex space-x-5.5'>
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <p>4.9</p>
-          </div>
+
+        {isLoading && <p>Loading recommendations...</p>}
+        {isError && <p>Error loading recommendations</p>}
+
+        <div className='flex w-full flex-wrap items-center justify-center gap-10'>
+          {recommendedBooks?.map((book) => (
+            <div key={book.id} className='w-172 md:w-224'>
+              <img
+                src={
+                  book.coverImage || '/images/04_img dummy2 recommendation.png'
+                }
+                alt={book.title}
+                className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
+              />
+              <div className='space-y-4 p-16'>
+                {/* Book Name */}
+                <p>{book.title}</p>
+                {/* Author Name */}
+                <p>{book.author?.name}</p>
+                {/* Star */}
+                <div className='flex space-x-5.5'>
+                  <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
+                  <p>{book.rating.toFixed(1)}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
+
         {/* Button Load More */}
         <div className='flex items-center justify-center pb-24 md:pb-48'>
           <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>

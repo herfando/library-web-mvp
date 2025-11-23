@@ -1,11 +1,13 @@
-// === 1. Book main type ===
+// src/types/01_booksTypes.ts
+
+// === 1. LIST BOOKS ===
 export interface Book {
   id: number;
   title: string;
   description: string;
   isbn: string;
   publishedYear: number;
-  coverImage: string;
+  coverImage: string | null;
   rating: number;
   reviewCount: number;
   totalCopies: number;
@@ -18,43 +20,19 @@ export interface Book {
   author?: {
     id: number;
     name: string;
-    bio: string;
+    bio?: string;
+    createdAt?: string;
+    updatedAt?: string;
   };
   category?: {
     id: number;
     name: string;
+    createdAt?: string;
+    updatedAt?: string;
   };
   reviews?: Review[];
 }
 
-// === 2. Review type for book detail ===
-export interface Review {
-  id: number;
-  star: number;
-  comment: string;
-  userId: number;
-  bookId: number;
-  createdAt: string;
-  user: {
-    id: number;
-    name: string;
-  };
-}
-
-// === 3. Create / Update book input ===
-export interface BookCreateInput {
-  title: string;
-  description: string;
-  isbn: string;
-  publishedYear: number;
-  coverImage: string;
-  authorId: number;
-  categoryId: number;
-  totalCopies: number;
-  availableCopies: number;
-}
-
-// === 4. Paginated books response ===
 export interface PaginatedBooksResponse {
   success: boolean;
   message: string;
@@ -69,7 +47,20 @@ export interface PaginatedBooksResponse {
   };
 }
 
-// === 5. Recommend books response ===
+// === 2. CREATE BOOK ===
+export interface BookCreateInput {
+  title: string;
+  description: string;
+  isbn: string;
+  publishedYear: number;
+  coverImage: string;
+  authorId: number;
+  categoryId: number;
+  totalCopies: number;
+  availableCopies: number;
+}
+
+// === 3. RECOMMEND BOOKS ===
 export interface RecommendBooksResponse {
   success: boolean;
   message: string;
@@ -79,9 +70,33 @@ export interface RecommendBooksResponse {
   };
 }
 
-// === 6. Book detail response ===
+// === 4. DETAIL BOOK ===
 export interface BookDetailResponse {
   success: boolean;
   message: string;
   data: Book;
+}
+
+// === 5. UPDATE BOOK ===
+// sama dengan BookCreateInput, tidak perlu type baru
+
+// === 6. DELETE BOOK ===
+export interface DeleteBookResponse {
+  success: boolean;
+  message: string;
+}
+
+// === tambahan: Review ===
+// diperlukan karena DETAIL BOOK memiliki reviews
+export interface Review {
+  id: number;
+  star: number;
+  comment: string;
+  userId: number;
+  bookId: number;
+  createdAt: string;
+  user: {
+    id: number;
+    name: string;
+  };
 }
