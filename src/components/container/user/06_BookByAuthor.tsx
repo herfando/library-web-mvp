@@ -7,7 +7,7 @@ export default function BookByAuthor() {
       <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
         {/* image author */}
         <img
-          src='../../images/05_img dummy3 author.png'
+          src='../../images/10_img dummy3 author.png'
           alt='author'
           className='h-60 w-60 md:h-81 md:w-81'
         />
@@ -15,7 +15,7 @@ export default function BookByAuthor() {
         <div className='ml-16'>
           <p>Author name</p>
           <div className='flex'>
-            <img src='../../images/07_img dummy5 books.png' alt='books' />
+            <img src='../../images/12_img dummy5 books.png' alt='books' />
             <p className='ml-6'>5 books</p>
           </div>
         </div>

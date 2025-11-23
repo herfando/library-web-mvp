@@ -30,7 +30,7 @@ export default function Detail() {
             {/* book's */}
             <div>
               <img
-                src='../../images/06_img dummy4 book detail.png'
+                src='../../images/11_img dummy4 book detail.png'
                 alt='book title'
                 className='absolute top-1/2 left-1/2 h-482 w-321 -translate-x-1/2 -translate-y-1/2'
               />
@@ -118,7 +118,7 @@ export default function Detail() {
           <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
             {/* image reviewer */}
             <img
-              src='../../images/05_img dummy3 author.png'
+              src='../../images/10_img dummy3 author.png'
               alt='reviewer'
               className='h-58 w-58 md:h-64 md:w-64'
             />

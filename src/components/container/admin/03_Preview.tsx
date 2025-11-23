@@ -16,7 +16,7 @@ export default function Detail() {
             {/* book's */}
             <div>
               <img
-                src='../../images/06_img dummy4 book detail.png'
+                src='../../images/11_img dummy4 book detail.png'
                 alt='book title'
                 className='absolute top-1/2 left-1/2 h-482 w-321 -translate-x-1/2 -translate-y-1/2'
               />
