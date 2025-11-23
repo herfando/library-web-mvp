@@ -2,7 +2,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { meService } from '../services/06_meService';
 import type { MeProfile, UpdateMePayload } from '../types/06_meTypes';
 
-// GET: profile
+// === 1. Get my profile ===
 export function useMe() {
   return useQuery<MeProfile>({
     queryKey: ['me'],
@@ -10,14 +10,14 @@ export function useMe() {
   });
 }
 
-// PUT: update profile
+// === 2. Update my profile ===
 export function useUpdateMe() {
   return useMutation({
     mutationFn: (payload: UpdateMePayload) => meService.updateProfile(payload),
   });
 }
 
-// PUT: change password
+// === 3. Change my password ===
 export function useChangePassword() {
   return useMutation({
     mutationFn: (payload: { oldPassword: string; newPassword: string }) =>

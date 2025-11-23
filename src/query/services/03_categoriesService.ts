@@ -6,7 +6,7 @@ import type {
   CategoriesListResponse,
 } from '../types/03_categoriesTypes';
 
-// === LIST CATEGORIES ===
+// === 1. List categories ===
 export const fetchCategories = async (): Promise<Category[]> => {
   const res = await apiClient.get<CategoriesListResponse>(
     ENDPOINTS.CATEGORIES.LIST
@@ -14,7 +14,7 @@ export const fetchCategories = async (): Promise<Category[]> => {
   return res.data.data.categories;
 };
 
-// === CREATE CATEGORY ===
+// === 2. Create category ===
 export const createCategory = async (
   payload: CategoryCreateInput
 ): Promise<Category> => {
@@ -25,7 +25,7 @@ export const createCategory = async (
   return res.data.data;
 };
 
-// === UPDATE CATEGORY ===
+// === 3. Update category ===
 export const updateCategory = async (
   id: number,
   payload: CategoryCreateInput
@@ -37,7 +37,7 @@ export const updateCategory = async (
   return res.data.data;
 };
 
-// === DELETE CATEGORY ===
+// === 4. Delete category ===
 export const deleteCategory = async (
   id: number
 ): Promise<{ success: boolean; message: string }> => {

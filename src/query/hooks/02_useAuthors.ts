@@ -8,21 +8,21 @@ import {
 } from '../services/02_authorsService';
 import type { Author, AuthorCreateInput } from '../types/02_authorsTypes';
 
-// === LIST AUTHORS ===
+// === 1. List authors ===
 export const useAuthorsQuery = () =>
   useQuery<Author[], Error>({
     queryKey: ['authors'],
     queryFn: fetchAuthors,
   });
 
-// === AUTHOR BOOKS ===
+// === 2. Get books by author ===
 export const useAuthorBooksQuery = (id: number) =>
   useQuery({
     queryKey: ['authorBooks', id],
     queryFn: () => fetchAuthorBooks(id),
   });
 
-// === CREATE AUTHOR ===
+// === 3. Create author ===
 export const useCreateAuthor = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -33,7 +33,7 @@ export const useCreateAuthor = () => {
   });
 };
 
-// === UPDATE AUTHOR ===
+// === 4. Update author ===
 export const useUpdateAuthor = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -45,7 +45,7 @@ export const useUpdateAuthor = () => {
   });
 };
 
-// === DELETE AUTHOR ===
+// === 5. Delete author ===
 export const useDeleteAuthor = () => {
   const queryClient = useQueryClient();
   return useMutation({

@@ -6,13 +6,13 @@ import type {
   AuthorsListResponse,
 } from '../types/02_authorsTypes';
 
-// === LIST AUTHORS ===
+// === 1. List authors ===
 export const fetchAuthors = async (): Promise<Author[]> => {
   const res = await apiClient.get<AuthorsListResponse>(ENDPOINTS.AUTHORS.LIST);
   return res.data.data.authors;
 };
 
-// === CREATE AUTHOR ===
+// === 2. Create author ===
 export const createAuthor = async (
   author: AuthorCreateInput
 ): Promise<Author> => {
@@ -23,10 +23,7 @@ export const createAuthor = async (
   return res.data.data;
 };
 
-// === GET AUTHOR DETAIL (BOOKS BY AUTHOR) ===
-// API RESPONSE:
-// { success: false, message: "Author not found" }
-// tidak ada struktur books → return {}
+// === 3. Get author detail (books by author) ===
 export const fetchAuthorBooks = async (
   id: number
 ): Promise<{ books: any[] }> => {
@@ -34,7 +31,7 @@ export const fetchAuthorBooks = async (
   return res.data?.data ?? { books: [] };
 };
 
-// === UPDATE AUTHOR ===
+// === 4. Update author ===
 export const updateAuthor = async (
   id: number,
   author: AuthorCreateInput
@@ -46,7 +43,7 @@ export const updateAuthor = async (
   return res.data.data;
 };
 
-// === DELETE AUTHOR ===
+// === 5. Delete author ===
 export const deleteAuthor = async (
   id: number
 ): Promise<{ success: boolean; message: string }> => {

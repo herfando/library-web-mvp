@@ -1,65 +1,49 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import {
-  fetchBooks,
-  createBook,
-  fetchRecommendations,
-  fetchBookById,
-  updateBook,
-  deleteBook,
-} from '../services/01_booksService';
-import type { Book, BookCreateInput } from '../types/01_booksTypes';
+import { reviewsService } from '../services/07_reviewsService';
+import type {
+  Review,
+  CreateReviewPayload,
+  UpdateReviewPayload,
+} from '../types/07_reviewsTypes';
 
-// === LIST BOOKS ===
-export const useBooksQuery = (page = 1, limit = 50) =>
-  useQuery<Book[], Error>({
-    queryKey: ['books', page, limit],
-    queryFn: () => fetchBooks(page, limit),
+// === 1. Get reviews by book ===
+export const useReviewsQuery = (bookId: number) => {
+  return useQuery<Review[], Error>({
+    queryKey: ['reviews', bookId],
+    queryFn: () => reviewsService.getReviewsByBook(bookId),
+    enabled: !!bookId,
   });
+};
 
-// === BOOK DETAIL ===
-export const useBookByIdQuery = (id: number) =>
-  useQuery<Book, Error>({
-    queryKey: ['book', id],
-    queryFn: () => fetchBookById(id),
-  });
-
-// === CREATE BOOK ===
-export const useCreateBook = () => {
+// === 2. Create or update my review ===
+export const useCreateReview = (bookId: number) => {
   const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (book: BookCreateInput) => createBook(book),
+  return useMutation<Review, Error, CreateReviewPayload>({
+    mutationFn: (payload) => reviewsService.createOrUpdateReview(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['books'] });
+      queryClient.invalidateQueries({ queryKey: ['reviews', bookId] });
     },
   });
 };
 
-// === UPDATE BOOK ===
-export const useUpdateBook = () => {
+// === 3. Update review ===
+export const useUpdateReview = (bookId: number) => {
   const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: ({ id, book }: { id: number; book: BookCreateInput }) =>
-      updateBook(id, book),
+  return useMutation<Review, Error, { id: number; data: UpdateReviewPayload }>({
+    mutationFn: ({ id, data }) => reviewsService.updateReview(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['books'] });
+      queryClient.invalidateQueries({ queryKey: ['reviews', bookId] });
     },
   });
 };
 
-// === DELETE BOOK ===
-export const useDeleteBook = () => {
+// === 4. Delete review ===
+export const useDeleteReview = (bookId: number) => {
   const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (id: number) => deleteBook(id),
+  return useMutation<{ success: boolean }, Error, number>({
+    mutationFn: (id) => reviewsService.deleteReview(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['books'] });
+      queryClient.invalidateQueries({ queryKey: ['reviews', bookId] });
     },
   });
 };
-
-// === RECOMMENDATIONS ===
-export const useRecommendationsQuery = () =>
-  useQuery<Book[], Error>({
-    queryKey: ['recommendations'],
-    queryFn: fetchRecommendations,
-  });

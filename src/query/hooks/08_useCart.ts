@@ -6,7 +6,7 @@ import type {
   Cart,
 } from '../types/08_cartTypes';
 
-// === GET CART ===
+// === 1. Get cart ===
 export function useCart() {
   return useQuery<Cart>({
     queryKey: ['cart'],
@@ -14,7 +14,7 @@ export function useCart() {
   });
 }
 
-// === ADD ITEM ===
+// === 2. Add item to cart ===
 export function useAddToCart() {
   const qc = useQueryClient();
   return useMutation({
@@ -23,7 +23,7 @@ export function useAddToCart() {
   });
 }
 
-// === UPDATE ITEM ===
+// === 3. Update cart item ===
 export function useUpdateCartItem() {
   const qc = useQueryClient();
   return useMutation({
@@ -33,7 +33,7 @@ export function useUpdateCartItem() {
   });
 }
 
-// === REMOVE ITEM ===
+// === 4. Remove item from cart ===
 export function useRemoveCartItem() {
   const qc = useQueryClient();
   return useMutation({
@@ -42,7 +42,7 @@ export function useRemoveCartItem() {
   });
 }
 
-// === CLEAR CART ===
+// === 5. Clear cart ===
 export function useClearCart() {
   const qc = useQueryClient();
   return useMutation({
