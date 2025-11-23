@@ -65,7 +65,7 @@ export default function BookList() {
         <div className='flex flex-wrap items-center justify-between'>
           <div className='mt-16 flex p-20 md:mt-24'>
             <img
-              src='../../images/06_img dummy4 book detail.png'
+              src='../../images/11_img dummy4 book detail.png'
               alt='books my cart'
               className='h-138 w-92 space-y-16'
             />

@@ -21,7 +21,7 @@ export default function Cart() {
               <input type='checkbox' id='select all' className='h-20 w-20' />
             </label>
             <img
-              src='../../images/08_img dummy6 my cart.png'
+              src='../../images/13_img dummy6 my cart.png'
               alt='books my cart'
               className='ml-16'
             />

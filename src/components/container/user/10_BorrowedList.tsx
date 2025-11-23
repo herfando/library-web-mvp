@@ -82,7 +82,7 @@ export default function BorrowedList() {
         <div className='flex flex-wrap items-center justify-between'>
           <div className='mt-16 flex md:mt-24'>
             <img
-              src='../../images/08_img dummy6 my cart.png'
+              src='../../images/13_img dummy6 my cart.png'
               alt='books my cart'
               className='space-y-16'
             />
