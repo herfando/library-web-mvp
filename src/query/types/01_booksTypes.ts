@@ -1,4 +1,4 @@
-// Tipe untuk data buku yang diterima dari API (read-only)
+// === Book main type ===
 export interface Book {
   id: number;
   title: string;
@@ -7,13 +7,41 @@ export interface Book {
   publishedYear: number;
   coverImage: string;
   rating: number;
-  authorId: number;
-  categoryId: number;
+  reviewCount: number;
   totalCopies: number;
   availableCopies: number;
+  borrowCount: number;
+  authorId: number;
+  categoryId: number;
+  createdAt: string;
+  updatedAt: string;
+  author?: {
+    id: number;
+    name: string;
+    bio: string;
+  };
+  category?: {
+    id: number;
+    name: string;
+  };
+  reviews?: Review[];
 }
 
-// Tipe untuk input ketika membuat atau update buku (POST/PUT)
+// === Review type for book detail ===
+export interface Review {
+  id: number;
+  star: number;
+  comment: string;
+  userId: number;
+  bookId: number;
+  createdAt: string;
+  user: {
+    id: number;
+    name: string;
+  };
+}
+
+// === Create / Update book ===
 export interface BookCreateInput {
   title: string;
   description: string;
@@ -26,7 +54,7 @@ export interface BookCreateInput {
   availableCopies: number;
 }
 
-// Optional: Tipe untuk response API jika ingin type-safe saat fetch list
+// === Paginated books response ===
 export interface PaginatedBooksResponse {
   success: boolean;
   message: string;
@@ -39,4 +67,21 @@ export interface PaginatedBooksResponse {
       totalPages: number;
     };
   };
+}
+
+// === Recommend response ===
+export interface RecommendBooksResponse {
+  success: boolean;
+  message: string;
+  data: {
+    mode: string;
+    books: Book[];
+  };
+}
+
+// === Book detail response ===
+export interface BookDetailResponse {
+  success: boolean;
+  message: string;
+  data: Book;
 }

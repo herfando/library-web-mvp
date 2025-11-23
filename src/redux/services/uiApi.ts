@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API } from '../../utils/api';
+import { ENDPOINTS } from '../../utils/api';
 
 export const uiApi = createApi({
   reducerPath: 'uiApi',
@@ -13,7 +13,7 @@ export const uiApi = createApi({
   }),
   endpoints: (builder) => ({
     getCategories: builder.query<any[], void>({
-      query: () => API.CATEGORIES.LIST,
+      query: () => ENDPOINTS.CATEGORIES.LIST,
     }),
   }),
 });
