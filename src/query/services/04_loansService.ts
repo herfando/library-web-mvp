@@ -3,7 +3,6 @@ import { ENDPOINTS } from '../../utils/api';
 import type { CreateLoanPayload, Loan } from '../types/04_loansTypes';
 
 // === 1. Borrow a Book (USER) ===
-// payload: { bookId: number, durationDays: number }
 export const borrowBook = async (payload: CreateLoanPayload): Promise<Loan> => {
   const res = await apiClient.post<{ data: Loan }>(
     ENDPOINTS.LOANS.BORROW,

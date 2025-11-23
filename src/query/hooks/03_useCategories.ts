@@ -10,14 +10,14 @@ import type {
   CategoryCreateInput,
 } from '../types/03_categoriesTypes';
 
-// === LIST CATEGORIES ===
+// === 1. List categories ===
 export const useCategoriesQuery = () =>
   useQuery<Category[], Error>({
     queryKey: ['categories'],
     queryFn: fetchCategories,
   });
 
-// === CREATE CATEGORY ===
+// === 2. Create category ===
 export const useCreateCategory = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -28,7 +28,7 @@ export const useCreateCategory = () => {
   });
 };
 
-// === UPDATE CATEGORY ===
+// === 3. Update category ===
 export const useUpdateCategory = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -45,7 +45,7 @@ export const useUpdateCategory = () => {
   });
 };
 
-// === DELETE CATEGORY ===
+// === 4. Delete category ===
 export const useDeleteCategory = () => {
   const queryClient = useQueryClient();
   return useMutation({

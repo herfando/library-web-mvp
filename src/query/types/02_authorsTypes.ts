@@ -1,4 +1,4 @@
-// === AUTHOR ENTITY ===
+// === 1. Author entity ===
 export interface Author {
   id: number;
   name: string;
@@ -7,13 +7,13 @@ export interface Author {
   updatedAt: string;
 }
 
-// === CREATE / UPDATE INPUT ===
+// === 2. Create / Update author input ===
 export interface AuthorCreateInput {
   name: string;
   bio: string;
 }
 
-// === PAGINATED LIST (kalau suatu hari pakai pagination) ===
+// === 3. Authors list response ===
 export interface AuthorsListResponse {
   success: boolean;
   message: string;

@@ -1,4 +1,4 @@
-// === Book main type ===
+// === 1. Book main type ===
 export interface Book {
   id: number;
   title: string;
@@ -27,7 +27,7 @@ export interface Book {
   reviews?: Review[];
 }
 
-// === Review type for book detail ===
+// === 2. Review type for book detail ===
 export interface Review {
   id: number;
   star: number;
@@ -41,7 +41,7 @@ export interface Review {
   };
 }
 
-// === Create / Update book ===
+// === 3. Create / Update book input ===
 export interface BookCreateInput {
   title: string;
   description: string;
@@ -54,7 +54,7 @@ export interface BookCreateInput {
   availableCopies: number;
 }
 
-// === Paginated books response ===
+// === 4. Paginated books response ===
 export interface PaginatedBooksResponse {
   success: boolean;
   message: string;
@@ -69,7 +69,7 @@ export interface PaginatedBooksResponse {
   };
 }
 
-// === Recommend response ===
+// === 5. Recommend books response ===
 export interface RecommendBooksResponse {
   success: boolean;
   message: string;
@@ -79,7 +79,7 @@ export interface RecommendBooksResponse {
   };
 }
 
-// === Book detail response ===
+// === 6. Book detail response ===
 export interface BookDetailResponse {
   success: boolean;
   message: string;

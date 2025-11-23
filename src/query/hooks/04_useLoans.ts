@@ -6,7 +6,7 @@ import {
 } from '../services/04_loansService';
 import type { CreateLoanPayload, Loan } from '../types/04_loansTypes';
 
-// === GET: semua loans milik user ===
+// === 1. Get all loans of the user ===
 export function useMyLoans() {
   return useQuery<Loan[]>({
     queryKey: ['my-loans'],
@@ -14,21 +14,21 @@ export function useMyLoans() {
   });
 }
 
-// === POST: borrow a book ===
+// === 2. Borrow a book ===
 export function useBorrowBook() {
   return useMutation({
     mutationFn: (payload: CreateLoanPayload) => borrowBook(payload),
   });
 }
 
-// === PATCH: return book ===
+// === 3. Return a book ===
 export function useReturnBook() {
   return useMutation({
     mutationFn: (id: number) => returnBook(id),
   });
 }
 
-// === GET: loan by id (optional, bisa panggil service tambahan jika ada endpoint) ===
+// === 4. Get loan by id (optional) ===
 export function useLoanById(id: string) {
   return useQuery<Loan>({
     queryKey: ['loan', id],
