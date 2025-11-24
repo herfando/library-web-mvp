@@ -4,6 +4,7 @@ import type {
   Author,
   AuthorCreateInput,
   AuthorsListResponse,
+  AuthorWithBooksResponse,
 } from '../types/02_authorsTypes';
 
 // === 1. List authors ===
@@ -26,9 +27,9 @@ export const createAuthor = async (
 // === 3. Get author detail (books by author) ===
 export const fetchAuthorBooks = async (
   id: number
-): Promise<{ books: any[] }> => {
+): Promise<AuthorWithBooksResponse> => {
   const res = await apiClient.get(ENDPOINTS.AUTHORS.BOOKS_BY_AUTHOR(id));
-  return res.data?.data ?? { books: [] };
+  return res.data;
 };
 
 // === 4. Update author ===

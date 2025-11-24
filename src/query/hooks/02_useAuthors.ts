@@ -6,7 +6,11 @@ import {
   updateAuthor,
   deleteAuthor,
 } from '../services/02_authorsService';
-import type { Author, AuthorCreateInput } from '../types/02_authorsTypes';
+import type {
+  Author,
+  AuthorCreateInput,
+  AuthorWithBooksResponse,
+} from '../types/02_authorsTypes';
 
 // === 1. List authors ===
 export const useAuthorsQuery = () =>
@@ -17,7 +21,7 @@ export const useAuthorsQuery = () =>
 
 // === 2. Get books by author ===
 export const useAuthorBooksQuery = (id: number) =>
-  useQuery({
+  useQuery<AuthorWithBooksResponse>({
     queryKey: ['authorBooks', id],
     queryFn: () => fetchAuthorBooks(id),
   });

@@ -96,7 +96,7 @@ export default function Home() {
               <div
                 className='pointer-events-none absolute inset-0 top-0 left-0 flex flex-col items-center justify-center text-[25px] font-bold text-[#6597E8] md:text-[82.52px]'
                 style={{
-                  textShadow: `
+              textShadow: `
               1px 1px 0 #FFFFFF,
               -1px 1px 0 #FFFFFF,
               1px -1px 0 #FFFFFF,
@@ -152,9 +152,9 @@ export default function Home() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full flex-wrap items-center justify-center gap-10'>
+        <div className='flex w-full flex-wrap items-center justify-between gap-10'>
           {recommendedBooks?.map((book) => (
-            <div key={book.id} className='flex w-172 md:w-224'>
+            <div key={book.id} className='w-172 md:w-224'>
               <img
                 src={
                   book.coverImage || '/images/09_img dummy2 recommendation.png'
@@ -212,7 +212,7 @@ export default function Home() {
                 <p>{author.name}</p>
                 <div className='flex'>
                   <img src='../../images/12_img dummy5 books.png' alt='books' />
-                  <p className='ml-5'>{author.book}</p>
+                  <p className='ml-5'>5 book</p>
                 </div>
               </div>
             </div>
