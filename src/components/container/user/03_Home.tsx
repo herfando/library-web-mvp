@@ -8,6 +8,7 @@ import {
   useBooksQuery,
 } from '../../../query/hooks/01_useBooks';
 import { useCategoriesQuery } from '../../../query/hooks/03_useCategories';
+import { useAuthorsQuery } from '../../../query/hooks/02_useAuthors';
 
 export default function Home() {
   //#region - 1.Pagination Query
@@ -64,6 +65,14 @@ export default function Home() {
     isLoading,
     isError,
   } = useRecommendationsQuery();
+  //#endregion
+
+  //#region - 4.Author Query
+  const {
+    data: authorBooks,
+    isLoading: isAuthorLoading,
+    isError: isAuthorError,
+  } = useAuthorsQuery();
   //#endregion
 
   return (
@@ -145,7 +154,7 @@ export default function Home() {
 
         <div className='flex w-full flex-wrap items-center justify-center gap-10'>
           {recommendedBooks?.map((book) => (
-            <div key={book.id} className='w-172 md:w-224'>
+            <div key={book.id} className='flex w-172 md:w-224'>
               <img
                 src={
                   book.coverImage || '/images/09_img dummy2 recommendation.png'
@@ -183,24 +192,31 @@ export default function Home() {
           Popular Authors
         </h2>
         {/* total author */}
-        <div className='mb-116'>
+        <div className='mb-116 flex flex-wrap justify-between'>
+          {isAuthorLoading && <p>Loading Author...</p>}
+          {isAuthorError && <p>Error loading Author</p>}
           {/* start card author */}
-          <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
-            {/* image author */}
-            <img
-              src='../../images/10_img dummy3 author.png'
-              alt='author'
-              className='h-60 w-60 md:h-81 md:w-81'
-            />
-            {/* Author name */}
-            <div className='ml-16'>
-              <p>Author name</p>
-              <div className='flex'>
-                <img src='../../images/12_img dummy5 books.png' alt='books' />
-                <p className='ml-5'>5 books</p>
+          {authorBooks?.map((author) => (
+            <div
+              key={author.id}
+              className='flex h-84 w-361 flex-wrap items-center p-12 md:h-113 md:w-285 md:p-16'
+            >
+              {/* image author */}
+              <img
+                src='../../images/10_img dummy3 author.png'
+                alt='author'
+                className='h-60 w-60 md:h-81 md:w-81'
+              />
+              {/* Author name */}
+              <div className='ml-16'>
+                <p>{author.name}</p>
+                <div className='flex'>
+                  <img src='../../images/12_img dummy5 books.png' alt='books' />
+                  <p className='ml-5'>{author.book}</p>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
           {/* end card author */}
         </div>
       </div>
