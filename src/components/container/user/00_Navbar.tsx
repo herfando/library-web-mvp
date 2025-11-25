@@ -31,7 +31,7 @@ export default function Navbar() {
       {/* Booky */}
       <div className='my-19 flex items-center gap-x-15'>
         <img
-          src='../../../public/icons/01_logo company.svg'
+          src='/icons/01_logo company.svg'
           className='h-40 w-40 md:h-42 md:w-42'
         />
         <div className='text-lg-lh hidden self-center font-bold md:flex'>
