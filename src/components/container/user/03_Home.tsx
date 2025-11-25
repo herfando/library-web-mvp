@@ -165,7 +165,7 @@ export default function Home() {
               <img
                 src={CATEGORY_ICONS[cat.id] ?? '/images/default_cat.png'}
                 alt={cat.name}
-                className='w-51.2 h-51.2'
+                className='w-51.2 h-51.2 hover:cursor-pointer'
               />
             </div>
             {/* title categories */}
@@ -190,7 +190,7 @@ export default function Home() {
                   book.coverImage || '/images/09_img dummy2 recommendation.png'
                 }
                 alt={book.title}
-                className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
+                className='h-258 w-172 rounded-t-2xl hover:cursor-pointer md:h-336 md:w-224'
               />
               <div className='space-y-4 p-16'>
                 {/* Book Name */}
@@ -232,7 +232,7 @@ export default function Home() {
           {authorBooks?.map((author) => (
             <div
               key={author.id}
-              className='flex h-84 w-361 flex-wrap items-center p-12 md:h-113 md:w-285 md:p-16'
+              className='flex h-84 w-361 flex-wrap items-center p-12 hover:cursor-pointer md:h-113 md:w-285 md:p-16'
             >
               {/* image author */}
               <img
