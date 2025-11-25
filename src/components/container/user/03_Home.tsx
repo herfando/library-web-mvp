@@ -9,6 +9,7 @@ import {
 } from '../../../query/hooks/01_useBooks';
 import { useCategoriesQuery } from '../../../query/hooks/03_useCategories';
 import { useAuthorsQuery } from '../../../query/hooks/02_useAuthors';
+import type { Book } from '../../../query/types/01_booksTypes';
 
 export default function Home() {
   //#region - 1.Pagination Query
@@ -59,12 +60,22 @@ export default function Home() {
     6: '/images/08_education.png',
   };
 
-  //#region - 3.Recommended Query
+  //#region - 3.Recommended Query & Load more
+  const [recPage, setRecPage] = useState(1);
+  const [recList, setRecList] = useState<Book[]>([]);
+
   const {
     data: recommendedBooks,
     isLoading,
     isError,
-  } = useRecommendationsQuery();
+  } = useRecommendationsQuery(recPage, 5);
+
+  // === Combine pages into recList ===
+  useEffect(() => {
+    if (recommendedBooks && recommendedBooks.length > 0) {
+      setRecList((prev) => [...prev, ...recommendedBooks]);
+    }
+  }, [recommendedBooks]);
   //#endregion
 
   //#region - 4.Author Query
@@ -153,7 +164,7 @@ export default function Home() {
         {isError && <p>Error loading recommendations</p>}
 
         <div className='flex w-full flex-wrap items-center justify-between gap-10'>
-          {recommendedBooks?.map((book) => (
+          {recList?.map((book) => (
             <div key={book.id} className='w-172 md:w-224'>
               <img
                 src={
@@ -179,7 +190,10 @@ export default function Home() {
 
         {/* Button Load More */}
         <div className='flex items-center justify-center pb-24 md:pb-48'>
-          <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
+          <Button
+            onClick={() => setRecPage((prev) => prev + 1)}
+            className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'
+          >
             Load more{' '}
           </Button>
         </div>

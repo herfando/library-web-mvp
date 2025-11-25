@@ -1,4 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  keepPreviousData,
+} from '@tanstack/react-query';
 import {
   fetchBooks,
   createBook,
@@ -29,10 +34,11 @@ export const useCreateBook = () => {
 };
 
 // === 3. RECOMMEND BOOKS ===
-export const useRecommendationsQuery = () => {
+export const useRecommendationsQuery = (page = 1, limit = 10) => {
   return useQuery<Book[], Error>({
-    queryKey: ['recommendations'],
-    queryFn: fetchRecommendations,
+    queryKey: ['recommendations', page],
+    queryFn: () => fetchRecommendations(page, limit),
+    placeholderData: keepPreviousData,
   });
 };
 
