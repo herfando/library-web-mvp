@@ -21,7 +21,7 @@ export default function LoginAdmin() {
     //     {/* Booky */}
     //     <div className='mb-20 flex items-center gap-x-11.5'>
     //       <img
-    //         src='../../../public/icons/01_logo company.svg'
+    //         src='/icons/01_logo company.svg'
     //         className='h-33 w-33'
     //       />
     //       <div className='self-center text-[25.14px] font-bold'>Booky</div>

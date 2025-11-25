@@ -49,10 +49,7 @@ export default function Register() {
       <div className='h-701 w-345 md:h-713 md:w-400'>
         {/* Booky */}
         <div className='mb-20 flex items-center gap-x-11.5'>
-          <img
-            src='../../../public/icons/01_logo company.svg'
-            className='h-33 w-33'
-          />
+          <img src='/icons/01_logo company.svg' className='h-33 w-33' />
           <div className='self-center text-[25.14px] font-bold'>Booky</div>
         </div>
         {/* Register */}

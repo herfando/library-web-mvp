@@ -5,7 +5,7 @@ export default function Footer() {
         {/* Booky */}
         <div className='mb-22 flex items-center gap-x-15'>
           <img
-            src='../../../public/icons/01_logo company.svg'
+            src='/icons/01_logo company.svg'
             className='h-32 w-32 md:h-42 md:w-42'
           />
           <div className='text-lg-lh self-center font-bold'>Booky</div>
