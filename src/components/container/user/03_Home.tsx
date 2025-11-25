@@ -11,6 +11,7 @@ import { useCategoriesQuery } from '../../../query/hooks/03_useCategories';
 import { useAuthorsQuery } from '../../../query/hooks/02_useAuthors';
 import type { Book } from '../../../query/types/01_booksTypes';
 import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   //#region - 1.Pagination Query
@@ -105,6 +106,10 @@ export default function Home() {
   } = useAuthorsQuery();
   //#endregion
 
+  //#region - navigate
+  const navigate = useNavigate();
+  //#endregion
+
   return (
     <section className='custom-container h-auto w-full'>
       {/* 1. Banner Highlight */}
@@ -120,7 +125,8 @@ export default function Home() {
             <img
               src={books[active].coverImage || '/images/14_bannerhome.png'}
               alt={books[active].title}
-              className='h-132 w-full rounded-2xl object-contain md:h-441 md:rounded-4xl'
+              className='h-132 w-full rounded-2xl object-contain hover:cursor-pointer md:h-441 md:rounded-4xl'
+              onClick={() => navigate(`/detail/${books[active].id}`)}
             />
             {/* {!books[active].coverImage && (
               <div
@@ -166,6 +172,7 @@ export default function Home() {
                 src={CATEGORY_ICONS[cat.id] ?? '/images/default_cat.png'}
                 alt={cat.name}
                 className='w-51.2 h-51.2 hover:cursor-pointer'
+                onClick={() => navigate(`/category/${cat.id}`)}
               />
             </div>
             {/* title categories */}
@@ -191,6 +198,7 @@ export default function Home() {
                 }
                 alt={book.title}
                 className='h-258 w-172 rounded-t-2xl hover:cursor-pointer md:h-336 md:w-224'
+                onClick={() => navigate(`/detail/${book.id}`)}
               />
               <div className='space-y-4 p-16'>
                 {/* Book Name */}
@@ -233,6 +241,7 @@ export default function Home() {
             <div
               key={author.id}
               className='flex h-84 w-361 flex-wrap items-center p-12 hover:cursor-pointer md:h-113 md:w-285 md:p-16'
+              onClick={() => navigate(`/author/${author.id}`)}
             >
               {/* image author */}
               <img
