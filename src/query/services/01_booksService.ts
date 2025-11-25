@@ -27,9 +27,12 @@ export const createBook = async (book: BookCreateInput): Promise<Book> => {
 };
 
 // === 3. Recommend books ===
-export const fetchRecommendations = async (): Promise<Book[]> => {
+export const fetchRecommendations = async (
+  page = 1,
+  limit = 10
+): Promise<Book[]> => {
   const res = await apiClient.get<RecommendBooksResponse>(
-    ENDPOINTS.BOOKS.RECOMMEND
+    `${ENDPOINTS.BOOKS.RECOMMEND}?page=${page}&limit=${limit}`
   );
   return res.data.data.books;
 };
