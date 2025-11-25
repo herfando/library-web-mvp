@@ -10,6 +10,7 @@ import {
 import { useCategoriesQuery } from '../../../query/hooks/03_useCategories';
 import { useAuthorsQuery } from '../../../query/hooks/02_useAuthors';
 import type { Book } from '../../../query/types/01_booksTypes';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Home() {
   //#region - 1.Pagination Query
@@ -21,7 +22,7 @@ export default function Home() {
     data: books,
     isLoading: isBooksLoading,
     isError: isBooksError,
-  } = useBooksQuery(page, 50);
+  } = useBooksQuery(page, 20);
   // === Auto slide every 3 seconds ===
   useEffect(() => {
     if (!books || books.length === 0) return;
@@ -60,22 +61,40 @@ export default function Home() {
     6: '/images/08_education.png',
   };
 
-  //#region - 3.Recommended Query & Load more
+  //#region - 3.Recommended Query + Load More + Search
+
+  // 1. Ambil parameter search dulu
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search') || '';
+
+  // 2. State rekomendasi
   const [recPage, setRecPage] = useState(1);
   const [recList, setRecList] = useState<Book[]>([]);
 
+  const filteredBooks = recList.filter((book) =>
+    book.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // 3. Reset list saat search berubah
+  useEffect(() => {
+    setRecPage(1);
+    setRecList([]);
+  }, [search]);
+
+  // 4. Query rekomendasi (sudah include search)
   const {
     data: recommendedBooks,
     isLoading,
     isError,
-  } = useRecommendationsQuery(recPage, 5);
+  } = useRecommendationsQuery(recPage, 3);
 
-  // === Combine pages into recList ===
+  // 5. Gabungkan hasil ke list
   useEffect(() => {
     if (recommendedBooks && recommendedBooks.length > 0) {
       setRecList((prev) => [...prev, ...recommendedBooks]);
     }
   }, [recommendedBooks]);
+
   //#endregion
 
   //#region - 4.Author Query
@@ -164,7 +183,7 @@ export default function Home() {
         {isError && <p>Error loading recommendations</p>}
 
         <div className='flex w-full flex-wrap items-center justify-between gap-10'>
-          {recList?.map((book) => (
+          {filteredBooks?.map((book) => (
             <div key={book.id} className='w-172 md:w-224'>
               <img
                 src={
@@ -192,7 +211,7 @@ export default function Home() {
         <div className='flex items-center justify-center pb-24 md:pb-48'>
           <Button
             onClick={() => setRecPage((prev) => prev + 1)}
-            className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'
+            className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:text-white md:h-48 md:w-200'
           >
             Load more{' '}
           </Button>

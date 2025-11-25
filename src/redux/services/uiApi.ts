@@ -11,6 +11,7 @@ export const uiApi = createApi({
       return headers;
     },
   }),
+
   endpoints: (builder) => ({
     getCategories: builder.query<any[], void>({
       query: () => ENDPOINTS.CATEGORIES.LIST,

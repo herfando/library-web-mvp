@@ -1,7 +1,31 @@
 import { Search, ChevronDown } from 'lucide-react';
 import SearchInput from '../../ui/search_input';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function Navbar() {
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search') || '';
+
+  const navigate = useNavigate();
+
+  const handleSearch = (value: string) => {
+    const q = (value || '').trim();
+    navigate(`/home?search=${encodeURIComponent(q)}`);
+  };
+
+  const onSearchChange = (eOrVal: any) => {
+    if (typeof eOrVal === 'string') {
+      handleSearch(eOrVal);
+      return;
+    }
+
+    if (eOrVal && typeof eOrVal.target?.value === 'string') {
+      handleSearch(eOrVal.target.value);
+      return;
+    }
+
+    handleSearch('');
+  };
   return (
     <section className='custom-container flex h-80 w-full items-center justify-between'>
       {/* Booky */}
@@ -16,7 +40,12 @@ export default function Navbar() {
       </div>
       {/* Search book */}
       <div className='relative hidden h-44 w-500 lg:flex'>
-        <SearchInput placeholder='Search book' className='px-42' />
+        <SearchInput
+          placeholder='Search book'
+          className='px-42'
+          value={search}
+          onChange={onSearchChange}
+        />
         <Search className='absolute top-1/2 left-16 -translate-y-1/2 text-[#D5D7DA]' />
       </div>
 
