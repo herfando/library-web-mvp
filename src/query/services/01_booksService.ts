@@ -8,6 +8,7 @@ import type {
   BookDetailResponse,
   RecommendBooksResponse,
 } from '../types/01_booksTypes';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 
 // === 1. Get list of books (paginated) ===
 export const fetchBooks = async (page = 1, limit = 50): Promise<Book[]> => {
@@ -29,12 +30,22 @@ export const createBook = async (book: BookCreateInput): Promise<Book> => {
 // === 3. Recommend books ===
 export const fetchRecommendations = async (
   page = 1,
-  limit = 10
+  limit = 10,
+  search = ''
 ): Promise<Book[]> => {
   const res = await apiClient.get<RecommendBooksResponse>(
-    `${ENDPOINTS.BOOKS.RECOMMEND}?page=${page}&limit=${limit}`
+    `${ENDPOINTS.BOOKS.RECOMMEND}?page=${page}&limit=${limit}&search=${search}`
   );
+
   return res.data.data.books;
+};
+
+export const useRecommendationsQuery = (page = 1, limit = 10, search = '') => {
+  return useQuery<Book[], Error>({
+    queryKey: ['recommendations', page, search],
+    queryFn: () => fetchRecommendations(page, limit, search),
+    placeholderData: keepPreviousData,
+  });
 };
 
 // === 4. Book detail ===
