@@ -12,6 +12,7 @@ import { useAuthorsQuery } from '../../../query/hooks/02_useAuthors';
 import type { Book } from '../../../query/types/01_booksTypes';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 export default function Home() {
   //#region - 1.Pagination Query
@@ -108,6 +109,23 @@ export default function Home() {
 
   //#region - navigate
   const navigate = useNavigate();
+  //#endregion
+
+  //#region - Calculate total book per author
+  const countByAuthor = React.useMemo(() => {
+    if (!books) return {};
+
+    return books.reduce(
+      (acc, book) => {
+        const name = book.Author?.name;
+        if (!name) return acc;
+
+        acc[name] = (acc[name] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
+  }, [books]);
   //#endregion
 
   return (
@@ -254,7 +272,10 @@ export default function Home() {
                 <p>{author.name}</p>
                 <div className='flex'>
                   <img src='../../images/12_img dummy5 books.png' alt='books' />
-                  <p className='ml-5'>5 book</p>
+
+                  <p className='ml-5'>
+                    {countByAuthor[author.name] || 0} books
+                  </p>
                 </div>
               </div>
             </div>
