@@ -50,7 +50,7 @@ export default function Detail() {
       </div>
       {/* 2. Book's detail */}
       {/* Book's image */}
-      <div className='flex flex-wrap items-center justify-center space-y-36 space-x-16 lg:space-y-0'>
+      <div className='flex flex-wrap items-center justify-between space-y-36 space-x-16 lg:space-y-0'>
         <div>
           {/* outline */}
           <div className='relative flex h-498 w-337 bg-[#E9EAEB]'>
@@ -123,7 +123,7 @@ export default function Detail() {
             <Button className='ml-12 h-48 w-200 rounded-full font-bold hover:cursor-pointer hover:bg-[#7FB0FF] hover:text-black'>
               Borrow Book
             </Button>
-            <div className='ml-12 flex h-40 w-40 items-center justify-center self-center rounded-full border border-[#D5D7DA]'>
+            <div className='ml-12 flex h-40 w-40 items-center justify-between self-center rounded-full border border-[#D5D7DA]'>
               <img src='../../icons/07_Icon share.svg' alt='icon share' />
             </div>{' '}
           </div>
@@ -193,7 +193,7 @@ export default function Detail() {
           </div>
 
           {/* Button Load More */}
-          <div className='flex items-center justify-center pb-24 md:pb-48'>
+          <div className='flex items-center justify-between pb-24 md:pb-48'>
             <Button className='md:text-md mt-16 h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
               Load more{' '}
             </Button>
@@ -208,7 +208,7 @@ export default function Detail() {
         Related Books
       </div>
       {/* Card Book's detail */}
-      <div className='flex flex-wrap justify-center gap-4'>
+      <div className='flex flex-wrap justify-between gap-4'>
         {relatedBooks.slice(0, 5).map((b: Book) => (
           <div
             key={b.id}

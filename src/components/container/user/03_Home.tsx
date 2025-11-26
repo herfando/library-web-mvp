@@ -130,7 +130,7 @@ export default function Home() {
             />
             {/* {!books[active].coverImage && (
               <div
-                className='pointer-events-none absolute inset-0 top-0 left-0 flex flex-col items-center justify-center text-[25px] font-bold text-[#6597E8] md:text-[82.52px]'
+                className='pointer-events-none absolute inset-0 top-0 left-0 flex flex-col items-center justify-between text-[25px] font-bold text-[#6597E8] md:text-[82.52px]'
                 style={{
               textShadow: `
               1px 1px 0 #FFFFFF,
@@ -161,7 +161,7 @@ export default function Home() {
         </>
       )}
       {/* 2. Categories */}
-      <div className='mt-24 flex flex-wrap justify-center md:mt-48'>
+      <div className='mt-24 flex flex-wrap justify-between md:mt-48'>
         {isCategoriesLoading && <p>Loading categories...</p>}
         {isCategoriesError && <p>Error loading categories</p>}
         {categories?.map((cat) => (
@@ -189,7 +189,7 @@ export default function Home() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full flex-wrap items-center justify-center gap-10'>
+        <div className='flex w-full flex-wrap items-center justify-between gap-10'>
           {filteredBooks?.map((book) => (
             <div key={book.id} className='w-172 md:w-224'>
               <img
@@ -216,7 +216,7 @@ export default function Home() {
         </div>
 
         {/* Button Load More */}
-        <div className='flex items-center justify-center pb-24 md:pb-48'>
+        <div className='flex items-center justify-between pb-24 md:pb-48'>
           <Button
             onClick={() => setRecPage((prev) => prev + 1)}
             className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:text-white md:h-48 md:w-200'
@@ -233,7 +233,7 @@ export default function Home() {
           Popular Authors
         </h2>
         {/* total author */}
-        <div className='mb-116 flex flex-wrap justify-center'>
+        <div className='mb-116 flex flex-wrap justify-between'>
           {isAuthorLoading && <p>Loading Author...</p>}
           {isAuthorError && <p>Error loading Author</p>}
           {/* start card author */}
