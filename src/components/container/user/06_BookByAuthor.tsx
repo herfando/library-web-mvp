@@ -42,7 +42,7 @@ export default function BookByAuthor() {
         Book List
       </div>
       {/* Card Book's list */}
-      <div className='grid grid-cols-2 justify-between gap-16 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='grid grid-cols-2 justify-center gap-16 md:grid-cols-3 lg:grid-cols-4'>
         {books.map((book) => (
           <div
             key={book.id}
