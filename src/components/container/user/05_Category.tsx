@@ -93,7 +93,7 @@ export default function Category() {
           </div>
 
           {/* ----------------- BOOK DISPLAY KANAN ----------------- */}
-          <div className='grid w-full grid-cols-2 justify-between gap-6 md:grid-cols-3 lg:grid-cols-4'>
+          <div className='grid w-full grid-cols-2 justify-center gap-6 md:grid-cols-3 lg:grid-cols-4'>
             {filteredBooks.map((b) => (
               <div
                 key={b.id}

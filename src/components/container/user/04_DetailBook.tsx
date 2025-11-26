@@ -208,7 +208,7 @@ export default function Detail() {
         Related Books
       </div>
       {/* Card Book's detail */}
-      <div className='flex flex-wrap justify-between gap-4'>
+      <div className='flex flex-wrap justify-center gap-4'>
         {relatedBooks.slice(0, 5).map((b: Book) => (
           <div
             key={b.id}
