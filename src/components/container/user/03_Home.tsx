@@ -204,7 +204,7 @@ export default function Home() {
                 {/* Book Name */}
                 <p>{book.title}</p>
                 {/* Author Name */}
-                <p>{book.author?.name}</p>
+                <p>{book.Author?.name}</p>
                 {/* Star */}
                 <div className='flex space-x-5.5'>
                   <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />

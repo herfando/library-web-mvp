@@ -1,7 +1,20 @@
 import { ChevronRight, Star } from 'lucide-react';
 import { Button } from '../../ui/button';
+import { useParams } from 'react-router-dom';
+import { useBookByIdQuery } from '../../../query/hooks/01_useBooks';
 
 export default function Detail() {
+  //#region Detail - Query
+  const { id } = useParams();
+  const bookId = Number(id);
+
+  const { data: book, isLoading, error } = useBookByIdQuery(bookId);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!book) return <p>Book not found</p>;
+  //#endregion
+
   return (
     <section className='custom-container mt-16 h-auto w-full md:mt-48'>
       {/* 1. Book's link */}
@@ -13,12 +26,12 @@ export default function Detail() {
         <ChevronRight className='h-16 w-16' />
         {/* Category */}
         <a className='text-sm font-semibold hover:cursor-pointer hover:text-[#1C65DA]'>
-          Category
+          {book.Category?.name || 'Category'}
         </a>
         <ChevronRight className='h-16 w-16' />
         {/* Book's title */}
         <a className='text-sm font-semibold hover:cursor-pointer hover:text-[#1C65DA]'>
-          The Psychology of Money
+          {book.title}
         </a>
       </div>
       {/* 2. Book's detail */}
@@ -30,8 +43,8 @@ export default function Detail() {
             {/* book's */}
             <div>
               <img
-                src='../../images/11_img dummy4 book detail.png'
-                alt='book title'
+                src={book.coverImage || '/placeholder.png'}
+                alt={book.title}
                 className='absolute top-1/2 left-1/2 h-482 w-321 -translate-x-1/2 -translate-y-1/2'
               />
             </div>
@@ -39,37 +52,43 @@ export default function Detail() {
         </div>
         {/* Detail */}
         <div className='h-462 w-827 self-center'>
-          <h4 className='text-sm font-bold'>Business & Economics</h4>
-          <h2 className='md:text-sm-lh text-xs-lh font-bold'>
-            The Psychology of Money
-          </h2>
+          <h4 className='text-sm font-bold'>{book.Category?.name}</h4>
+          <h2 className='md:text-sm-lh text-xs-lh font-bold'>{book.title}</h2>
           <h3 className='md:text-md mb-4 text-sm font-semibold text-[text-neutral-800]'>
-            Morgan Housel
+            {book.Author?.name}
           </h3>
           {/* Star */}
           <div className='flex items-center space-x-2 px-3'>
             <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <p className='text-md self-center font-bold'>4.9</p>
+            <p className='text-md self-center font-bold'>
+              {book.rating.toFixed(1)}
+            </p>
           </div>
           {/* Page, rating, reviews */}
           <div className='relative mt-12 flex space-x-20 md:mt-22'>
             {/* Page */}
             <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
-              <p className='md:text-xs-lh text-lg font-bold'>320</p>
+              <p className='md:text-xs-lh text-lg font-bold'>
+                {book.totalCopies}
+              </p>
               <p className='md:text-md text-sm font-medium'>Page</p>
             </div>
             {/* line samping */}
             <div className='border-r border-r-[#D5D7DA]'></div>
             {/* Rating */}
             <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
-              <p className='md:text-xs-lh text-lg font-bold'>212</p>
-              <p className='md:text-md text-sm font-medium'>Rating</p>
+              <p className='md:text-xs-lh text-lg font-bold'>
+                {book.borrowCount}
+              </p>
+              <p className='md:text-md text-sm font-medium'>Borrowed</p>
             </div>
             {/* line samping */}
             <div className='border-r border-r-[#D5D7DA]'></div>
             {/* Reviews */}
             <div className='h-60 w-[94.67px] md:h-66 md:w-102'>
-              <p className='md:text-xs-lh text-lg font-bold'>179</p>
+              <p className='md:text-xs-lh text-lg font-bold'>
+                {book.Review?.length || 0}
+              </p>
               <p className='md:text-md text-sm font-medium'>Reviews</p>
             </div>
             {/* line bawah */}
@@ -79,11 +98,7 @@ export default function Detail() {
           <div className='mt-32 mb-24 md:mt-40 md:mb-20'>
             <h2 className='text-xl font-bold'>Description</h2>
             <p className='md:text-md mt-4 text-sm font-medium text-[#0A0D12]'>
-              The Psychology of Money” explores how emotions, biases, and human
-              behavior shape the way we think about money, investing, and
-              financial decisions. Morgan Housel shares timeless lessons on
-              wealth, greed, and happiness, showing that financial success is
-              not about knowledge, but about behavior.
+              {book.description}
             </p>
           </div>
           {/* Button */}
@@ -107,54 +122,71 @@ export default function Detail() {
         <h2 className='text-xs-lh mb-4 font-bold md:mb-12 md:text-[36px]'>
           Review
         </h2>
+
         {/* Star */}
         <div className='flex items-center space-x-4 px-3'>
           <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-          <p className='text-md font-bold md:text-xl'>4.9 (24 Ulasan)</p>
+          <p className='text-md font-bold md:text-xl'>
+            {' '}
+            {book.rating.toFixed(1)} ({book.Review?.length || 0} Ulasan)
+          </p>
         </div>
         {/* total reviewer */}
         <div className='mb-116'>
           {/* card reviewer */}
-          <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
-            {/* image reviewer */}
-            <img
-              src='../../images/10_img dummy3 author.png'
-              alt='reviewer'
-              className='h-58 w-58 md:h-64 md:w-64'
-            />
-            {/* reviewer name */}
-            <div className='ml-16'>
-              <p className='text-sm font-bold md:text-lg'>John Doe</p>
-              <p className='md:text-md flex text-sm font-medium whitespace-nowrap'>
-                25 August 2025, 13:38
-              </p>
+          {book.Review?.map((rev) => (
+            <div key={rev.id} className='flex flex-col'>
+              <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
+                {/* image reviewer */}
+                <img
+                  src='../../images/10_img dummy3 author.png'
+                  alt={rev.User.name}
+                  className='h-58 w-58 md:h-64 md:w-64'
+                />
+                {/* reviewer name */}
+                <div className='ml-16'>
+                  <p className='text-sm font-bold md:text-lg'>
+                    {rev.User.name}
+                  </p>
+                  <p className='md:text-md flex text-sm font-medium whitespace-nowrap'>
+                    {new Date(rev.createdAt).toLocaleDateString('en-GB', {
+                      day: '2-digit',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                    ,{' '}
+                    {new Date(rev.createdAt).toLocaleTimeString('en-GB', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </p>
+                </div>
+              </div>
+              {/* 5 stars */}
+              <div className='mt-16 flex items-center space-x-4 px-3'>
+                {Array.from({ length: rev.star }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]'
+                  />
+                ))}
+              </div>
+              {/* detail review */}
+              <p className='text-md mt-8 font-semibold'>{rev.comment}</p>
             </div>
-          </div>
-          {/* 5 stars */}
-          <div className='mt-16 flex items-center space-x-4 px-3'>
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-          </div>
-          {/* detail review */}
-          <p className='text-md mt-8 font-semibold'>
-            Lorem ipsum dolor sit amet consectetur. Pulvinar porttitor aliquam
-            viverra nunc sed facilisis. Integer tristique nullam morbi mauris
-            ante.
-          </p>
-        </div>
+          ))}
 
-        {/* Button Load More */}
-        <div className='flex items-center justify-center pb-24 md:pb-48'>
-          <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
-            Load more{' '}
-          </Button>
+          {/* Button Load More */}
+          <div className='flex items-center justify-center pb-24 md:pb-48'>
+            <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
+              Load more{' '}
+            </Button>
+          </div>
         </div>
+        {/* line */}
+        <div className='mt-64 w-full border-b border-[#D5D7DA]'></div>
       </div>
-      {/* line */}
-      <div className='mt-64 w-full border-b border-[#D5D7DA]'></div>
+
       {/* Start Related Books */}
       <div className='text-xs-lh mt-24 mb-20 font-bold md:mt-64 md:mb-40 md:text-[36px]'>
         Related Books
