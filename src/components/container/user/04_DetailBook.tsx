@@ -1,18 +1,32 @@
 import { ChevronRight, Star } from 'lucide-react';
 import { Button } from '../../ui/button';
 import { useParams } from 'react-router-dom';
-import { useBookByIdQuery } from '../../../query/hooks/01_useBooks';
+import {
+  useBookByIdQuery,
+  useBooksQuery,
+} from '../../../query/hooks/01_useBooks';
+import type { Book } from '../../../query/types/01_booksTypes';
 
 export default function Detail() {
-  //#region Detail - Query
+  //#region - Detail Query
   const { id } = useParams();
   const bookId = Number(id);
 
   const { data: book, isLoading, error } = useBookByIdQuery(bookId);
 
+  const { data: allBooks } = useBooksQuery();
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   if (!book) return <p>Book not found</p>;
+  //#endregion
+
+  //#region - Related Book
+  //#region - Related Books
+  const relatedBooks: Book[] = (allBooks || []).filter((b) => b.id !== book.id);
+
+  //#endregion
+
   //#endregion
 
   return (
@@ -51,7 +65,7 @@ export default function Detail() {
           </div>
         </div>
         {/* Detail */}
-        <div className='h-462 w-827 self-center'>
+        <div className='mr-14.5 ml-14.5 h-auto w-full self-center md:mr-0 md:ml-0 md:h-462 md:w-827'>
           <h4 className='text-sm font-bold'>{book.Category?.name}</h4>
           <h2 className='md:text-sm-lh text-xs-lh font-bold'>{book.title}</h2>
           <h3 className='md:text-md mb-4 text-sm font-semibold text-[text-neutral-800]'>
@@ -117,12 +131,12 @@ export default function Detail() {
         {/* Line buttom */}
         <div className='mt-64 w-full border-b-2 text-[#D5D7DA]'></div>
       </div>
+
       {/* 3. Review */}
-      <div className='mt-64 h-822 w-full'>
+      <div className='mt-64 h-auto w-full'>
         <h2 className='text-xs-lh mb-4 font-bold md:mb-12 md:text-[36px]'>
           Review
         </h2>
-
         {/* Star */}
         <div className='flex items-center space-x-4 px-3'>
           <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
@@ -134,51 +148,53 @@ export default function Detail() {
         {/* total reviewer */}
         <div className='mb-116'>
           {/* card reviewer */}
-          {book.Review?.map((rev) => (
-            <div key={rev.id} className='flex flex-col'>
-              <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
-                {/* image reviewer */}
-                <img
-                  src='../../images/10_img dummy3 author.png'
-                  alt={rev.User.name}
-                  className='h-58 w-58 md:h-64 md:w-64'
-                />
-                {/* reviewer name */}
-                <div className='ml-16'>
-                  <p className='text-sm font-bold md:text-lg'>
-                    {rev.User.name}
-                  </p>
-                  <p className='md:text-md flex text-sm font-medium whitespace-nowrap'>
-                    {new Date(rev.createdAt).toLocaleDateString('en-GB', {
-                      day: '2-digit',
-                      month: 'long',
-                      year: 'numeric',
-                    })}
-                    ,{' '}
-                    {new Date(rev.createdAt).toLocaleTimeString('en-GB', {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </p>
-                </div>
-              </div>
-              {/* 5 stars */}
-              <div className='mt-16 flex items-center space-x-4 px-3'>
-                {Array.from({ length: rev.star }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]'
+          <div className='grid grid-cols-1 md:grid-cols-2'>
+            {book.Review?.map((rev) => (
+              <div key={rev.id} className='flex flex-col'>
+                <div className='flex h-84 w-361 items-center p-12 md:h-113 md:w-285 md:p-16'>
+                  {/* image reviewer */}
+                  <img
+                    src='../../images/10_img dummy3 author.png'
+                    alt={rev.User.name}
+                    className='h-58 w-58 md:h-64 md:w-64'
                   />
-                ))}
+                  {/* reviewer name */}
+                  <div className='ml-16'>
+                    <p className='text-sm font-bold md:text-lg'>
+                      {rev.User.name}
+                    </p>
+                    <p className='md:text-md flex text-sm font-medium whitespace-nowrap'>
+                      {new Date(rev.createdAt).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                      ,{' '}
+                      {new Date(rev.createdAt).toLocaleTimeString('en-GB', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </p>
+                  </div>
+                </div>
+                {/* 5 stars */}
+                <div className='mt-16 flex items-center space-x-4 px-3'>
+                  {Array.from({ length: rev.star }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]'
+                    />
+                  ))}
+                </div>
+                {/* detail review */}
+                <p className='text-md mt-8 font-semibold'>{rev.comment}</p>
               </div>
-              {/* detail review */}
-              <p className='text-md mt-8 font-semibold'>{rev.comment}</p>
-            </div>
-          ))}
+            ))}
+          </div>
 
           {/* Button Load More */}
           <div className='flex items-center justify-center pb-24 md:pb-48'>
-            <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
+            <Button className='md:text-md mt-16 h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
               Load more{' '}
             </Button>
           </div>
@@ -192,20 +208,29 @@ export default function Detail() {
         Related Books
       </div>
       {/* Card Book's detail */}
-      <div className='h-370 w-172 md:mb-118 md:h-468 md:w-224 md:space-y-16 md:space-x-16'>
-        <img
-          className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
-          src='../../images/04_img dummy2 recommendation.png'
-          alt='related books'
-        />
-        <div className='space-y-4 p-12 md:p-16'>
-          <h4 className='text-sm font-bold md:text-lg'>Book Name</h4>
-          <p className='md:text-md text-sm font-medium'>Author name</p>
-          <div className='flex items-center space-x-3'>
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />{' '}
-            <span className='md:text-md text-sm font-semibold'>4.9</span>
+      <div className='flex flex-wrap justify-between gap-4'>
+        {relatedBooks.slice(0, 5).map((b: Book) => (
+          <div
+            key={b.id}
+            className='h-auto w-172 md:mb-118 md:h-468 md:w-224 md:space-y-16 md:space-x-16'
+          >
+            <img
+              className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
+              src={b.coverImage || '/placeholder.png'}
+              alt={b.title}
+            />
+            <div className='space-y-4 p-12 md:p-16'>
+              <h4 className='text-sm font-bold md:text-lg'>{b.title}</h4>
+              <p className='md:text-md text-sm font-medium'>{b.Author?.name}</p>
+              <div className='flex items-center space-x-3'>
+                <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />{' '}
+                <span className='md:text-md text-sm font-semibold'>
+                  {b.rating.toFixed(1)}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
       {/* End Related books */}
     </section>
