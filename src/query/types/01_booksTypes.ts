@@ -17,20 +17,20 @@ export interface Book {
   categoryId: number;
   createdAt: string;
   updatedAt: string;
-  author?: {
+  Author?: {
     id: number;
     name: string;
     bio?: string;
     createdAt?: string;
     updatedAt?: string;
   };
-  category?: {
+  Category?: {
     id: number;
     name: string;
     createdAt?: string;
     updatedAt?: string;
   };
-  reviews?: Review[];
+  Review?: Review[];
 }
 
 export interface PaginatedBooksResponse {
@@ -87,7 +87,6 @@ export interface DeleteBookResponse {
 }
 
 // === tambahan: Review ===
-// diperlukan karena DETAIL BOOK memiliki reviews
 export interface Review {
   id: number;
   star: number;
@@ -95,7 +94,7 @@ export interface Review {
   userId: number;
   bookId: number;
   createdAt: string;
-  user: {
+  User: {
     id: number;
     name: string;
   };
