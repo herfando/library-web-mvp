@@ -1,12 +1,50 @@
 import { Button } from '../../ui/button';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../../redux/store';
+import { useState, useEffect } from 'react';
 
 export default function Cart() {
-  //#region - display book,category and total
+  //#region - 1. display book,category and total
   const cart = useSelector((state: RootState) => state.cart.items);
 
   const totalBooks = cart.reduce((sum, item) => sum + item.quantity, 0);
+  //#endregion
+
+  //#region - 2. checkbox
+  const [selectedItems, setSelectedItems] = useState<Record<number, boolean>>(
+    {}
+  );
+
+  // inisialisasi semua item jadi false saat pertama render
+  useEffect(() => {
+    const initialState: Record<number, boolean> = {};
+    cart.forEach((item) => {
+      initialState[item.id] = false;
+    });
+    setSelectedItems(initialState);
+  }, [cart]);
+
+  // handler select all
+  const handleSelectAll = (checked: boolean) => {
+    const newState: Record<number, boolean> = {};
+    cart.forEach((item) => {
+      newState[item.id] = checked;
+    });
+    setSelectedItems(newState);
+  };
+
+  // handler per item
+  const handleSelectItem = (id: number, checked: boolean) => {
+    setSelectedItems((prev) => ({
+      ...prev,
+      [id]: checked,
+    }));
+  };
+
+  // cek semua tercentang
+  const allSelected =
+    cart.length > 0 && cart.every((item) => selectedItems[item.id]);
+
   //#endregion
 
   return (
@@ -20,7 +58,13 @@ export default function Cart() {
         <div className='w-642'>
           {/* Select all */}
           <label htmlFor='select all' className='flex gap-x-5'>
-            <input type='checkbox' id='select all' className='h-20 w-20' />
+            <input
+              type='checkbox'
+              id='select all'
+              className='h-20 w-20'
+              checked={allSelected}
+              onChange={(e) => handleSelectAll(e.target.checked)}
+            />
             <span className='text-md font-semibold'>Select All</span>
           </label>
           {/* Select per catagory */}
@@ -32,6 +76,10 @@ export default function Cart() {
                     type='checkbox'
                     id={`select-${item.id}`}
                     className='h-20 w-20'
+                    checked={selectedItems[item.id] || false}
+                    onChange={(e) =>
+                      handleSelectItem(item.id, e.target.checked)
+                    }
                   />
                 </label>
                 <img
