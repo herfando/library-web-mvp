@@ -185,7 +185,7 @@ export default function Detail() {
           <div className='hidden md:flex'>
             <Button
               onClick={handleAddCart}
-              className='h-48 w-200 rounded-full bg-white font-bold text-black hover:bg-gray-700 hover:text-white'
+              className='h-48 w-200 rounded-full border border-[#D5D7DA] bg-white font-bold text-black hover:bg-gray-700 hover:text-white'
             >
               Add to Cart
             </Button>
@@ -197,7 +197,7 @@ export default function Detail() {
               Borrow Book
             </Button>
 
-            <div className='ml-12 flex h-40 w-40 items-center justify-between self-center rounded-full border border-[#D5D7DA]'>
+            <div className='ml-12 flex h-40 w-40 items-center justify-center self-center rounded-full border border-[#D5D7DA]'>
               <img src='../../icons/07_Icon share.svg' alt='icon share' />
             </div>
           </div>
@@ -305,6 +305,26 @@ export default function Detail() {
             </div>
           </div>
         ))}
+        {/* Floating Loan Summary for Mobile */}
+        <div className='fixed right-0 bottom-0 left-0 z-50 flex h-72 w-full flex-1/3 items-center justify-between rounded-xl bg-white p-4 pr-16 pl-16 shadow-lg md:hidden'>
+          <Button
+            onClick={handleAddCart}
+            className='h-48 basis-[40%] rounded-full border border-[#D5D7DA] bg-white font-bold text-black hover:bg-gray-700 hover:text-white'
+          >
+            Add to Cart
+          </Button>
+
+          <Button
+            onClick={handleBorrowBook}
+            className='ml-12 h-48 basis-[40%] rounded-full font-bold hover:bg-[#7FB0FF]'
+          >
+            Borrow Book
+          </Button>
+
+          <div className='ml-12 flex h-40 w-40 items-center justify-center self-center rounded-full border border-[#D5D7DA]'>
+            <img src='../../icons/07_Icon share.svg' alt='icon share' />
+          </div>
+        </div>
       </div>
     </section>
   );

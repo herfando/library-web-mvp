@@ -88,7 +88,7 @@ export default function Home() {
     data: recommendedBooks,
     isLoading,
     isError,
-  } = useRecommendationsQuery(recPage, 30);
+  } = useRecommendationsQuery(recPage, 50);
 
   // 5. Combine result list
   useEffect(() => {
