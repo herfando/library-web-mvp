@@ -1,8 +1,18 @@
 import { Search, ChevronDown } from 'lucide-react';
 import SearchInput from '../../ui/searchInput';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { type RootState } from '../../../redux/store';
 
 export default function Navbar() {
+  //#region display total cart
+  const cart = useSelector((state: RootState) => state.cart.items);
+
+  const totalCount = cart.reduce((s, i) => s + i.quantity, 0);
+
+  //#endregion
+
+  //#region - Search Query
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search') || '';
 
@@ -26,6 +36,8 @@ export default function Navbar() {
 
     handleSearch('');
   };
+  //#endregion
+
   return (
     <section className='custom-container flex h-80 w-full items-center justify-between'>
       {/* Booky */}
@@ -50,15 +62,23 @@ export default function Navbar() {
       </div>
 
       {/* bag & profil */}
-      <div className='flex items-center'>
+      <div
+        className='flex items-center hover:cursor-pointer'
+        onClick={() => navigate('/cart')}
+      >
         {/* Search */}
         <Search className='mr-16 flex h-24 w-24 text-[Neutral/950] lg:hidden' />
         {/* bag */}
-        <img
-          src='../../icons/02_bag.svg'
-          alt='cart bag'
-          className='mr-24 h-32 w-32'
-        />
+        <div className='relative'>
+          <img
+            src='../../icons/02_bag.svg'
+            alt='cart bag'
+            className='mr-24 h-32 w-32'
+          />
+          <span className='absolute -top-2 right-[35%] h-20 w-20 content-center items-center rounded-full bg-red-600 px-2 text-center text-xs text-white'>
+            {totalCount}
+          </span>
+        </div>
         {/* picture account */}
         <img
           src='../../images/01_foto profil.png'
