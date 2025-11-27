@@ -134,7 +134,7 @@ export default function Checkout() {
               />
 
               {openDatePicker && (
-                <div className='absolute z-50 mt-2 w-500 content-center rounded bg-white p-4 shadow-lg'>
+                <div className='absolute left-[10%] z-50 mt-2 w-100 content-center rounded bg-white p-4 md:-left-[3%] md:w-500'>
                   <DatePicker
                     selectsRange
                     startDate={tempRange[0]}
@@ -171,7 +171,7 @@ export default function Checkout() {
               <h3 className='md:text-md text-sm font-bold'>Return Date</h3>
               <p className='md:text-md text-sm font-medium'>
                 Please return the book no later than
-                <span className='ml-4 text-[#EE1D52]'>
+                <span className='ml-4 font-bold text-[#EE1D52]'>
                   {returnDate.format('DD MMM YYYY')}
                 </span>
               </p>
