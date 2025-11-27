@@ -137,7 +137,7 @@ export default function Cart() {
         {/* 2. End Loan Summary right section - Desktop */}
 
         {/* Floating Loan Summary for Mobile */}
-        <div className='fixed right-4 bottom-4 left-4 z-50 flex h-72 w-full items-center justify-between rounded-xl bg-white p-4 pr-16 pl-16 shadow-lg md:hidden'>
+        <div className='fixed right-0 bottom-0 left-0 z-50 flex h-72 w-full flex-1/3 items-center justify-between rounded-xl bg-white p-4 pr-16 pl-16 shadow-lg md:hidden'>
           <div className='h-52 w-151'>
             <p className='mb-2 flex flex-col justify-between'>
               <span>Total Book</span>

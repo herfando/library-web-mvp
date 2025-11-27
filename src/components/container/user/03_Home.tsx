@@ -88,7 +88,7 @@ export default function Home() {
     data: recommendedBooks,
     isLoading,
     isError,
-  } = useRecommendationsQuery(recPage, 30);
+  } = useRecommendationsQuery(recPage, 50);
 
   // 5. Combine result list
   useEffect(() => {
@@ -220,7 +220,7 @@ export default function Home() {
               />
               <div className='space-y-4 p-16'>
                 {/* Book Name */}
-                <p>{book.title}</p>
+                <p className='h-96 font-bold md:h-72'>{book.title}</p>
                 {/* Author Name */}
                 <p>{book.Author?.name}</p>
                 {/* Star */}
