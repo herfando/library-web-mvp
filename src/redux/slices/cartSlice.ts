@@ -2,6 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import storage from 'redux-persist/es/storage';
 import { persistReducer } from 'redux-persist';
 
+// ===== Interface Cart Item =====
 export interface CartItem {
   id: number;
   title: string;
@@ -12,18 +13,24 @@ export interface CartItem {
   quantity: number;
 }
 
+// ===== Interface State =====
 interface CartState {
-  items: CartItem[];
+  items: CartItem[]; // semua item yang ada di cart
+  checkoutItems: CartItem[]; // item yang dipindahkan ke checkout
 }
 
+// ===== Initial State =====
 const initialState: CartState = {
   items: [],
+  checkoutItems: [], // awalnya kosong
 };
 
+// ===== Slice =====
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    // ===== Tambah item ke cart =====
     addToCart: (state, action: PayloadAction<CartItem>) => {
       const item = action.payload;
       const exist = state.items.find((x) => x.id === item.id);
@@ -35,24 +42,44 @@ const cartSlice = createSlice({
       }
     },
 
+    // ===== Hapus item dari cart =====
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((i) => i.id !== action.payload);
     },
 
+    // ===== Clear semua item di cart =====
     clearCart: (state) => {
       state.items = [];
+    },
+
+    // ===== Simpan item yang akan di checkout =====
+    setCheckoutItems: (state, action: PayloadAction<CartItem[]>) => {
+      state.checkoutItems = action.payload;
+    },
+
+    // ===== Clear checkoutItems (opsional, setelah selesai checkout) =====
+    clearCheckoutItems: (state) => {
+      state.checkoutItems = [];
     },
   },
 });
 
+// ===== Persist Config untuk Redux Persist =====
 const cartPersistConfig = {
   key: 'cart',
   storage,
 };
 
+// ===== Export Reducer dan Actions =====
 export const persistedCartReducer = persistReducer(
   cartPersistConfig,
   cartSlice.reducer
 );
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  setCheckoutItems,
+  clearCheckoutItems,
+} = cartSlice.actions;

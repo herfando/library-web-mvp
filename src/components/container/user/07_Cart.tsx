@@ -1,12 +1,17 @@
 import { Button } from '../../ui/button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { type RootState } from '../../../redux/store';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { setCheckoutItems } from '../../../redux/slices/cartSlice';
 
 export default function Cart() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   //#region - 1. display book,category and total
   const cart = useSelector((state: RootState) => state.cart.items);
-
+  // calculate total quantity book
   const totalBooks = cart.reduce((sum, item) => sum + item.quantity, 0);
   //#endregion
 
@@ -14,7 +19,6 @@ export default function Cart() {
   const [selectedItems, setSelectedItems] = useState<Record<number, boolean>>(
     {}
   );
-
   // inisialisasi semua item jadi false saat pertama render
   useEffect(() => {
     const initialState: Record<number, boolean> = {};
@@ -23,7 +27,6 @@ export default function Cart() {
     });
     setSelectedItems(initialState);
   }, [cart]);
-
   // handler select all
   const handleSelectAll = (checked: boolean) => {
     const newState: Record<number, boolean> = {};
@@ -32,7 +35,6 @@ export default function Cart() {
     });
     setSelectedItems(newState);
   };
-
   // handler per item
   const handleSelectItem = (id: number, checked: boolean) => {
     setSelectedItems((prev) => ({
@@ -40,11 +42,21 @@ export default function Cart() {
       [id]: checked,
     }));
   };
-
   // cek semua tercentang
   const allSelected =
     cart.length > 0 && cart.every((item) => selectedItems[item.id]);
+  //#endregion
 
+  //#region - 3. handle borrow button
+  const handleBorrow = () => {
+    // ambil semua item yang dipilih, jika tidak ada yang dicentang ambil semua
+    const itemsToCheckout = cart.filter((item) => selectedItems[item.id]);
+    dispatch(
+      setCheckoutItems(itemsToCheckout.length > 0 ? itemsToCheckout : cart)
+    );
+    // navigasi ke halaman checkout
+    navigate('/checkout');
+  };
   //#endregion
 
   return (
@@ -115,7 +127,10 @@ export default function Cart() {
             <span className='text-medium text-md'>Total Book</span>
             <span className='text-md font-bold'>{totalBooks} Items</span>
           </p>
-          <Button className='h-48 w-full rounded-full border border-[#D5D7DA] font-bold text-white hover:cursor-pointer hover:bg-[#82AEFF] hover:text-black'>
+          <Button
+            onClick={handleBorrow}
+            className='h-48 w-full rounded-full border border-[#D5D7DA] font-bold text-white hover:cursor-pointer hover:bg-[#82AEFF] hover:text-black'
+          >
             Borrow Book
           </Button>
         </div>
@@ -129,7 +144,10 @@ export default function Cart() {
               <span className='font-bold'>{totalBooks} Items</span>
             </p>
           </div>
-          <Button className='h-40 w-150 rounded-full border border-[#D5D7DA] font-bold text-white hover:cursor-pointer hover:bg-[#82AEFF] hover:text-black'>
+          <Button
+            onClick={handleBorrow}
+            className='h-40 w-150 rounded-full border border-[#D5D7DA] font-bold text-white hover:cursor-pointer hover:bg-[#82AEFF] hover:text-black'
+          >
             Borrow Book
           </Button>
         </div>
