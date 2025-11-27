@@ -1,15 +1,23 @@
 import { Button } from '../../ui/button';
 import { Calendar } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import { type RootState } from '../../../redux/store';
 
 export default function Checkout() {
+  //#region - 1. ambil data checkout dari Redux
+  const checkoutItems = useSelector(
+    (state: RootState) => state.cart.checkoutItems
+  );
+  //#endregion
+
   return (
     <section className='mx-auto mt-16 h-auto max-w-1034 pr-16 pl-16 md:mt-48'>
       <h2 className='md:text-36 text-24 mb-16 font-bold md:mb-32'>Checkout</h2>
-      <div className='flex flex-wrap space-x-58'>
+      <div className='grid grid-cols-1 justify-between space-x-58 lg:grid-cols-2'>
         {/* 1. Start Left section User information */}
         <div>
           {/* start user information  */}
-          <div className='w-466 space-y-16'>
+          <div className='w-361 space-y-16 md:w-466'>
             <h3 className='md:text-xs-lh text-lg font-bold'>
               User Information
             </h3>
@@ -37,21 +45,30 @@ export default function Checkout() {
           {/* end user information  */}
           {/* Booklist */}
           <h3 className='md:text-xs-lh text-lg font-bold'>Book List</h3>
-          <div className='mt-16 flex md:mt-24'>
-            <img
-              src='../../images/13_img dummy6 my cart.png'
-              alt='books my cart'
-              className='space-y-16'
-            />
-            {/* card Detail */}
-            <div className='ml-12 md:ml-16'>
-              <Button className='h-28 w-78 items-center rounded-2xl border-[Neutral/300] bg-white font-bold text-black hover:text-white'>
-                <span>Category</span>
-              </Button>
-              <h3 className='text-md font-bold md:text-lg'>Book Name</h3>
-              <h3 className='md:text-md text-sm font-medium'>Author name</h3>
-            </div>
-          </div>
+          {checkoutItems.length === 0 ? (
+            <p className='mt-16 text-sm font-medium'>No books selected.</p>
+          ) : (
+            checkoutItems.map((item) => (
+              <div key={item.id} className='mt-16 flex md:mt-24'>
+                <img
+                  src={item.image || '../../images/13_img dummy6 my cart.png'}
+                  alt={item.title}
+                  className='h-138 w-92 space-y-16'
+                />
+                {/* card Detail */}
+                <div className='ml-12 md:ml-16'>
+                  <Button className='h-28 w-78 items-center rounded-2xl border-[Neutral/300] bg-white font-bold text-black hover:text-white'>
+                    <span>{item.category}</span>
+                  </Button>
+                  <h3 className='text-md font-bold md:text-lg'>{item.title}</h3>
+                  <h3 className='md:text-md text-sm font-medium'>
+                    {item.author}
+                  </h3>
+                  <p className='mt-2 text-sm'>Quantity: {item.quantity}</p>
+                </div>
+              </div>
+            ))
+          )}
         </div>
         {/* 1. End Left section User information */}
 
