@@ -108,7 +108,7 @@ export default function Cart() {
         </div>
         {/* 1. End Cart left section */}
 
-        {/* 2. Start Loan Summary right section */}
+        {/* 2. Start Loan Summary right section - Desktop */}
         <div className='ml-40 hidden h-200 w-318 flex-col space-y-24 p-20 md:flex'>
           <h3 className='text-xl font-bold'>Loan Summary</h3>
           <p className='flex justify-between'>
@@ -119,7 +119,20 @@ export default function Cart() {
             Borrow Book
           </Button>
         </div>
-        {/* 2. End Loan Summary right section */}
+        {/* 2. End Loan Summary right section - Desktop */}
+
+        {/* Floating Loan Summary for Mobile */}
+        <div className='fixed right-4 bottom-4 left-4 z-50 flex h-72 w-full items-center justify-between rounded-xl bg-white p-4 pr-16 pl-16 shadow-lg md:hidden'>
+          <div className='h-52 w-151'>
+            <p className='mb-2 flex flex-col justify-between'>
+              <span>Total Book</span>
+              <span className='font-bold'>{totalBooks} Items</span>
+            </p>
+          </div>
+          <Button className='h-40 w-150 rounded-full border border-[#D5D7DA] font-bold text-white hover:cursor-pointer hover:bg-[#82AEFF] hover:text-black'>
+            Borrow Book
+          </Button>
+        </div>
       </div>
     </section>
   );
