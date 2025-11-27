@@ -62,20 +62,22 @@ export default function Navbar() {
       </div>
 
       {/* bag & profil */}
-      <div className='flex items-center'>
+      <div
+        className='flex items-center hover:cursor-pointer'
+        onClick={() => navigate('/cart')}
+      >
         {/* Search */}
         <Search className='mr-16 flex h-24 w-24 text-[Neutral/950] lg:hidden' />
         {/* bag */}
-        <div>
+        <div className='relative'>
           <img
             src='../../icons/02_bag.svg'
             alt='cart bag'
-            className='relative mr-24 h-32 w-32'
-          >
-            <span className='absolute -top-2 -right-2 rounded-full bg-red-600 px-2 text-xs text-white'>
-              {totalCount}
-            </span>
-          </img>
+            className='mr-24 h-32 w-32'
+          />
+          <span className='absolute -top-2 right-[35%] h-20 w-20 content-center items-center rounded-full bg-red-600 px-2 text-center text-xs text-white'>
+            {totalCount}
+          </span>
         </div>
         {/* picture account */}
         <img

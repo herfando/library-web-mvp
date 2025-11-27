@@ -12,6 +12,7 @@ import Footer from '../components/container/user/00_Footer';
 import Detail from '../components/container/user/04_DetailBook';
 import Category from '../components/container/user/05_Category';
 import BookByAuthor from '../components/container/user/06_BookByAuthor';
+import Cart from '../components/container/user/07_Cart';
 
 const AuthLayout = () => (
   <div>
@@ -47,6 +48,7 @@ export default function AppRoutes() {
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/category/:id' element={<Category />} />
           <Route path='/author/:id' element={<BookByAuthor />} />
+          <Route path='/cart' element={<Cart />} />
         </Route>
       </Routes>
     </Router>

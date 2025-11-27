@@ -11,7 +11,7 @@ export default function Footer() {
           <div className='text-lg-lh self-center font-bold'>Booky</div>
         </div>
         {/* Paragraf */}
-        <p className='md:text-md mb-40 text-sm font-semibold'>
+        <p className='md:text-md mb-40 text-center text-sm font-semibold'>
           Discover inspiring stories & timeless knowledge, ready to borrow
           anytime. Explore online or visit our nearest library branch.
         </p>
