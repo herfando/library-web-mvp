@@ -58,7 +58,7 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Email</div>
-            <Input {...register('email')} />
+            <Input {...register('email')} placeholder='johndoe@email.com' />
             {errors.email && (
               <p className='mt-1 text-xs text-red-500'>
                 {errors.email.message}
@@ -73,6 +73,7 @@ export default function Login() {
               <Input
                 type={show ? 'text' : 'password'}
                 {...register('password')}
+                placeholder='johndoe123'
               />
               <Eye
                 onClick={() => setShow(!show)}
