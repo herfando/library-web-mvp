@@ -65,11 +65,11 @@ export default function Home() {
 
   //#region - 3.Recommended Query + Load More + Search
 
-  // 1. Ambil parameter search dulu
+  // 1. First take search parameter
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search') || '';
 
-  // 2. State rekomendasi
+  // 2. State recommendation
   const [recPage, setRecPage] = useState(1);
   const [recList, setRecList] = useState<Book[]>([]);
 
@@ -77,20 +77,20 @@ export default function Home() {
     book.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  // 3. Reset list saat search berubah
+  // 3. Reset list when search change
   useEffect(() => {
     setRecPage(1);
     setRecList([]);
   }, [search]);
 
-  // 4. Query rekomendasi (sudah include search)
+  // 4. Query rekomendasi + Search
   const {
     data: recommendedBooks,
     isLoading,
     isError,
   } = useRecommendationsQuery(recPage, 10);
 
-  // 5. Gabungkan hasil ke list
+  // 5. Combine result list
   useEffect(() => {
     if (recommendedBooks && recommendedBooks.length > 0) {
       setRecList((prev) => [...prev, ...recommendedBooks]);
