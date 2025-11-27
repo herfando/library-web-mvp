@@ -171,7 +171,7 @@ export default function Checkout() {
               <h3 className='md:text-md text-sm font-bold'>Return Date</h3>
               <p className='md:text-md text-sm font-medium'>
                 Please return the book no later than
-                <span className='ml-4 text-[#EE1D52]'>
+                <span className='ml-4 font-bold text-[#EE1D52]'>
                   {returnDate.format('DD MMM YYYY')}
                 </span>
               </p>
