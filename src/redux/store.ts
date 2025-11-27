@@ -4,6 +4,7 @@ import { authApi } from './services/authApi';
 import uiSlice from './slices/uiSlice';
 import { uiApi } from './services/uiApi';
 import storage from 'redux-persist/lib/storage';
+import { persistedCartReducer } from './slices/cartSlice';
 import {
   persistStore,
   persistReducer,
@@ -27,6 +28,8 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     ui: uiSlice,
     [uiApi.reducerPath]: uiApi.reducer,
+
+    cart: persistedCartReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
