@@ -2,8 +2,12 @@ import { Star } from 'lucide-react';
 import { useCategoriesQuery } from '../../../query/hooks/03_useCategories';
 import { useBooksQuery } from '../../../query/hooks/01_useBooks';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Category() {
+  // navigate
+  const navigate = useNavigate();
+
   // Query categories
   const { data: categories } = useCategoriesQuery();
 
@@ -27,6 +31,11 @@ export default function Category() {
     setSelectedRatings((prev) =>
       prev.includes(star) ? prev.filter((x) => x !== star) : [...prev, star]
     );
+  };
+
+  // === GO TO DETAIL ===
+  const goToDetail = (id: number) => {
+    navigate(`/detail/${id}`);
   };
 
   // === APPLY FILTERS ===
@@ -97,7 +106,8 @@ export default function Category() {
             {filteredBooks.map((b) => (
               <div
                 key={b.id}
-                className='h-370 w-172 md:mb-118 md:h-439 md:w-204.75 md:space-x-16'
+                onClick={() => goToDetail(b.id)}
+                className='h-370 w-172 hover:cursor-pointer md:mb-118 md:h-439 md:w-204.75 md:space-x-16'
               >
                 <img
                   className='h-258 w-172 rounded-t-2xl md:h-[307.12px] md:w-[204.8px]'
