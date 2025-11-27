@@ -215,7 +215,7 @@ export default function Home() {
                   book.coverImage || '/images/09_img dummy2 recommendation.png'
                 }
                 alt={book.title}
-                className='h-258 w-172 rounded-t-2xl hover:cursor-pointer md:h-336 md:w-224'
+                className='h-258 w-172 rounded-t-2xl border border-[#D5D7DA] hover:cursor-pointer md:h-336 md:w-224'
                 onClick={() => navigate(`/detail/${book.id}`)}
               />
               <div className='space-y-4 p-16'>

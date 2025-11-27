@@ -91,13 +91,15 @@ export default function Checkout() {
                 <img
                   src={item.image || '../../images/13_img dummy6 my cart.png'}
                   alt={item.title}
-                  className='h-138 w-92 space-y-16'
+                  className='h-138 w-92 space-y-16 border border-[#D5D7DA]'
                 />
                 <div className='ml-12 md:ml-16'>
-                  <Button className='h-28 w-78 items-center rounded-2xl border-[Neutral/300] bg-white font-bold text-black hover:text-white'>
+                  <Button className='h-28 w-78 items-center rounded-2xl border border-[#D5D7DA] bg-white font-bold text-black hover:text-white'>
                     <span>{item.category}</span>
                   </Button>
-                  <h3 className='text-md font-bold md:text-lg'>{item.title}</h3>
+                  <h3 className='text-md h-66 font-bold md:text-lg'>
+                    {item.title}
+                  </h3>
                   <h3 className='md:text-md text-sm font-medium'>
                     {item.author}
                   </h3>
