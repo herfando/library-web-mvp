@@ -4,10 +4,11 @@
 export interface Book {
   id: number;
   title: string;
-  description: string;
+  description: string | null;
   isbn: string;
   publishedYear: number;
   coverImage: string | null;
+  price: number;
   rating: number;
   reviewCount: number;
   totalCopies: number;
@@ -50,9 +51,9 @@ export interface PaginatedBooksResponse {
 // === 2. CREATE BOOK ===
 export interface BookCreateInput {
   title: string;
-  description: string;
+  description: string | null;
   isbn: string;
-  publishedYear: number;
+  publishedYear: number | null;
   coverImage: string;
   authorId: number;
   categoryId: number;

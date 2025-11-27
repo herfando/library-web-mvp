@@ -6,28 +6,47 @@ import {
   useBooksQuery,
 } from '../../../query/hooks/01_useBooks';
 import type { Book } from '../../../query/types/01_booksTypes';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../redux/slices/cartSlice';
 
 export default function Detail() {
+  //#region - Add to Cart
+  const handleAddCart = () => {
+    if (!book) return;
+
+    dispatch(
+      addToCart({
+        id: book.id,
+        title: book.title,
+        author: book.Author?.name || '',
+        category: book.Category?.name || '',
+        image: book.coverImage ?? '',
+        price: book.price,
+        quantity: 1,
+      })
+    );
+  };
+  //#endregion
+
   //#region - Detail Query
   const { id } = useParams();
   const bookId = Number(id);
 
   const { data: book, isLoading, error } = useBookByIdQuery(bookId);
-
   const { data: allBooks } = useBooksQuery();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  if (!book) return <p>Book not found</p>;
+  const dispatch = useDispatch();
   //#endregion
 
-  //#region - Related Book
   //#region - Related Books
-  const relatedBooks: Book[] = (allBooks || []).filter((b) => b.id !== book.id);
+  const relatedBooks: Book[] = (allBooks || []).filter(
+    (b) => book && b.id !== book.id
+  );
 
   //#endregion
-
-  //#endregion
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {String(error)}</p>;
+  if (!book) return <p>Book not found</p>;
 
   return (
     <section className='custom-container mt-16 h-auto w-full md:mt-48'>
@@ -117,7 +136,10 @@ export default function Detail() {
           </div>
           {/* Button */}
           <div className='hidden md:flex'>
-            <Button className='h-48 w-200 rounded-full bg-white font-bold text-black hover:cursor-pointer hover:bg-gray-700 hover:text-white'>
+            <Button
+              onClick={handleAddCart}
+              className='h-48 w-200 rounded-full bg-white font-bold text-black hover:cursor-pointer hover:bg-gray-700 hover:text-white'
+            >
               Add to Cart
             </Button>
             <Button className='ml-12 h-48 w-200 rounded-full font-bold hover:cursor-pointer hover:bg-[#7FB0FF] hover:text-black'>

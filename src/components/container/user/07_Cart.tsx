@@ -1,6 +1,17 @@
 import { Button } from '../../ui/button';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 export default function Cart() {
+  //#region - display book,category and total
+  const cart = useSelector((state: RootState) => state.cart.items);
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  //#endregion
+
   return (
     <section className='mx-auto mt-16 h-auto w-full max-w-1032 items-center pr-16 pl-16 md:mt-48'>
       {/* Title My Cart */}

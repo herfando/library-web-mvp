@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import storage from 'redux-persist/es/storage';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 export interface CartItem {
   id: number;
@@ -45,8 +45,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
-
 const cartPersistConfig = {
   key: 'cart',
   storage,
@@ -56,3 +54,5 @@ export const persistedCartReducer = persistReducer(
   cartPersistConfig,
   cartSlice.reducer
 );
+
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
