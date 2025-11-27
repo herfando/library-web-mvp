@@ -88,7 +88,7 @@ export default function Home() {
     data: recommendedBooks,
     isLoading,
     isError,
-  } = useRecommendationsQuery(recPage, 10);
+  } = useRecommendationsQuery(recPage, 30);
 
   // 5. Combine result list
   useEffect(() => {
@@ -234,7 +234,7 @@ export default function Home() {
         </div>
 
         {/* Button Load More */}
-        <div className='flex items-center justify-between pb-24 md:pb-48'>
+        <div className='flex items-center justify-center pb-24 md:pb-48'>
           <Button
             onClick={() => setRecPage((prev) => prev + 1)}
             className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:text-white md:h-48 md:w-200'

@@ -215,7 +215,7 @@ export default function Detail() {
           </div>
 
           {/* Button Load More */}
-          <div className='flex items-center justify-between pb-24 md:pb-48'>
+          <div className='flex items-center justify-center pb-24 md:pb-48'>
             <Button className='md:text-md mt-16 h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
               Load more{' '}
             </Button>
