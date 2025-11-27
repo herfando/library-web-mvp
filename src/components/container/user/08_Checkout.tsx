@@ -134,7 +134,7 @@ export default function Checkout() {
               />
 
               {openDatePicker && (
-                <div className='absolute z-50 mt-2 w-500 content-center rounded bg-white p-4 shadow-lg'>
+                <div className='absolute left-[10%] z-50 mt-2 w-100 content-center rounded bg-white p-4 md:-left-[3%] md:w-500'>
                   <DatePicker
                     selectsRange
                     startDate={tempRange[0]}
