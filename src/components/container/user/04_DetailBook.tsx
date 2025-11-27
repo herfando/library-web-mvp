@@ -14,78 +14,76 @@ export default function Detail() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // ambil checkout lama dari redux (lebih aman dari pada localStorage)
   const checkoutItems = useSelector(
     (state: RootState) => state.cart.checkoutItems
   );
 
-  //#region - Detail Query
+  // ========================================
+  // GET BOOK ID FROM URL
+  // ========================================
   const { id } = useParams();
   const bookId = Number(id);
 
+  // ========================================
+  // FETCH DATA
+  // ========================================
   const { data: book, isLoading, error } = useBookByIdQuery(bookId);
   const { data: allBooks } = useBooksQuery();
-  //#endregion
 
-  //#region - Helper: build cart item
-  const buildCartItem = () => {
-    return {
-      id: book!.id,
-      title: book!.title,
-      author: book!.Author?.name || '',
-      category: book!.Category?.name || '',
-      image: book!.coverImage ?? '',
-      price: book!.price,
-      quantity: 1,
-    };
-  };
-  //#endregion
+  // ========================================
+  // fix undefined error
+  // ========================================
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {String(error)}</p>;
+  if (!book) return <p>Book not found</p>;
 
-  //#region - Add to Cart
+  // ========================================
+  // BUILD CART ITEM
+  // ========================================
+  const buildCartItem = () => ({
+    id: book.id,
+    title: book.title,
+    author: book.Author?.name || '',
+    category: book.Category?.name || '',
+    image: book.coverImage ?? '',
+    price: book.price,
+    quantity: 1,
+  });
+
+  // ========================================
+  // ADD TO CART
+  // ========================================
   const handleAddCart = () => {
-    if (!book) return;
-
     const item = buildCartItem();
     dispatch(addToCart(item));
   };
-  //#endregion
 
-  //#region - Borrow Book
+  // ========================================
+  // BORROW (NO OVERWRITE)
+  // ========================================
   const handleBorrowBook = () => {
-    if (!book) return;
-
     const item = buildCartItem();
 
-    // tambahkan ke cart biasa
+    // input to cart
     dispatch(addToCart(item));
 
-    // ==========================
-    // FIX AGAR TIDAK OVERWRITE
-    // ==========================
+    // Check if there is in checkout
     const exists = checkoutItems.some((i) => i.id === item.id);
 
     const updatedCheckout = exists ? checkoutItems : [...checkoutItems, item];
 
-    // update redux
     dispatch(setCheckoutItems(updatedCheckout));
-
-    // sync localStorage
     localStorage.setItem('checkoutItems', JSON.stringify(updatedCheckout));
 
-    // pindah ke checkout
     navigate('/checkout');
   };
-  //#endregion
 
-  //#region - Related Books
+  // ========================================
+  // RELATED BOOKS
+  // ========================================
   const relatedBooks: Book[] = (allBooks || []).filter(
-    (b) => book && b.id !== book.id
+    (b) => b.id !== book.id && b.categoryId === book.categoryId
   );
-  //#endregion
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {String(error)}</p>;
-  if (!book) return <p>Book not found</p>;
 
   return (
     <section className='custom-container mt-16 h-auto w-full md:mt-48'>
@@ -203,7 +201,7 @@ export default function Detail() {
           </div>
         </div>
 
-        <div className='mt-64 w-full border-b-2 text-[#D5D7DA]'></div>
+        <div className='mt-0 w-full border-b-2 text-[#D5D7DA] md:mt-100'></div>
       </div>
 
       {/* Reviews */}
@@ -279,11 +277,12 @@ export default function Detail() {
         Related Books
       </div>
 
-      <div className='flex flex-wrap justify-between gap-4'>
+      <div className='flex flex-wrap justify-between gap-4 hover:cursor-pointer'>
         {relatedBooks.slice(0, 5).map((b: Book) => (
           <div
             key={b.id}
             className='h-auto w-172 md:mb-118 md:h-468 md:w-224 md:space-y-16 md:space-x-16'
+            onClick={() => navigate(`/detail/${b.id}`)}
           >
             <img
               className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
@@ -305,7 +304,8 @@ export default function Detail() {
             </div>
           </div>
         ))}
-        {/* Floating Loan Summary for Mobile */}
+
+        {/* Mobile Floating Buttons */}
         <div className='fixed right-0 bottom-0 left-0 z-50 flex h-72 w-full flex-1/3 items-center justify-between rounded-xl bg-white p-4 pr-16 pl-16 shadow-lg md:hidden'>
           <Button
             onClick={handleAddCart}
