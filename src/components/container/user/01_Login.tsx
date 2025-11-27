@@ -73,6 +73,7 @@ export default function Login() {
               <Input
                 type={show ? 'text' : 'password'}
                 {...register('password')}
+                placeholder='johndoe123'
               />
               <Eye
                 onClick={() => setShow(!show)}
