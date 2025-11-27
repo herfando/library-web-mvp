@@ -22,7 +22,7 @@ interface CartState {
 // ===== Initial State =====
 const initialState: CartState = {
   items: [],
-  checkoutItems: [], // awalnya kosong
+  checkoutItems: [],
 };
 
 // ===== Slice =====
@@ -54,7 +54,16 @@ const cartSlice = createSlice({
 
     // ===== Simpan item yang akan di checkout =====
     setCheckoutItems: (state, action: PayloadAction<CartItem[]>) => {
-      state.checkoutItems = action.payload;
+      const selected = action.payload;
+
+      // Jika user memilih item tertentu, pakai itu
+      if (selected.length > 0) {
+        state.checkoutItems = selected;
+      }
+      // Jika tidak ada selection, otomatis masukkan seluruh cart
+      else {
+        state.checkoutItems = state.items;
+      }
     },
 
     // ===== Clear checkoutItems (opsional, setelah selesai checkout) =====
