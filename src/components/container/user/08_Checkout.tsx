@@ -86,7 +86,7 @@ export default function Checkout() {
   }, []);
 
   return (
-    <section className='mx-auto mt-16 h-auto max-w-1034 pr-16 pl-16 md:mt-48'>
+    <section className='mx-auto mt-16 mb-48 h-auto max-w-1034 pr-16 pl-16 md:mt-48 md:mb-80'>
       <h2 className='md:text-36 text-24 mb-16 font-bold md:mb-32'>Checkout</h2>
       <div className='grid grid-cols-1 justify-between space-x-58 lg:grid-cols-2'>
         {/* Left Section */}
