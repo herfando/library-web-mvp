@@ -14,9 +14,11 @@ import Category from '../components/container/user/05_Category';
 import BookByAuthor from '../components/container/user/06_BookByAuthor';
 import Cart from '../components/container/user/07_Cart';
 import Checkout from '../components/container/user/08_Checkout';
+import { Toaster } from 'react-hot-toast';
 
 const AuthLayout = () => (
   <div>
+    <Toaster position='top-right' />
     <main>
       <Outlet />
     </main>

@@ -5,6 +5,7 @@ import { ENDPOINTS } from '../../utils/api';
 interface User {
   name: string;
   email: string;
+  phoneNumber: string;
 }
 
 interface AuthResponse {
@@ -16,7 +17,20 @@ interface RegisterRequest {
   name: string;
   email: string;
   password: string;
+  phoneNumber: string;
 }
+
+export type RegisterResponse = {
+  success: boolean;
+  message: string;
+  data: {
+    id: string;
+    name: string;
+    email: string;
+    phoneNumber: string;
+    role: string;
+  };
+};
 
 interface LoginRequest {
   email: string;
@@ -27,13 +41,16 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (builder) => ({
-    register: builder.mutation<AuthResponse, RegisterRequest>({
+    // Register mutation
+    register: builder.mutation<RegisterResponse, RegisterRequest>({
       query: (body) => ({
         url: ENDPOINTS.AUTH.REGISTER,
         method: 'POST',
         body,
       }),
     }),
+
+    // Login mutation
     login: builder.mutation<AuthResponse, LoginRequest>({
       query: (body) => ({
         url: ENDPOINTS.AUTH.LOGIN,

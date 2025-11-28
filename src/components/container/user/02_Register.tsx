@@ -33,17 +33,43 @@ export default function Register() {
       const userData = await registerUser({
         name: data.name,
         email: data.email,
-
+        phoneNumber: data.phone,
         password: data.password,
       }).unwrap();
 
-      dispatch(setCredentials(userData));
+      // simpan ke redux
+      dispatch(
+        setCredentials({
+          token: '', // register tidak mengembalikan token
+          user: userData.data, // data user dari response
+        })
+      );
+
+      // simpan ke localStorage
+      if (userData.data) {
+        localStorage.setItem(
+          'registerUser',
+          JSON.stringify({
+            token: '', // register tidak punya token
+            user: userData.data,
+          })
+        );
+      } else {
+        console.warn('Register response tidak mengandung user:', userData);
+      }
+
+      // toast sukses
       toast.success('Register sukses!');
+
+      // arahkan ke halaman login atau home
       navigate('/');
     } catch (err: any) {
       toast.error(err?.data?.message || 'Register gagal');
     }
   };
+
+  console.log(localStorage.getItem('registerUser'));
+
   return (
     <section className='flex h-auto w-full items-center justify-center pt-75 pr-34 pb-76 pl-24 md:px-520 md:pt-95 md:pb-217'>
       <div className='h-701 w-345 md:h-713 md:w-400'>
@@ -62,7 +88,7 @@ export default function Register() {
           {/* Name */}
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Name</div>
-            <Input {...register('name')} />
+            <Input {...register('name')} placeholder='johndoe' />
             {errors.name && (
               <p className='mt-1 text-sm text-red-500'>{errors.name.message}</p>
             )}
