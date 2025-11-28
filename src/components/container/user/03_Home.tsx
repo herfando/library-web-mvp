@@ -207,7 +207,7 @@ export default function Home() {
         ))}
       </div>
       {/* 3. Recommendation */}
-      <div className='mt-24 w-full space-x-16 md:mt-48 md:space-x-20'>
+      <div className='mt-24 w-full space-x-10 md:mt-48'>
         <h2 className='text-xs-lh mb-20 font-bold md:mb-40 md:text-[36px]'>
           Recommendation
         </h2>
@@ -220,7 +220,7 @@ export default function Home() {
             <div
               key={book.id}
               onClick={() => navigate(`/detail/${book.id}`)}
-              className='xxw-172x basis-1/2 p-10 hover:cursor-pointer md:w-224 md:flex-auto'
+              className='w-172x basis-1/2 hover:cursor-pointer md:w-224 md:flex-auto'
             >
               <img
                 src={
