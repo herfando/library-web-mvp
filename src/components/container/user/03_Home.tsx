@@ -183,14 +183,17 @@ export default function Home() {
         {isCategoriesLoading && <p>Loading categories...</p>}
         {isCategoriesError && <p>Error loading categories</p>}
         {categories?.map((cat) => (
-          <div key={cat.id} className=''>
+          <div
+            key={cat.id}
+            className='hover:cursor-pointer'
+            onClick={() => navigate(`/category/${cat.id}`)}
+          >
             {/* fiction */}
             <div className='flex h-64 w-162 items-center justify-center rounded-2xl bg-[#E0ECFF]'>
               <img
                 src={CATEGORY_ICONS[cat.id] ?? '/images/default_cat.png'}
                 alt={cat.name}
-                className='w-51.2 h-51.2 hover:cursor-pointer'
-                onClick={() => navigate(`/category/${cat.id}`)}
+                className='w-51.2 h-51.2'
               />
             </div>
             {/* title categories */}
@@ -209,14 +212,17 @@ export default function Home() {
 
         <div className='flex w-full flex-wrap items-center justify-between gap-10'>
           {filteredBooks?.map((book) => (
-            <div key={book.id} className='w-172 md:w-224'>
+            <div
+              key={book.id}
+              onClick={() => navigate(`/detail/${book.id}`)}
+              className='w-172 hover:cursor-pointer md:w-224'
+            >
               <img
                 src={
                   book.coverImage || '/images/09_img dummy2 recommendation.png'
                 }
                 alt={book.title}
-                className='h-258 w-172 rounded-t-2xl border border-[#D5D7DA] hover:cursor-pointer md:h-336 md:w-224'
-                onClick={() => navigate(`/detail/${book.id}`)}
+                className='h-258 w-172 rounded-t-2xl border border-[#D5D7DA] md:h-336 md:w-224'
               />
               <div className='space-y-4 p-16'>
                 {/* Book Name */}
