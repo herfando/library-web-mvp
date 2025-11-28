@@ -32,11 +32,17 @@ export default function Login() {
         email: data.email,
         password: data.password,
       }).unwrap();
-
+      //save to redux
       dispatch(setCredentials(userData));
 
-      localStorage.setItem('loginUser', JSON.stringify(userData));
-
+      // save to localstorage
+      localStorage.setItem(
+        'loginUser',
+        JSON.stringify({
+          token: userData.token,
+          user: userData.user,
+        })
+      );
       toast.success('Login sukses!');
       navigate('/home');
     } catch (err: any) {
