@@ -1,20 +1,39 @@
 import { Search, ChevronDown } from 'lucide-react';
 import SearchInput from '../../ui/searchInput';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../../redux/store';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   //#region
-  // Ambil user dari localStorage
-  const storedRegisterUser = localStorage.getItem('registerUser');
-  const storedLoginUser = localStorage.getItem('loginUser');
 
-  const user = storedLoginUser
-    ? JSON.parse(storedLoginUser).user
-    : storedRegisterUser
-      ? JSON.parse(storedRegisterUser).user
-      : null;
+  const [user, setUser] = useState<{ name: string } | null>(null);
+
+  // Ambil user dari localStorage register saat mount
+  useEffect(() => {
+    const storedRegisterUser = localStorage.getItem('registerUser');
+
+    if (storedRegisterUser) {
+      setUser(JSON.parse(storedRegisterUser)?.user || null);
+    }
+  }, []);
+
+  // optional: update user saat localStorage berubah
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedRegisterUser = localStorage.getItem('registerUser');
+
+      if (storedRegisterUser) {
+        setUser(JSON.parse(storedRegisterUser)?.user || null);
+      } else {
+        setUser(null);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   //#endregion
 
@@ -95,18 +114,10 @@ export default function Navbar() {
           className='mr-16 h-48 w-48'
         />
         {/* Name Profil account */}
-        {user ? (
-          <p className='mr-16 hidden text-[18px] font-semibold md:flex'>
-            {user.name}
-          </p>
-        ) : (
-          <Link
-            to='/login'
-            className='mr-16 hidden text-[18px] font-semibold text-blue-600 md:flex'
-          >
-            Login
-          </Link>
-        )}
+
+        <p className='mr-16 hidden text-[18px] font-semibold md:flex'>
+          {user?.name}
+        </p>
 
         <ChevronDown className='hidden h-24 w-24 md:flex' />
       </div>
