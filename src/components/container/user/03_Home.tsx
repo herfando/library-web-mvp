@@ -207,7 +207,7 @@ export default function Home() {
         ))}
       </div>
       {/* 3. Recommendation */}
-      <div className='mt-24 w-full space-x-16 md:mt-48 md:space-x-20'>
+      <div className='mt-24 w-full space-x-10 md:mt-48'>
         <h2 className='text-xs-lh mb-20 font-bold md:mb-40 md:text-[36px]'>
           Recommendation
         </h2>
