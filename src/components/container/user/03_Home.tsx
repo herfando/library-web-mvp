@@ -215,12 +215,12 @@ export default function Home() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full basis-1/2 flex-wrap items-center justify-between space-y-16 md:basis-1/5 md:space-y-20'>
+        <div className='flex w-full flex-wrap items-center justify-between space-y-16 md:space-y-20'>
           {filteredBooks?.map((book) => (
             <div
               key={book.id}
               onClick={() => navigate(`/detail/${book.id}`)}
-              className='w-172 hover:cursor-pointer md:w-224'
+              className='= w-172 basis-1/2 hover:cursor-pointer md:w-224 md:flex-auto'
             >
               <img
                 src={
