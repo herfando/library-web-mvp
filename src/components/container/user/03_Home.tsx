@@ -185,7 +185,7 @@ export default function Home() {
         {categories?.map((cat) => (
           <div
             key={cat.id}
-            className='h-132 w-[112.33px] space-x-12 hover:cursor-pointer md:h-130 md:w-[186.67px] md:space-x-16'
+            className='h-132 w-[112.33px] basis-1/3 space-x-12 hover:cursor-pointer md:h-130 md:w-[186.67px] md:flex-auto md:space-x-16'
             onClick={() => navigate(`/category/${cat.id}`)}
           >
             {/* fiction */}
@@ -210,7 +210,7 @@ export default function Home() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full flex-wrap items-center justify-between'>
+        <div className='flex w-full basis-1/2 flex-wrap items-center justify-between md:basis-1/5'>
           {filteredBooks?.map((book) => (
             <div
               key={book.id}
