@@ -185,11 +185,11 @@ export default function Home() {
         {categories?.map((cat) => (
           <div
             key={cat.id}
-            className='hover:cursor-pointer'
+            className='h-132 w-[112.33px] space-x-12 hover:cursor-pointer md:h-130 md:w-[186.67px] md:space-x-16'
             onClick={() => navigate(`/category/${cat.id}`)}
           >
             {/* fiction */}
-            <div className='flex h-64 w-162 items-center justify-center rounded-2xl bg-[#E0ECFF]'>
+            <div className='flex h-56 w-[96.33px] items-center justify-center rounded-2xl bg-[#E0ECFF] md:h-64 md:w-162'>
               <img
                 src={CATEGORY_ICONS[cat.id] ?? '/images/default_cat.png'}
                 alt={cat.name}
@@ -202,7 +202,7 @@ export default function Home() {
         ))}
       </div>
       {/* 3. Recommendation */}
-      <div className='mt-24 w-full space-x-20 md:mt-48'>
+      <div className='mt-24 w-full space-x-16 md:mt-48 md:space-x-20'>
         <h2 className='text-xs-lh mb-20 font-bold md:mb-40 md:text-[36px]'>
           Recommendation
         </h2>
@@ -210,7 +210,7 @@ export default function Home() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full flex-wrap items-center justify-between gap-10'>
+        <div className='flex w-full flex-wrap items-center justify-between'>
           {filteredBooks?.map((book) => (
             <div
               key={book.id}

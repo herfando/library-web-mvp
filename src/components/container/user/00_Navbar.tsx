@@ -9,6 +9,7 @@ export default function Navbar() {
   //#region
 
   const [user, setUser] = useState<{ name: string } | null>(null);
+  const navigate = useNavigate();
 
   // Ambil user dari localStorage register saat mount
   useEffect(() => {
@@ -45,7 +46,6 @@ export default function Navbar() {
   //#region - Search Query
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search') || '';
-  const navigate = useNavigate();
 
   const handleSearch = (value: string) => {
     const q = (value || '').trim();
@@ -113,11 +113,27 @@ export default function Navbar() {
           alt='foto profil'
           className='mr-16 h-48 w-48'
         />
-        {/* Name Profil account */}
-
-        <p className='mr-16 hidden text-[18px] font-semibold md:flex'>
-          {user?.name}
-        </p>
+        {/* Name Profil account atau tombol Login/Register */}
+        {user ? (
+          <p className='mr-16 hidden text-[18px] font-semibold md:flex'>
+            {user.name}
+          </p>
+        ) : (
+          <>
+            <button
+              onClick={() => navigate('/login')}
+              className='mr-4 font-semibold text-[#1C65DA]'
+            >
+              Login
+            </button>
+            <button
+              onClick={() => navigate('/register')}
+              className='font-semibold text-[#1C65DA]'
+            >
+              Register
+            </button>
+          </>
+        )}
 
         <ChevronDown className='hidden h-24 w-24 md:flex' />
       </div>
