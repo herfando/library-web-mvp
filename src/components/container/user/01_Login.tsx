@@ -34,6 +34,9 @@ export default function Login() {
       }).unwrap();
 
       dispatch(setCredentials(userData));
+
+      localStorage.setItem('loginUser', JSON.stringify(userData));
+
       toast.success('Login sukses!');
       navigate('/home');
     } catch (err: any) {

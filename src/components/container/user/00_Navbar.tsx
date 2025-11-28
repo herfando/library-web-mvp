@@ -1,21 +1,31 @@
 import { Search, ChevronDown } from 'lucide-react';
 import SearchInput from '../../ui/searchInput';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../../redux/store';
 
 export default function Navbar() {
+  //#region
+  // Ambil user dari localStorage
+  const storedRegisterUser = localStorage.getItem('registerUser');
+  const storedLoginUser = localStorage.getItem('loginUser');
+
+  const user = storedLoginUser
+    ? JSON.parse(storedLoginUser).user
+    : storedRegisterUser
+      ? JSON.parse(storedRegisterUser).user
+      : null;
+
+  //#endregion
+
   //#region display total cart
   const cart = useSelector((state: RootState) => state.cart.items);
-
   const totalCount = cart.reduce((s, i) => s + i.quantity, 0);
-
   //#endregion
 
   //#region - Search Query
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search') || '';
-
   const navigate = useNavigate();
 
   const handleSearch = (value: string) => {
@@ -28,7 +38,6 @@ export default function Navbar() {
       handleSearch(eOrVal);
       return;
     }
-
     if (eOrVal && typeof eOrVal.target?.value === 'string') {
       handleSearch(eOrVal.target.value);
       return;
@@ -86,9 +95,19 @@ export default function Navbar() {
           className='mr-16 h-48 w-48'
         />
         {/* Name Profil account */}
-        <p className='mr-16 hidden text-[18px] font-semibold md:flex'>
-          John Doe
-        </p>
+        {user ? (
+          <p className='mr-16 hidden text-[18px] font-semibold md:flex'>
+            {user.name}
+          </p>
+        ) : (
+          <Link
+            to='/login'
+            className='mr-16 hidden text-[18px] font-semibold text-blue-600 md:flex'
+          >
+            Login
+          </Link>
+        )}
+
         <ChevronDown className='hidden h-24 w-24 md:flex' />
       </div>
     </section>
