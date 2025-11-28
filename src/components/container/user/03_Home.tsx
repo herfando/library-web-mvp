@@ -220,7 +220,7 @@ export default function Home() {
             <div
               key={book.id}
               onClick={() => navigate(`/detail/${book.id}`)}
-              className='xxw-172x basis-1/2 p-10 hover:cursor-pointer md:w-224 md:flex-auto'
+              className='w-172x basis-1/2 hover:cursor-pointer md:w-224 md:flex-auto'
             >
               <img
                 src={
