@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   token: string | null;
-  user: { name: string; email: string } | null;
+  user: { name: string; email: string; phoneNumber: string } | null;
 }
 
 const initialState: AuthState = {
@@ -19,7 +19,7 @@ const authSlice = createSlice({
       state,
       action: PayloadAction<{
         token: string;
-        user: { name: string; email: string };
+        user: { name: string; email: string; phoneNumber: string };
       }>
     ) => {
       state.token = action.payload.token;

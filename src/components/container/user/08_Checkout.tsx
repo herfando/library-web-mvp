@@ -8,6 +8,33 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export default function Checkout() {
+  //#region - Take data local storage
+  // Take data name, email and handphone number from local storage
+
+  type UserInfo = {
+    id: string;
+    name: string;
+    email: string;
+    phoneNumber?: string;
+  };
+
+  const [userData, setUserData] = useState<UserInfo | null>(null);
+
+  useEffect(() => {
+    const storedLogin = localStorage.getItem('user');
+    const storedRegister = localStorage.getItem('registerUser');
+
+    if (storedRegister) {
+      const parsed = JSON.parse(storedRegister);
+      setUserData(parsed.user);
+    } else if (storedLogin) {
+      const parsed = JSON.parse(storedLogin);
+      setUserData(parsed.data.user);
+    }
+  }, []);
+
+  //#endregion
+
   const checkoutItems = useSelector(
     (state: RootState) => state.cart.checkoutItems
   );
@@ -53,6 +80,11 @@ export default function Checkout() {
     }
   };
 
+  useEffect(() => {
+    console.log('REGISTER USER =', localStorage.getItem('registerUser'));
+    console.log('LOGIN USER =', localStorage.getItem('user'));
+  }, []);
+
   return (
     <section className='mx-auto mt-16 h-auto max-w-1034 pr-16 pl-16 md:mt-48'>
       <h2 className='md:text-36 text-24 mb-16 font-bold md:mb-32'>Checkout</h2>
@@ -65,19 +97,23 @@ export default function Checkout() {
             </h3>
             <div className='flex w-full justify-between'>
               <h4 className='md:text-md text-sm font-medium'>Name</h4>
-              <span className='md:text-md text-sm font-bold'>Johndoe</span>
+              <span className='md:text-md text-sm font-bold'>
+                {userData?.name}
+              </span>
             </div>
             <div className='flex w-full justify-between'>
               <h4 className='md:text-md text-sm font-medium'>Email</h4>
               <span className='md:text-md text-sm font-bold'>
-                johndoe@email.com
+                {userData?.email}
               </span>
             </div>
             <div className='flex w-full justify-between'>
               <h4 className='md:text-md text-sm font-medium'>
                 Nomor Handphone
               </h4>
-              <span className='md:text-md text-sm font-bold'>081234567890</span>
+              <span className='md:text-md text-sm font-bold'>
+                {userData?.phoneNumber}
+              </span>
             </div>
             <div className='hidden border-b border-b-[#D5D7DA] md:mb-32 md:block'></div>
           </div>

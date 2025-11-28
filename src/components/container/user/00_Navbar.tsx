@@ -62,14 +62,14 @@ export default function Navbar() {
       </div>
 
       {/* bag & profil */}
-      <div
-        className='flex items-center hover:cursor-pointer'
-        onClick={() => navigate('/cart')}
-      >
+      <div className='flex items-center'>
         {/* Search */}
         <Search className='mr-16 flex h-24 w-24 text-[Neutral/950] lg:hidden' />
         {/* bag */}
-        <div className='relative'>
+        <div
+          className='relative hover:cursor-pointer'
+          onClick={() => navigate('/cart')}
+        >
           <img
             src='../../icons/02_bag.svg'
             alt='cart bag'
