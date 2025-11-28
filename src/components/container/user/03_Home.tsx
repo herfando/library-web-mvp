@@ -215,12 +215,12 @@ export default function Home() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full flex-wrap items-center justify-between p-8 md:p-10'>
+        <div className='flex w-full flex-wrap items-center justify-between'>
           {filteredBooks?.map((book) => (
             <div
               key={book.id}
               onClick={() => navigate(`/detail/${book.id}`)}
-              className='w-172 basis-1/2 hover:cursor-pointer md:w-224 md:flex-auto'
+              className='w-172 basis-1/2 gap-x-16 hover:cursor-pointer md:w-224 md:flex-auto md:gap-x-20'
             >
               <img
                 src={
@@ -231,9 +231,11 @@ export default function Home() {
               />
               <div className='space-y-4 p-16'>
                 {/* Book Name */}
-                <p className='h-96 font-bold md:h-72'>{book.title}</p>
+                <p className='md:text-md h-60 text-sm font-bold md:h-72'>
+                  {book.title}
+                </p>
                 {/* Author Name */}
-                <p className='md:text-md h-48 w-full text-sm whitespace-nowrap'>
+                <p className='md:text-md w-full text-sm whitespace-nowrap'>
                   {book.Author?.name}
                 </p>
                 {/* Star */}
