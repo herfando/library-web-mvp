@@ -231,7 +231,7 @@ export default function Home() {
               />
               <div className='space-y-4 p-16'>
                 {/* Book Name */}
-                <p className='md:text-md h-60 text-sm font-bold md:h-72'>
+                <p className='md:text-md h-96 text-sm font-bold md:h-72'>
                   {book.title}
                 </p>
                 {/* Author Name */}
