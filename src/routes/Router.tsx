@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Outlet,
+  Navigate,
 } from 'react-router-dom';
 import Login from '../components/container/user/01_Login';
 import Register from '../components/container/user/02_Register';
@@ -16,6 +17,7 @@ import Cart from '../components/container/user/07_Cart';
 import Checkout from '../components/container/user/08_Checkout';
 import { Toaster } from 'react-hot-toast';
 
+// Layout untuk login/register
 const AuthLayout = () => (
   <div>
     <Toaster position='top-right' />
@@ -25,15 +27,25 @@ const AuthLayout = () => (
   </div>
 );
 
-const MainLayout = () => (
-  <div>
-    <Navbar />
-    <main>
-      <Outlet />
-    </main>
-    <Footer />
-  </div>
-);
+// Layout untuk setelah register/login
+const MainLayout = () => {
+  // Ambil user dari localStorage register
+  const storedRegisterUser = localStorage.getItem('registerUser');
+  const user = storedRegisterUser ? JSON.parse(storedRegisterUser)?.user : null;
+
+  // Jika tidak ada user, redirect ke login
+  if (!user) return <Navigate to='/' replace />;
+
+  return (
+    <div>
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 export default function AppRoutes() {
   return (
@@ -45,7 +57,7 @@ export default function AppRoutes() {
           <Route path='/register' element={<Register />} />
         </Route>
 
-        {/* Layout setelah login */}
+        {/* Layout setelah register */}
         <Route element={<MainLayout />}>
           <Route path='/home' element={<Home />} />
           <Route path='/detail/:id' element={<Detail />} />
