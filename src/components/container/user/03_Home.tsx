@@ -185,19 +185,24 @@ export default function Home() {
         {categories?.map((cat) => (
           <div
             key={cat.id}
-            className='h-132 w-[112.33px] basis-1/3 space-x-12 hover:cursor-pointer md:h-130 md:w-[186.67px] md:flex-auto md:space-x-16'
+            className='flex h-132 w-[112.33px] basis-1/3 flex-col items-center justify-center hover:cursor-pointer md:h-130 md:w-[186.67px] md:flex-auto'
             onClick={() => navigate(`/category/${cat.id}`)}
           >
-            {/* fiction */}
-            <div className='flex h-56 w-[96.33px] items-center justify-center rounded-2xl bg-[#E0ECFF] md:h-64 md:w-162'>
-              <img
-                src={CATEGORY_ICONS[cat.id] ?? '/images/default_cat.png'}
-                alt={cat.name}
-                className='w-51.2 h-51.2'
-              />
+            <div>
+              {/* fiction */}
+              <div className='flex h-56 w-[96.33px] items-center justify-center rounded-2xl bg-[#E0ECFF] md:h-64 md:w-162'>
+                <img
+                  src={CATEGORY_ICONS[cat.id] ?? '/images/default_cat.png'}
+                  alt={cat.name}
+                  className='w-51.2 h-51.2'
+                />
+              </div>
+              {/* title categories */}
+              <h3 className='text-md mt-12 self-start font-semibold'>
+                {' '}
+                {cat.name}
+              </h3>
             </div>
-            {/* title categories */}
-            <h3 className='text-md mt-12 font-semibold'> {cat.name}</h3>
           </div>
         ))}
       </div>
@@ -210,7 +215,7 @@ export default function Home() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full basis-1/2 flex-wrap items-center justify-between md:basis-1/5'>
+        <div className='flex w-full basis-1/2 flex-wrap items-center justify-between space-y-16 md:basis-1/5 md:space-y-20'>
           {filteredBooks?.map((book) => (
             <div
               key={book.id}
