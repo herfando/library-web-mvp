@@ -220,7 +220,7 @@ export default function Home() {
             <div
               key={book.id}
               onClick={() => navigate(`/detail/${book.id}`)}
-              className='= w-172 basis-1/2 hover:cursor-pointer md:w-224 md:flex-auto'
+              className='= w-172x basis-1/2 hover:cursor-pointer md:w-224 md:flex-auto'
             >
               <img
                 src={
@@ -233,7 +233,9 @@ export default function Home() {
                 {/* Book Name */}
                 <p className='h-96 font-bold md:h-72'>{book.title}</p>
                 {/* Author Name */}
-                <p>{book.Author?.name}</p>
+                <p className='md:text-md w-full text-sm whitespace-nowrap'>
+                  {book.Author?.name}
+                </p>
                 {/* Star */}
                 <div className='flex space-x-5.5'>
                   <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
