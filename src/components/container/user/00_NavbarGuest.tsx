@@ -1,6 +1,5 @@
 import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
 import ToggleHamburger from '../../ui/togglehamburger';
 import { Button } from '../../ui/button';
 
@@ -10,11 +9,11 @@ export default function NavbarGuest() {
   const navigate = useNavigate();
 
   return (
-    <section className='custom-container flex h-80 w-full items-center justify-between'>
+    <section className='custom-container fixed left-1/2 z-1 flex h-80 w-full -translate-x-1/2 items-center justify-between bg-white'>
       {/* Booky */}
       <div
         onClick={() => navigate('/login')}
-        className='my-19 flex items-center gap-x-15 hover:cursor-pointer'
+        className='z-2 my-19 flex items-center gap-x-15 hover:cursor-pointer'
       >
         <img
           src='/icons/01_logo company.svg'
@@ -29,12 +28,12 @@ export default function NavbarGuest() {
       <div className='flex items-center sm:hidden'>
         {/* Search */}
         <Search
-          className='mr-16 h-24 w-24 text-[Neutral/950] hover:cursor-pointer'
+          className='z-2 mr-16 h-24 w-24 text-[Neutral/950] hover:cursor-pointer'
           onClick={() => navigate('/login')}
         />
         {/* bag */}
         <div
-          className='relative hover:cursor-pointer'
+          className='relative z-2 hover:cursor-pointer'
           onClick={() => navigate('/login')}
         >
           <img
@@ -45,7 +44,7 @@ export default function NavbarGuest() {
         </div>
 
         {/* Hamburger */}
-        <div onClick={() => navigate('/login')}>
+        <div>
           <ToggleHamburger />
         </div>
       </div>
