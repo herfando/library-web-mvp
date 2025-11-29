@@ -189,7 +189,7 @@ export default function HomeGuest() {
             className='flex h-132 w-[112.33px] basis-1/3 flex-col items-center justify-center hover:cursor-pointer md:h-130 md:w-[186.67px] md:flex-auto'
             onClick={() => navigate('/login')}
             whileHover={{
-              y: [0, -10, 0, 10, 0], // naik turun
+              y: [0, 20, 0, 20, 0], // naik turun
             }}
             transition={{
               duration: 1.5,
@@ -293,7 +293,7 @@ export default function HomeGuest() {
               className='flex h-84 w-361 flex-wrap items-center p-12 hover:cursor-pointer md:h-113 md:w-285 md:p-16'
               onClick={() => navigate('/login')}
               whileHover={{
-                y: [0, -10, 0, 10, 0], // naik turun
+                y: [0, 20, 0, 20, 0], // naik turun
               }}
               transition={{
                 duration: 1.5,
