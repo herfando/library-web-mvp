@@ -3,8 +3,15 @@ import { Button } from '../../ui/button';
 import dayjs from 'dayjs';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export default function Success() {
+  const navigate = useNavigate();
+
+  const goToBorrowedList = () => {
+    navigate('/borrowed');
+  };
+
   const [returnDate, setReturnDate] = useState<dayjs.Dayjs | null>(null);
 
   useEffect(() => {
@@ -40,7 +47,10 @@ export default function Success() {
             {returnDate ? returnDate.format('DD MMM YYYY') : '...'}
           </span>
         </p>
-        <Button className='text-md mt-24 h-48 w-286 rounded-full font-bold hover:cursor-pointer md:mt-32'>
+        <Button
+          onClick={goToBorrowedList}
+          className='text-md mt-24 h-48 w-286 rounded-full font-bold hover:cursor-pointer md:mt-32'
+        >
           See Borrowed List{' '}
         </Button>
       </motion.section>

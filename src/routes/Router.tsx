@@ -19,6 +19,7 @@ import Cart from '../components/container/user/07_Cart';
 import Checkout from '../components/container/user/08_Checkout';
 import { Toaster } from 'react-hot-toast';
 import Success from '../components/container/user/09_Success';
+import BorrowedList from '../components/container/user/10_BorrowedList';
 
 // Before Auth
 const BeforeAuthLayout = () => (
@@ -83,6 +84,7 @@ export default function AppRoutes() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/success' element={<Success />} />
+          <Route path='/borrowed' element={<BorrowedList />} />
         </Route>
       </Routes>
     </Router>
