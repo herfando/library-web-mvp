@@ -1,6 +1,7 @@
 import { Star } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { useAuthorBooksQuery } from '../../../query/hooks/02_useAuthors';
+import { motion } from 'framer-motion';
 
 export default function BookByAuthor() {
   //#region - Author Query
@@ -48,10 +49,15 @@ export default function BookByAuthor() {
             key={book.id}
             className='h-370 w-172 md:mb-118 md:h-468 md:w-224 md:space-y-16 md:space-x-16'
           >
-            <img
+            <motion.img
               className='h-258 w-172 rounded-t-2xl md:h-336 md:w-224'
               src={book.coverImage || '/placeholder.png'}
               alt={book.title}
+              whileHover={{
+                scale: 1.1, // zoom
+                rotate: [0, 2, -2, 2, -2, 0], // goyang
+              }}
+              transition={{ duration: 0.5 }}
             />
             <div className='space-y-4 p-12 md:p-16'>
               <h4 className='text-sm font-bold md:text-lg'>{book.title}</h4>

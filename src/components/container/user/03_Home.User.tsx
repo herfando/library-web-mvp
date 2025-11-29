@@ -13,6 +13,7 @@ import type { Book } from '../../../query/types/01_booksTypes';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function HomeUser() {
   //#region - 1.Pagination Query
@@ -183,10 +184,18 @@ export default function HomeUser() {
         {isCategoriesLoading && <p>Loading categories...</p>}
         {isCategoriesError && <p>Error loading categories</p>}
         {categories?.map((cat) => (
-          <div
+          <motion.div
             key={cat.id}
             className='flex h-132 w-[112.33px] basis-1/3 flex-col items-center justify-center hover:cursor-pointer md:h-130 md:w-[186.67px] md:flex-auto'
             onClick={() => navigate(`/category/${cat.id}`)}
+            whileHover={{
+              y: [0, 20, 0, 20, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              ease: 'easeInOut',
+              repeat: Infinity,
+            }}
           >
             <div>
               {/* fiction */}
@@ -194,7 +203,6 @@ export default function HomeUser() {
                 <img
                   src={CATEGORY_ICONS[cat.id] ?? '/images/default_cat.png'}
                   alt={cat.name}
-                  className='w-51.2 h-51.2'
                 />
               </div>
               {/* title categories */}
@@ -203,7 +211,7 @@ export default function HomeUser() {
                 {cat.name}
               </h3>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       {/* 3. Recommendation */}
@@ -215,19 +223,27 @@ export default function HomeUser() {
         {isLoading && <p>Loading recommendations...</p>}
         {isError && <p>Error loading recommendations</p>}
 
-        <div className='flex w-full flex-wrap items-center justify-between'>
+        <div className='flex w-full flex-wrap items-center justify-between space-y-16 md:space-y-20'>
           {filteredBooks?.map((book) => (
             <div
               key={book.id}
               onClick={() => navigate(`/detail/${book.id}`)}
               className='w-172 basis-1/2 gap-x-16 hover:cursor-pointer md:w-224 md:flex-auto md:gap-x-20'
             >
-              <img
+              <motion.img
                 src={
                   book.coverImage || '/images/09_img dummy2 recommendation.png'
                 }
                 alt={book.title}
-                className='h-258 w-172 rounded-t-2xl border border-[#D5D7DA] md:h-336 md:w-224'
+                className='h-258 w-172 rounded-t-2xl border border-[#D5D7DA] object-cover md:h-336 md:w-224'
+                whileHover={{
+                  scale: 1.1,
+                  rotate: [0, 4, 0, 4, 0],
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: 'easeInOut',
+                }}
               />
               <div className='space-y-4 p-16'>
                 {/* Book Name */}
@@ -271,20 +287,28 @@ export default function HomeUser() {
           {isAuthorError && <p>Error loading Author</p>}
           {/* start card author */}
           {authorBooks?.map((author) => (
-            <div
+            <motion.div
               key={author.id}
               className='flex h-84 w-361 flex-wrap items-center p-12 hover:cursor-pointer md:h-113 md:w-285 md:p-16'
               onClick={() => navigate(`/author/${author.id}`)}
+              whileHover={{
+                y: [0, 20, 0, 20, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                ease: 'easeInOut',
+                repeat: Infinity,
+              }}
             >
               {/* image author */}
-              <img
+              <motion.img
                 src='../../images/10_img dummy3 author.png'
                 alt='author'
                 className='h-60 w-60 md:h-81 md:w-81'
               />
               {/* Author name */}
               <div className='ml-16'>
-                <p>{author.name}</p>
+                <p className='font-bold'>{author.name}</p>
                 <div className='flex'>
                   <img src='../../images/12_img dummy5 books.png' alt='books' />
 
@@ -293,7 +317,7 @@ export default function HomeUser() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
           {/* end card author */}
         </div>
