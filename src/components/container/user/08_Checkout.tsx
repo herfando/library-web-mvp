@@ -227,25 +227,25 @@ export default function Checkout() {
 
             {/* Agreement & Policy */}
             <div className='mt-16 space-y-8 md:mt-24'>
-              <div className='flex items-center gap-x-15 md:gap-x-8'>
+              <div className='flex h-46 items-center gap-x-15 md:gap-x-8'>
                 <input
                   type='checkbox'
-                  className='h-24 w-24'
+                  className='h-24 w-24 basis-1/11'
                   checked={checkedReturn}
                   onChange={() => setCheckedReturn((prev) => !prev)}
                 />
-                <span className='md:text-md text-sm font-semibold'>
+                <span className='md:text-md h-24 basis-full text-sm font-semibold'>
                   I agree to return the book(s) before the due date.
                 </span>
               </div>
-              <div className='flex items-center gap-x-15 md:gap-x-8'>
+              <div className='flex h-46 items-center gap-x-15 md:gap-x-8'>
                 <input
                   type='checkbox'
-                  className='h-24 w-24'
+                  className='h-24 w-24 basis-1/11'
                   checked={checkedPolicy}
                   onChange={() => setCheckedPolicy((prev) => !prev)}
                 />
-                <span className='md:text-md text-sm font-semibold'>
+                <span className='md:text-md basis-full text-sm font-semibold'>
                   I accept the library borrowing policy.
                 </span>
               </div>
