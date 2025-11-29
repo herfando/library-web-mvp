@@ -20,6 +20,7 @@ import Checkout from '../components/container/user/08_Checkout';
 import { Toaster } from 'react-hot-toast';
 import Success from '../components/container/user/09_Success';
 import BorrowedList from '../components/container/user/10_BorrowedList';
+import GiveReview from '../components/container/user/12_GiveReview';
 
 // Before Auth
 const BeforeAuthLayout = () => (
@@ -85,6 +86,7 @@ export default function AppRoutes() {
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/success' element={<Success />} />
           <Route path='/borrowed' element={<BorrowedList />} />
+          <Route path='/givereview' element={<GiveReview />} />
         </Route>
       </Routes>
     </Router>
