@@ -1,9 +1,10 @@
-import { Search, ChevronDown } from 'lucide-react';
+import { Search } from 'lucide-react';
 import SearchInput from '../../ui/searchInput';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../../redux/store';
 import { useState, useEffect } from 'react';
+import DropDown from '../../ui/dropDown';
 
 export default function NavbarUser() {
   //#region
@@ -67,7 +68,7 @@ export default function NavbarUser() {
   //#endregion
 
   return (
-    <section className='custom-container fixed left-1/2 z-1 flex h-80 w-full -translate-x-1/2 items-center justify-between bg-white'>
+    <section className='custom-container fixed left-1/2 z-2 flex h-80 w-full -translate-x-1/2 items-center justify-between bg-white'>
       {/* Booky */}
       <div className='my-19 flex items-center gap-x-15'>
         <img
@@ -128,8 +129,9 @@ export default function NavbarUser() {
             </button>
           </>
         )}
-
-        <ChevronDown className='hidden h-24 w-24 md:flex' />
+        <div>
+          <DropDown />
+        </div>
       </div>
     </section>
   );

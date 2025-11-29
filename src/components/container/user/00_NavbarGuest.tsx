@@ -13,7 +13,7 @@ export default function NavbarGuest() {
       {/* Booky */}
       <div
         onClick={() => navigate('/login')}
-        className='my-19 flex items-center gap-x-15 hover:cursor-pointer'
+        className='z-2 my-19 flex items-center gap-x-15 hover:cursor-pointer'
       >
         <img
           src='/icons/01_logo company.svg'
@@ -28,12 +28,12 @@ export default function NavbarGuest() {
       <div className='flex items-center sm:hidden'>
         {/* Search */}
         <Search
-          className='mr-16 h-24 w-24 text-[Neutral/950] hover:cursor-pointer'
+          className='z-2 mr-16 h-24 w-24 text-[Neutral/950] hover:cursor-pointer'
           onClick={() => navigate('/login')}
         />
         {/* bag */}
         <div
-          className='relative hover:cursor-pointer'
+          className='relative z-2 hover:cursor-pointer'
           onClick={() => navigate('/login')}
         >
           <img

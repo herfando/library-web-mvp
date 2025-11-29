@@ -2,10 +2,9 @@
 
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from './button';
 import { useNavigate } from 'react-router-dom';
 
-export default function ToggleHamburger({}) {
+export default function DropDown({}) {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -43,26 +42,19 @@ export default function ToggleHamburger({}) {
 
       {/* Menu mobile muncul setelah diklik */}
       <div
-        className={`fixed top-0 left-0 z-1 h-136 w-full transform bg-white text-black transition-transform duration-1000 ease-in-out lg:hidden dark:bg-black dark:text-white ${
+        className={`fixed top-0 left-0 z-1 h-136 w-full transform bg-white text-black transition-transform duration-1000 ease-in-out ${
           isOpen
-            ? 'translate-x-0' // /* TRANSLATE HERE: menu muncul */
-            : '-translate-x-full' // /* TRANSLATE HERE: menu geser keluar */
+            ? 'translate-y-0' // /* TRANSLATE HERE: menu muncul */
+            : '-translate-y-full' // /* TRANSLATE HERE: menu geser keluar */
         }`}
       >
-        <div className='custom-container mt-64 flex h-72 w-full items-center justify-center gap-12 bg-white sm:hidden'>
-          {/* Button Login & Register */}
-          <Button
-            onClick={() => navigate('/login')}
-            className='text-md h-40 w-full basis-1/2 rounded-full border border-[#D5D7DA] bg-white font-bold text-black hover:cursor-pointer hover:bg-gray-700 hover:text-white'
+        <div className='custom-container flex h-136 w-full flex-col justify-center gap-12 text-black'>
+          <h3
+            onClick={() => navigate('/profil')}
+            className='md:text-md text-sm font-semibold'
           >
-            Login
-          </Button>
-          <Button
-            onClick={() => navigate('/register')}
-            className='text-md h-40 w-full basis-1/2 rounded-full font-bold hover:cursor-pointer hover:bg-blue-300 hover:text-black'
-          >
-            Register
-          </Button>
+            Profile
+          </h3>
         </div>
       </div>
     </div>
