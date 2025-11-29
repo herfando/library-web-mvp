@@ -67,7 +67,7 @@ export default function NavbarUser() {
   //#endregion
 
   return (
-    <section className='custom-container flex h-80 w-full items-center justify-between'>
+    <section className='custom-container fixed left-1/2 z-1 flex h-80 w-full -translate-x-1/2 items-center justify-between bg-white'>
       {/* Booky */}
       <div className='my-19 flex items-center gap-x-15'>
         <img
@@ -120,12 +120,6 @@ export default function NavbarUser() {
           </p>
         ) : (
           <>
-            <button
-              onClick={() => navigate('/login')}
-              className='mr-4 font-semibold text-[#1C65DA]'
-            >
-              Login
-            </button>
             <button
               onClick={() => navigate('/register')}
               className='font-semibold text-[#1C65DA]'

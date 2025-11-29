@@ -1,6 +1,5 @@
 import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
 import ToggleHamburger from '../../ui/togglehamburger';
 import { Button } from '../../ui/button';
 
@@ -10,7 +9,7 @@ export default function NavbarGuest() {
   const navigate = useNavigate();
 
   return (
-    <section className='custom-container flex h-80 w-full items-center justify-between'>
+    <section className='custom-container fixed left-1/2 z-1 flex h-80 w-full -translate-x-1/2 items-center justify-between bg-white'>
       {/* Booky */}
       <div
         onClick={() => navigate('/login')}
@@ -45,7 +44,7 @@ export default function NavbarGuest() {
         </div>
 
         {/* Hamburger */}
-        <div onClick={() => navigate('/login')}>
+        <div>
           <ToggleHamburger />
         </div>
       </div>

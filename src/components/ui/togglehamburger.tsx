@@ -2,8 +2,12 @@
 
 import { X } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from './button';
+import { useNavigate } from 'react-router-dom';
 
 export default function ToggleHamburger({}) {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleMenu = () => {
@@ -39,13 +43,27 @@ export default function ToggleHamburger({}) {
 
       {/* Menu mobile muncul setelah diklik */}
       <div
-        className={`fixed top-0 left-0 z-10 h-full w-full transform bg-white text-black transition-transform duration-1000 ease-in-out lg:hidden dark:bg-black dark:text-white ${
+        className={`fixed top-0 left-0 z-10 h-136 w-full transform bg-white text-black transition-transform duration-1000 ease-in-out lg:hidden dark:bg-black dark:text-white ${
           isOpen
             ? 'translate-y-0' // /* TRANSLATE HERE: menu muncul */
             : '-translate-y-full' // /* TRANSLATE HERE: menu geser keluar */
         }`}
       >
-        <div className='custom-container flex-between h-80 lg:h-85'></div>
+        <div className='custom-container mt-64 flex h-136 w-full justify-center gap-12 sm:hidden'>
+          {/* Button Login & Register */}
+          <Button
+            onClick={() => navigate('/login')}
+            className='text-md h-48 w-full basis-1/2 rounded-full border border-[#D5D7DA] bg-white font-bold text-black hover:cursor-pointer hover:bg-gray-700 hover:text-white'
+          >
+            Login
+          </Button>
+          <Button
+            onClick={() => navigate('/register')}
+            className='text-md h-48 w-full basis-1/2 rounded-full font-bold hover:cursor-pointer hover:bg-blue-300 hover:text-black'
+          >
+            Register
+          </Button>
+        </div>
       </div>
     </div>
   );

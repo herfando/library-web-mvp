@@ -22,8 +22,10 @@ import { Toaster } from 'react-hot-toast';
 const BeforeAuthLayout = () => (
   <div>
     <NavbarGuest />
-    <main>
-      <Outlet />
+    <main className='pt-64 md:pt-80'>
+      <div>
+        <Outlet />
+      </div>
     </main>
     <Footer />
   </div>
@@ -43,7 +45,7 @@ const AuthLayout = () => (
 const AfterAuthLayout = () => (
   <div>
     <NavbarUser />
-    <main>
+    <main className='pt-64 md:pt-80'>
       <Outlet />
     </main>
     <Footer />
