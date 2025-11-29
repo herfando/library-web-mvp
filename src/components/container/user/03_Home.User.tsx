@@ -14,7 +14,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 
-export default function Home() {
+export default function HomeUser() {
   //#region - 1.Pagination Query
   // === Pagination state for highlight banner ===
   const [active, setActive] = useState(0);

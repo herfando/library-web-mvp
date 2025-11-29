@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { type RootState } from '../../../redux/store';
 import { useState, useEffect } from 'react';
 
-export default function Navbar() {
+export default function NavbarUser() {
   //#region
 
   const [user, setUser] = useState<{ name: string } | null>(null);
