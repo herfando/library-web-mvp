@@ -3,12 +3,13 @@ import {
   Routes,
   Route,
   Outlet,
-  Navigate,
 } from 'react-router-dom';
 import Login from '../components/container/user/01_Login';
 import Register from '../components/container/user/02_Register';
-import Home from '../components/container/user/03_Home';
-import Navbar from '../components/container/user/00_Navbar';
+import HomeGuest from '../components/container/user/03_HomeGuest';
+import HomeUser from '../components/container/user/03_Home.User';
+import NavbarGuest from '../components/container/user/00_NavbarGuest';
+import NavbarUser from '../components/container/user/00_NavbarUser';
 import Footer from '../components/container/user/00_Footer';
 import Detail from '../components/container/user/04_DetailBook';
 import Category from '../components/container/user/05_Category';
@@ -17,7 +18,18 @@ import Cart from '../components/container/user/07_Cart';
 import Checkout from '../components/container/user/08_Checkout';
 import { Toaster } from 'react-hot-toast';
 
-// Layout untuk login/register
+// Before Auth
+const BeforeAuthLayout = () => (
+  <div>
+    <NavbarGuest />
+    <main>
+      <Outlet />
+    </main>
+    <Footer />
+  </div>
+);
+
+// Auth
 const AuthLayout = () => (
   <div>
     <Toaster position='top-right' />
@@ -27,39 +39,35 @@ const AuthLayout = () => (
   </div>
 );
 
-// Layout untuk setelah register/login
-const MainLayout = () => {
-  // Ambil user dari localStorage register
-  const storedRegisterUser = localStorage.getItem('registerUser');
-  const user = storedRegisterUser ? JSON.parse(storedRegisterUser)?.user : null;
-
-  // Jika tidak ada user, redirect ke login
-  if (!user) return <Navigate to='/' replace />;
-
-  return (
-    <div>
-      <Navbar />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
-  );
-};
+// After Auth
+const AfterAuthLayout = () => (
+  <div>
+    <NavbarUser />
+    <main>
+      <Outlet />
+    </main>
+    <Footer />
+  </div>
+);
 
 export default function AppRoutes() {
   return (
     <Router>
       <Routes>
-        {/* Layout login */}
+        {/* Before Auth */}
+        <Route element={<BeforeAuthLayout />}>
+          <Route path='/' element={<HomeGuest />} />
+        </Route>
+
+        {/* Auth */}
         <Route element={<AuthLayout />}>
-          <Route path='/' element={<Login />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
         </Route>
 
-        {/* Layout setelah register */}
-        <Route element={<MainLayout />}>
-          <Route path='/home' element={<Home />} />
+        {/* After Auth */}
+        <Route element={<AfterAuthLayout />}>
+          <Route path='/home' element={<HomeUser />} />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/category/:id' element={<Category />} />
           <Route path='/author/:id' element={<BookByAuthor />} />
