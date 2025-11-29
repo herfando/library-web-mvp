@@ -2,8 +2,15 @@ import dayjs from 'dayjs';
 import { Button } from '../../ui/button';
 import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import GiveReview from './12_GiveReview';
 
 export default function BorrowedList() {
+  //#region Popup setting
+  const [giveReviewPopup, setGiveReviewPopup] = useState(false);
+
+  //#endregion
+
+  //#region take -> localstorage -> checkout
   // Type Definition
   type BorrowedItem = {
     id: number;
@@ -16,15 +23,12 @@ export default function BorrowedList() {
     returnDate: string;
     duration: number;
   };
-
   // --- State borrowedList ---
   const [borrowedList, setBorrowedList] = useState<BorrowedItem[]>([]);
-
   // Take from local storage
   useEffect(() => {
     const saved = localStorage.getItem('borrowedList');
     console.log('RAW borrowedList =', saved); // <-- ini yg penting!
-
     if (saved) {
       const parsed = JSON.parse(saved);
       console.log('PARSED =', parsed); // <-- cek hasil JSON
@@ -141,7 +145,10 @@ export default function BorrowedList() {
               </div>
 
               {/* Button give review*/}
-              <Button className='text-md mt-26 h-40 w-full rounded-full font-bold md:mt-0 md:w-182'>
+              <Button
+                onClick={() => setGiveReviewPopup(true)}
+                className='text-md mt-26 h-40 w-full rounded-full font-bold hover:cursor-pointer md:mt-0 md:w-182'
+              >
                 Give Review
               </Button>
             </div>
@@ -157,6 +164,9 @@ export default function BorrowedList() {
         </div>
         {/* End Button Load More */}
       </div>
+      {giveReviewPopup && (
+        <GiveReview onClose={() => setGiveReviewPopup(false)} />
+      )}
     </section>
   );
 }

@@ -1,7 +1,8 @@
 import { Star } from 'lucide-react';
 import { Button } from '../../ui/button';
+import { X } from 'lucide-react';
 
-export default function GiveReview() {
+export default function GiveReview({ onClose }: { onClose?: () => void }) {
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-[#0A0D1280]'>
       <section className='mx-auto my-auto h-479 w-345 rounded-2xl bg-[#FFFFFF] p-24 md:h-518 md:w-439'>
@@ -17,13 +18,19 @@ export default function GiveReview() {
             <Star className='h-[33.39px] w-[34.96px] fill-[#FFAB0D] text-[#FFAB0D]' />
           </div>
           <textarea
-            className='mt-24 h-235 w-313 border border-[#D5D7DA] md:h-235 md:w-391'
+            className='mt-24 h-235 w-313 border border-[#D5D7DA] px-12 pt-8 md:h-235 md:w-391'
             placeholder='Please share your thoughts about this book'
           ></textarea>
           <Button className='text-md mt-16 h-48 w-full rounded-full font-bold hover:cursor-pointer md:mt-24'>
             Send{' '}
           </Button>
         </div>
+        <Button
+          onClick={() => onClose && onClose()}
+          className='absolute top-4 right-4 text-black'
+        >
+          <X />
+        </Button>
       </section>
     </div>
   );
