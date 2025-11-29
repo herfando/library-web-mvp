@@ -259,7 +259,39 @@ export default function Checkout() {
                   }`}
                   disabled={!isButtonEnabled}
                   onClick={() => {
-                    if (isButtonEnabled) navigate('/success');
+                    if (!isButtonEnabled) return;
+
+                    // 1. Take old data
+                    const borrowed = JSON.parse(
+                      localStorage.getItem('borrowedList') || '[]'
+                    );
+
+                    // 2. new data from checkoutItems
+                    const newData = checkoutItems.map((item) => ({
+                      id: item.id,
+                      image: item.image,
+                      title: item.title,
+                      author: item.author,
+                      category: item.category,
+                      quantity: item.quantity,
+                      borrowDate: borrowDate.toISOString(),
+                      returnDate: returnDate.toISOString(),
+                      duration: duration,
+                    }));
+
+                    // 3. combine
+                    const updated = [...borrowed, ...newData];
+
+                    // 4. Save
+                    localStorage.setItem(
+                      'borrowedList',
+                      JSON.stringify(updated)
+                    );
+
+                    // 5. Deleted Cart
+                    localStorage.removeItem('cart');
+
+                    navigate('/success');
                   }}
                 >
                   Confirm & Borrow
