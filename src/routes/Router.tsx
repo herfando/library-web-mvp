@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Outlet,
+  useLocation,
 } from 'react-router-dom';
 import Login from '../components/container/user/01_Login';
 import Register from '../components/container/user/02_Register';
@@ -17,6 +18,7 @@ import BookByAuthor from '../components/container/user/06_BookByAuthor';
 import Cart from '../components/container/user/07_Cart';
 import Checkout from '../components/container/user/08_Checkout';
 import { Toaster } from 'react-hot-toast';
+import Success from '../components/container/user/09_Success';
 
 // Before Auth
 const BeforeAuthLayout = () => (
@@ -42,15 +44,20 @@ const AuthLayout = () => (
 );
 
 // After Auth
-const AfterAuthLayout = () => (
-  <div>
-    <NavbarUser />
-    <main className='pt-64 md:pt-80'>
-      <Outlet />
-    </main>
-    <Footer />
-  </div>
-);
+const AfterAuthLayout = () => {
+  const location = useLocation();
+  const hideFooter = location.pathname === '/success';
+
+  return (
+    <div>
+      <NavbarUser />
+      <main className='pt-64 md:pt-80'>
+        <Outlet />
+      </main>
+      {!hideFooter && <Footer />}
+    </div>
+  );
+};
 
 export default function AppRoutes() {
   return (
@@ -75,6 +82,7 @@ export default function AppRoutes() {
           <Route path='/author/:id' element={<BookByAuthor />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='/success' element={<Success />} />
         </Route>
       </Routes>
     </Router>

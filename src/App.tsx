@@ -7,7 +7,7 @@ import AppRoutes from './routes/Router';
 // import BookByAuthor from './components/container/user/06_BookByAuthor';
 // import Cart from './components/container/user/07_Cart';
 // import Checkout from './components/container/user/08_Checkout';
-// import Success from './components/container/user/09_Succsess';
+// import Success from './components/container/user/09_Success';
 // import BorrowedList from './components/container/user/10_BorrowedList';
 // import Profile from './components/container/user/11_Profile';
 // import Reviews from './components/container/user/12_Reviews';

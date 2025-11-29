@@ -6,11 +6,11 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Checkout() {
   //#region - Take data local storage
   // Take data name, email and handphone number from local storage
-
   type UserInfo = {
     id: string;
     name: string;
@@ -32,9 +32,9 @@ export default function Checkout() {
       setUserData(parsed.data.user);
     }
   }, []);
-
   //#endregion
 
+  //#region calender
   const checkoutItems = useSelector(
     (state: RootState) => state.cart.checkoutItems
   );
@@ -66,6 +66,10 @@ export default function Checkout() {
   useEffect(() => {
     setReturnDate(borrowDate.add(duration, 'day'));
     localStorage.setItem('borrowDate', borrowDate.toISOString());
+    localStorage.setItem(
+      'returnDate',
+      borrowDate.add(duration, 'day').toISOString()
+    );
   }, [borrowDate, duration]);
 
   // Handle range select
@@ -79,11 +83,17 @@ export default function Checkout() {
       setOpenDatePicker(false); // otomatis tutup popup
     }
   };
+  //#endregion
 
-  useEffect(() => {
-    console.log('REGISTER USER =', localStorage.getItem('registerUser'));
-    console.log('LOGIN USER =', localStorage.getItem('user'));
-  }, []);
+  //#region Checkbox return and policy
+  const [checkedReturn, setCheckedReturn] = useState(false);
+  const [checkedPolicy, setCheckedPolicy] = useState(false);
+
+  const isButtonEnabled = checkedReturn && checkedPolicy;
+
+  const navigate = useNavigate();
+
+  //#endregion
 
   return (
     <section className='mx-auto mt-16 mb-48 h-auto max-w-1034 pr-16 pl-16 md:mt-48 md:mb-80'>
@@ -218,20 +228,40 @@ export default function Checkout() {
             {/* Agreement & Policy */}
             <div className='mt-16 space-y-8 md:mt-24'>
               <div className='flex items-center gap-x-15 md:gap-x-8'>
-                <input type='checkbox' className='h-24 w-24' />
+                <input
+                  type='checkbox'
+                  className='h-24 w-24'
+                  checked={checkedReturn}
+                  onChange={() => setCheckedReturn((prev) => !prev)}
+                />
                 <span className='md:text-md text-sm font-semibold'>
                   I agree to return the book(s) before the due date.
                 </span>
               </div>
               <div className='flex items-center gap-x-15 md:gap-x-8'>
-                <input type='checkbox' className='h-24 w-24' />
+                <input
+                  type='checkbox'
+                  className='h-24 w-24'
+                  checked={checkedPolicy}
+                  onChange={() => setCheckedPolicy((prev) => !prev)}
+                />
                 <span className='md:text-md text-sm font-semibold'>
                   I accept the library borrowing policy.
                 </span>
               </div>
 
               <div className='mt-16 md:mt-24'>
-                <Button className='h-48 w-full rounded-full hover:cursor-pointer'>
+                <Button
+                  className={`h-48 w-full rounded-full font-bold hover:cursor-pointer ${
+                    isButtonEnabled
+                      ? 'bg-blue-500 text-white hover:bg-blue-600'
+                      : 'cursor-not-allowed bg-gray-300 text-gray-500'
+                  }`}
+                  disabled={!isButtonEnabled}
+                  onClick={() => {
+                    if (isButtonEnabled) navigate('/success');
+                  }}
+                >
                   Confirm & Borrow
                 </Button>
               </div>
