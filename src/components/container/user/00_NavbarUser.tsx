@@ -21,18 +21,17 @@ export default function NavbarUser() {
     }
   }, []);
 
-  // Listen for localStorage changes (image update)
+  // Listen for custom event from Profile.tsx to update immediately
   useEffect(() => {
-    const handleStorageChange = () => {
+    const handleUserUpdate = () => {
       const storedRegisterUser = localStorage.getItem('registerUser');
       if (storedRegisterUser) {
         setUser(JSON.parse(storedRegisterUser)?.user || null);
-      } else {
-        setUser(null);
       }
     };
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+
+    window.addEventListener('userUpdated', handleUserUpdate);
+    return () => window.removeEventListener('userUpdated', handleUserUpdate);
   }, []);
 
   //#region - Display total cart

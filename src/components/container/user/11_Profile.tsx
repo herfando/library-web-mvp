@@ -1,5 +1,6 @@
+// Profile.tsx
 import { Button } from '../../ui/button';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Userinteractive from '../../ui/interactiveButton';
 
 type UserInfo = {
@@ -18,9 +19,10 @@ export default function Profile() {
     image: '', // default empty
   });
   const [editMode, setEditMode] = useState(false); // track if editing
+  const imageInputRef = useRef<HTMLInputElement>(null); // reference for file input
   //#endregion
 
-  //#region - Load user data from localStorage
+  //#region - Load user data from localStorage on mount
   useEffect(() => {
     const storedLogin = localStorage.getItem('user');
     const storedRegister = localStorage.getItem('registerUser');
@@ -63,7 +65,7 @@ export default function Profile() {
   };
   //#endregion
 
-  //#region - Save profile to localStorage
+  //#region - Save profile to localStorage & trigger event
   const handleSave = () => {
     // Save to registerUser
     const storedRegister = localStorage.getItem('registerUser');
@@ -81,8 +83,18 @@ export default function Profile() {
       localStorage.setItem('user', JSON.stringify(parsed));
     }
 
+    // Trigger event for Navbar to update instantly
+    window.dispatchEvent(new Event('userUpdated'));
+
     setEditMode(false);
     alert('Profile updated!');
+  };
+  //#endregion
+
+  //#region - Handle image click to trigger file input
+  const handleImageClick = () => {
+    if (!editMode) setEditMode(true); // enable edit mode if not
+    imageInputRef.current?.click(); // trigger file input click
   };
   //#endregion
 
@@ -102,26 +114,31 @@ export default function Profile() {
       <div className='mt-15 space-y-12 p-20 md:mt-24'>
         {/* Image + Change Picture button in one row */}
         <div className='flex w-full items-center justify-between'>
-          <div className='flex h-64 w-64 items-center justify-center overflow-hidden rounded-full bg-gray-200'>
+          <div
+            onClick={handleImageClick}
+            className='flex h-64 w-64 items-center justify-center overflow-hidden rounded-full bg-gray-200 hover:cursor-pointer'
+          >
             {!userData.image && (
               <span className='text-4xl text-gray-400'>👤</span>
             )}
-            {userData.image && <img src={userData.image} alt='profile' />}
+            {userData.image && (
+              <img
+                src={userData.image}
+                alt='profile'
+                className='h-64 w-64 rounded-full object-cover'
+              />
+            )}
           </div>
+          {/* Change Picture button */}
           {editMode && (
             <div className='flex flex-col'>
-              <label
-                htmlFor='imageUpload'
-                className='cursor-pointer border px-2 py-1 text-center text-sm font-bold hover:bg-gray-100'
-              >
-                Change Picture
-              </label>
               <input
+                ref={imageInputRef}
                 id='imageUpload'
                 type='file'
                 accept='image/*'
                 onChange={handleImageChange}
-                className='hidden'
+                className='md:text-md w-200 border border-[#D5D7DA] p-10 text-sm font-bold hover:cursor-pointer md:w-300'
               />
             </div>
           )}
@@ -132,7 +149,7 @@ export default function Profile() {
           <p className='md:text-md text-sm font-medium'>Name</p>
           {editMode ? (
             <input
-              className='md:text-md border px-2 py-1 text-sm font-bold'
+              className='md:text-md w-200 border border-[#D5D7DA] p-10 text-sm font-bold hover:cursor-pointer md:w-300'
               value={userData.name}
               onChange={(e) => handleChange('name', e.target.value)}
             />
@@ -146,7 +163,7 @@ export default function Profile() {
           <p className='md:text-md text-sm font-medium'>Email</p>
           {editMode ? (
             <input
-              className='md:text-md border px-2 py-1 text-sm font-bold'
+              className='md:text-md w-200 border border-[#D5D7DA] p-10 text-sm font-bold hover:cursor-pointer md:w-300'
               value={userData.email}
               onChange={(e) => handleChange('email', e.target.value)}
             />
@@ -160,7 +177,7 @@ export default function Profile() {
           <p className='md:text-md text-sm font-medium'>Phone Number</p>
           {editMode ? (
             <input
-              className='md:text-md border px-2 py-1 text-sm font-bold'
+              className='md:text-md w-200 border border-[#D5D7DA] p-10 text-sm font-bold hover:cursor-pointer md:w-300'
               value={userData.phoneNumber}
               onChange={(e) => handleChange('phoneNumber', e.target.value)}
             />

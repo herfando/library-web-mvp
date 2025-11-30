@@ -15,6 +15,7 @@ export type BorrowedItem = {
   borrowDate: string;
   returnDate: string;
   duration: number;
+  status?: 'Active' | 'Returned' | 'Overdue';
 };
 
 export default function BorrowedList() {
@@ -25,13 +26,80 @@ export default function BorrowedList() {
 
   //#region take -> localstorage -> checkout
   const [borrowedList, setBorrowedList] = useState<BorrowedItem[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState<
+    'All' | 'Active' | 'Returned' | 'Overdue'
+  >('All');
+
   useEffect(() => {
     const saved = localStorage.getItem('borrowedList');
     if (saved) {
       const parsed = JSON.parse(saved);
-      setBorrowedList(parsed);
+
+      const today = dayjs();
+      const updatedList = (parsed as BorrowedItem[]).map((item) => {
+        const returnDate = dayjs(item.returnDate);
+        const status =
+          item.status === 'Returned'
+            ? ('Returned' as const)
+            : returnDate.isBefore(today, 'day')
+              ? ('Overdue' as const)
+              : ('Active' as const);
+
+        return { ...item, status };
+      });
+
+      setBorrowedList(updatedList);
+      localStorage.setItem('borrowedList', JSON.stringify(updatedList));
     }
   }, []);
+  //#endregion
+
+  //#region Filtered list based on search & filter buttons
+  const filteredList = borrowedList.filter((item) => {
+    const matchesSearch = item.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesFilter =
+      filterStatus === 'All' || item.status === filterStatus;
+    return matchesSearch && matchesFilter;
+  });
+  //#endregion
+
+  //#region Handle filter button click
+  const handleFilterClick = (
+    status: 'All' | 'Active' | 'Returned' | 'Overdue'
+  ) => {
+    setFilterStatus(status);
+  };
+  //#endregion
+
+  //#region Handle book return
+  const handleReturnBook = (id: number) => {
+    const updated: BorrowedItem[] = borrowedList.map((item) =>
+      item.id === id ? { ...item, status: 'Returned' as const } : item
+    );
+
+    setBorrowedList(updated);
+    localStorage.setItem('borrowedList', JSON.stringify(updated));
+  };
+
+  //#endregion
+
+  //#region get color for status button
+  const statusColor = (status?: string) => {
+    if (status === 'Active') return 'bg-[#24A5000D] text-[#24A500]';
+    if (status === 'Returned') return 'bg-[#1C65DA0D] text-[#1C65DA]';
+    if (status === 'Overdue') return 'bg-[#EE1D521A] text-[#EE1D52]';
+    return 'bg-white text-[#0A0D12]';
+  };
+  //#endregion
+
+  //#region get active filter button color
+  const filterActive = (type: string) =>
+    filterStatus === type
+      ? 'bg-[#1C65DA] text-white'
+      : 'bg-[#FFFFFF] text-neutral-950';
   //#endregion
 
   return (
@@ -46,12 +114,15 @@ export default function BorrowedList() {
       <p className='md:text-sm-lh text-xs-lh mt-15 font-bold md:mt-24'>
         Borrowed List
       </p>
+
       <div>
-        <div className='relaetive mt-15 flex h-44 w-full items-center rounded-full border border-[#D5D7DA] bg-white hover:bg-white md:mt-24 md:w-544'>
+        <div className='relative mt-15 flex h-44 w-full items-center rounded-full border border-[#D5D7DA] bg-white md:mt-24 md:w-544'>
           <input
             type='text'
-            placeholder='Search book '
-            className='ml-42 text-sm font-medium'
+            placeholder='Search book'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className='mr-20 ml-42 h-30 w-full p-5 text-sm font-medium'
           />
           <Search
             color='#535862'
@@ -60,53 +131,71 @@ export default function BorrowedList() {
             className='absolute ml-16'
           />
         </div>
-        {/* end borrowed list + search */}
 
         {/* start navigasi 2 */}
         <div className='flex gap-x-12'>
-          <Button className='md:text-md mt-15 h-40 w-51 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24'>
+          <Button
+            onClick={() => handleFilterClick('All')}
+            className={`${filterActive('All')} md:text-md mt-15 h-40 w-51 rounded-full border border-[#D5D7DA] hover:cursor-pointer hover:text-white md:mt-24`}
+          >
             All
           </Button>
-          <Button className='md:text-md mt-15 h-40 w-72 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-77'>
+
+          <Button
+            onClick={() => handleFilterClick('Active')}
+            className={`${filterActive('Active')} md:text-md mt-15 h-40 w-72 rounded-full border border-[#D5D7DA] hover:cursor-pointer hover:text-white md:mt-24 md:w-77`}
+          >
             Active
           </Button>
-          <Button className='md:text-md mt-15 h-40 w-93 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-101'>
+
+          <Button
+            onClick={() => handleFilterClick('Returned')}
+            className={`${filterActive('Returned')} md:text-md mt-15 h-40 w-93 rounded-full border border-[#D5D7DA] hover:cursor-pointer hover:text-white md:mt-24 md:w-101`}
+          >
             Returned
           </Button>
-          <Button className='md:text-md mt-15 h-40 w-88 rounded-full border bg-[#FFFFFF] text-sm font-semibold text-neutral-950 hover:cursor-pointer hover:border-[#1C65DA] hover:bg-white hover:text-[#1C65DA] md:mt-24 md:w-96'>
+
+          <Button
+            onClick={() => handleFilterClick('Overdue')}
+            className={`${filterActive('Overdue')} md:text-md mt-15 h-40 w-88 rounded-full border border-[#D5D7DA] hover:cursor-pointer hover:text-white md:mt-24 md:w-96`}
+          >
             Overdue
           </Button>
         </div>
         {/* end navigasi 2 */}
 
-        {/* --- LOOPING DATA --- */}
-        {borrowedList.map((item, index) => (
+        {/* LOOPING */}
+        {filteredList.map((item, index) => (
           <div key={index}>
-            {/* start card status active borrow list */}
+            {/* STATUS CARD */}
             <div className='mt-15 flex h-auto w-full items-center rounded-2xl shadow-lg md:mt-24'>
               <div className='flex w-full justify-between p-20'>
                 <div className='flex items-center gap-x-12'>
-                  <Button className='md:text-md h-32 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500]'>
+                  <Button className='md:text-md mr-5 h-32 w-60 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:bg-white'>
                     Status
                   </Button>
-                  <Button className='md:text-md h-32 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500]'>
-                    Active
+
+                  <Button
+                    className={`md:text-md h-32 w-80 rounded-xl text-sm font-bold hover:bg-white ${statusColor(item.status)}`}
+                  >
+                    {item.status}
                   </Button>
                 </div>
+
                 <div className='flex gap-x-12'>
-                  <Button className='md:text-md h-32 w-62 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500] md:w-72'>
+                  <Button className='md:text-md h-32 w-62 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] md:w-72'>
                     Due Date
                   </Button>
-                  <Button className='h-32 w-116 rounded-xl bg-[#EE1D521A] text-sm font-bold text-[#EE1D52] hover:cursor-pointer hover:bg-[#24A5000D] hover:text-[#24A500]'>
+
+                  <Button className='h-32 w-116 rounded-xl bg-[#EE1D521A] text-sm font-bold text-[#EE1D52]'>
                     {dayjs(item.returnDate).format('DD MMM YYYY')}
                   </Button>
                 </div>
               </div>
               <div className='mt-16 border-b border-b-[#D5D7DA] md:mt-20'></div>
             </div>
-            {/* end card status active borrow list */}
 
-            {/* start Booklist */}
+            {/* BOOK LIST */}
             <div className='flex flex-wrap items-center justify-between'>
               <div className='mt-16 flex w-500 md:mt-24'>
                 <img
@@ -114,26 +203,38 @@ export default function BorrowedList() {
                   alt={item.title}
                   className='h-138 w-92 space-y-16 border border-[#D5D7DA]'
                 />
-                {/* card Detail */}
+
                 <div className='ml-12 flex flex-col justify-between md:ml-16'>
-                  <Button className='h-28 w-78 items-center rounded-2xl border border-[#D5D7DA] bg-white font-bold text-black hover:text-white'>
+                  <Button className='h-28 w-78 items-center rounded-2xl border border-[#D5D7DA] bg-white font-bold text-black'>
                     <span>{item.category}</span>
                   </Button>
+
                   <h3 className='text-md font-bold md:text-lg'>{item.title}</h3>
+
                   <h3 className='md:text-md text-sm font-medium'>
                     {item.author}
                   </h3>
+
                   <p className='text-sm font-medium'>
                     Quantity: {item.quantity}
                   </p>
+
                   <h4 className='md:text-md flex gap-x-18 text-sm font-bold'>
                     {dayjs(item.borrowDate).format('DD MMM YYYY')} • Duration{' '}
                     {item.duration} Day
                   </h4>
+
+                  {(item.status === 'Active' || item.status === 'Overdue') && (
+                    <Button
+                      onClick={() => handleReturnBook(item.id)}
+                      className='mt-4 h-32 w-116 rounded-xl bg-[#24A5000D] text-sm font-bold text-[#24A500]'
+                    >
+                      Return Book
+                    </Button>
+                  )}
                 </div>
               </div>
 
-              {/* Button give review*/}
               <Button
                 onClick={() => {
                   setSelectedBook(item);
@@ -144,18 +245,17 @@ export default function BorrowedList() {
                 Give Review
               </Button>
             </div>
-            {/* end Booklist */}
           </div>
         ))}
 
-        {/* Start Button Load More */}
+        {/* Load More */}
         <div className='mt-16 hidden items-center justify-center pb-24 md:flex md:pb-48'>
-          <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:text-white md:h-48 md:w-200'>
-            Load more{' '}
+          <Button className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] md:h-48 md:w-200'>
+            Load more
           </Button>
         </div>
-        {/* End Button Load More */}
       </div>
+
       {giveReviewPopup && selectedBook && (
         <GiveReview
           book={selectedBook}
