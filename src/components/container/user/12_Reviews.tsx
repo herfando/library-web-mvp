@@ -1,6 +1,7 @@
 import { Button } from '../../ui/button';
 import { Search, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Userinteractive from '../../ui/interactiveButton';
 
 type BorrowedItem = {
   id: number;
@@ -48,15 +49,7 @@ export default function Reviews() {
     <section className='mx-auto mt-16 mb-48 h-auto max-w-1032 pr-16 pl-16 md:mt-48 md:mb-36'>
       {/* start navigasi 1 */}
       <div className='flex h-56 items-center justify-center gap-x-8 bg-[#F5F5F5] md:w-557'>
-        <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
-          Profile
-        </Button>
-        <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
-          Borrowed List
-        </Button>
-        <Button className='hover: md:text-md h-40 w-[109.67px] cursor-pointer bg-[#FFFFFF] text-sm font-bold text-neutral-700 hover:bg-white hover:text-black md:w-175'>
-          Reviews
-        </Button>
+        <Userinteractive />
       </div>
       {/* end navigasi 1*/}
 
