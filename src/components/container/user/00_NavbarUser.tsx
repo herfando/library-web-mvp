@@ -7,7 +7,8 @@ import { useState, useEffect } from 'react';
 import DropDown from '../../ui/dropDown';
 
 export default function NavbarUser() {
-  //#region
+  // show search after click icon search in mobile version
+  const [showSearch, setShowSearch] = useState(false);
 
   const [user, setUser] = useState<{ name: string } | null>(null);
   const navigate = useNavigate();
@@ -79,8 +80,9 @@ export default function NavbarUser() {
           Booky
         </div>
       </div>
-      {/* Search book */}
-      <div className='relative hidden h-44 w-500 lg:flex'>
+
+      {/* Desktop search - selalu muncul di lg ke atas */}
+      <div className='relative hidden lg:flex'>
         <SearchInput
           placeholder='Search book'
           className='px-42'
@@ -90,10 +92,26 @@ export default function NavbarUser() {
         <Search className='absolute top-1/2 left-16 -translate-y-1/2 text-[#D5D7DA]' />
       </div>
 
+      {/* Mobile search - muncul saat icon diklik */}
+      {showSearch && (
+        <div className='relative p-2 lg:hidden'>
+          <SearchInput
+            placeholder='Search'
+            value={search}
+            onChange={onSearchChange}
+            className='text-sm'
+          />
+          <Search className='absolute top-1/2 left-16 -translate-y-1/2 text-[#D5D7DA]' />
+        </div>
+      )}
+
       {/* bag & profil */}
       <div className='flex items-center'>
         {/* Search */}
-        <Search className='mr-16 flex h-24 w-24 text-[Neutral/950] lg:hidden' />
+        <Search
+          onClick={() => setShowSearch((prev) => !prev)}
+          className='mr-16 flex h-24 w-24 text-[Neutral/950] hover:cursor-pointer lg:hidden'
+        />
         {/* bag */}
         <div
           className='relative hover:cursor-pointer'
@@ -104,9 +122,12 @@ export default function NavbarUser() {
             alt='cart bag'
             className='mr-24 h-32 w-32'
           />
-          <span className='absolute -top-2 right-[35%] h-20 w-20 content-center items-center rounded-full bg-red-600 px-2 text-center text-xs text-white'>
-            {totalCount}
-          </span>
+          {/* visible start from 1 value */}
+          {totalCount > 0 && (
+            <span className='absolute -top-2 right-[35%] h-20 w-20 content-center items-center rounded-full bg-red-600 px-2 text-center text-xs text-white'>
+              {totalCount}
+            </span>
+          )}
         </div>
         {/* picture account */}
         <img
