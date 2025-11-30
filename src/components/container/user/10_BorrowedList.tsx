@@ -4,34 +4,29 @@ import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import GiveReview from './12_GiveReview';
 
+export type BorrowedItem = {
+  id: number;
+  image: string;
+  title: string;
+  author: string;
+  category: string;
+  quantity: number;
+  borrowDate: string;
+  returnDate: string;
+  duration: number;
+};
 export default function BorrowedList() {
   //#region Popup setting
   const [giveReviewPopup, setGiveReviewPopup] = useState(false);
-
+  const [selectedBook, setSelectedBook] = useState<BorrowedItem | null>(null);
   //#endregion
 
   //#region take -> localstorage -> checkout
-  // Type Definition
-  type BorrowedItem = {
-    id: number;
-    image: string;
-    title: string;
-    author: string;
-    category: string;
-    quantity: number;
-    borrowDate: string;
-    returnDate: string;
-    duration: number;
-  };
-  // --- State borrowedList ---
   const [borrowedList, setBorrowedList] = useState<BorrowedItem[]>([]);
-  // Take from local storage
   useEffect(() => {
     const saved = localStorage.getItem('borrowedList');
-    console.log('RAW borrowedList =', saved); // <-- ini yg penting!
     if (saved) {
       const parsed = JSON.parse(saved);
-      console.log('PARSED =', parsed); // <-- cek hasil JSON
       setBorrowedList(parsed);
     }
   }, []);
@@ -119,7 +114,7 @@ export default function BorrowedList() {
 
             {/* start Booklist */}
             <div className='flex flex-wrap items-center justify-between'>
-              <div className='mt-16 flex md:mt-24'>
+              <div className='mt-16 flex w-500 md:mt-24'>
                 <img
                   src={item.image}
                   alt={item.title}
@@ -146,7 +141,10 @@ export default function BorrowedList() {
 
               {/* Button give review*/}
               <Button
-                onClick={() => setGiveReviewPopup(true)}
+                onClick={() => {
+                  setSelectedBook(item);
+                  setGiveReviewPopup(true);
+                }}
                 className='text-md mt-26 h-40 w-full rounded-full font-bold hover:cursor-pointer md:mt-0 md:w-182'
               >
                 Give Review
@@ -164,8 +162,11 @@ export default function BorrowedList() {
         </div>
         {/* End Button Load More */}
       </div>
-      {giveReviewPopup && (
-        <GiveReview onClose={() => setGiveReviewPopup(false)} />
+      {giveReviewPopup && selectedBook && (
+        <GiveReview
+          book={selectedBook}
+          onClose={() => setGiveReviewPopup(false)}
+        />
       )}
     </section>
   );

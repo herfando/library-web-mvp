@@ -2,23 +2,39 @@ import { Star } from 'lucide-react';
 import { Button } from '../../ui/button';
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { type BorrowedItem } from './10_BorrowedList'; // pakai named import, bukan default
 
-export default function GiveReview({ onClose }: { onClose?: () => void }) {
+export default function GiveReview({
+  book,
+  onClose,
+}: {
+  book?: BorrowedItem;
+  onClose?: () => void;
+}) {
   //#region - state rating
   const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState(''); // <-- controlled textarea
+  const [comment, setComment] = useState('');
+  const location = useLocation();
   const navigate = useNavigate();
+
+  // ambil book dari props atau location.state
+  const selectedBook = book || (location.state?.book as BorrowedItem);
+
+  // handleClose bisa dari props atau fallback ke navigate(-1)
+  const handleClose = onClose || (() => navigate(-1));
 
   const handleStarClick = (index: number) => {
     setRating(index + 1);
   };
 
   const handleSend = () => {
-    // ambil existing dari localStorage
+    if (!selectedBook) return;
+
     const existing = JSON.parse(localStorage.getItem('reviews') || '[]');
 
     const newReview = {
+      bookId: selectedBook.id,
       rating,
       comment,
       date: new Date().toISOString(),
@@ -27,20 +43,17 @@ export default function GiveReview({ onClose }: { onClose?: () => void }) {
     existing.push(newReview);
     localStorage.setItem('reviews', JSON.stringify(existing));
 
-    // jika ada onClose, panggil dulu untuk menutup modal (opsional)
-    onClose && onClose();
-
-    // lalu navigate ke halaman reviews
+    handleClose();
     navigate('/reviews');
   };
-
   //#endregion
+
+  if (!selectedBook) return <div>No book selected</div>;
 
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-[#0A0D1280]'>
       <section className='mx-auto my-auto h-479 w-345 rounded-2xl bg-[#FFFFFF] p-24 md:h-518 md:w-439'>
         <p className='md:text-xs-lh text-lg font-bold'>Give Review</p>
-        {/* 5 star */}
         <div className='mt-24 flex flex-col items-center justify-center'>
           <h5 className='md:text-md text-sm font-bold'>Give Rating</h5>
           <div className='flex items-center space-x-4 px-3'>
@@ -68,7 +81,7 @@ export default function GiveReview({ onClose }: { onClose?: () => void }) {
           </Button>
         </div>
         <Button
-          onClick={() => onClose && onClose()}
+          onClick={handleClose}
           className='absolute top-4 right-4 text-black'
         >
           <X />

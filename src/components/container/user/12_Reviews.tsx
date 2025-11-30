@@ -1,7 +1,49 @@
 import { Button } from '../../ui/button';
 import { Search, Star } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+type BorrowedItem = {
+  id: number;
+  image: string;
+  title: string;
+  author: string;
+  category: string;
+  quantity: number;
+  borrowDate: string;
+  returnDate: string;
+  duration: number;
+};
+
+type Review = {
+  bookId: number;
+  rating: number;
+  comment: string;
+  date: string;
+};
 
 export default function Reviews() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [borrowedList, setBorrowedList] = useState<BorrowedItem[]>([]);
+
+  // take borrowedList
+  useEffect(() => {
+    const savedBorrowed = localStorage.getItem('borrowedList');
+    if (savedBorrowed) {
+      setBorrowedList(JSON.parse(savedBorrowed));
+    }
+  }, []);
+
+  // take reviews
+  useEffect(() => {
+    const savedReviews = localStorage.getItem('reviews');
+    if (savedReviews) {
+      setReviews(JSON.parse(savedReviews));
+    }
+  }, []);
+
+  // helper: found book from id
+  const getBook = (bookId: number) => borrowedList.find((b) => b.id === bookId);
+
   return (
     <section className='mx-auto mt-16 mb-48 h-auto max-w-1032 pr-16 pl-16 md:mt-48 md:mb-36'>
       {/* start navigasi 1 */}
@@ -36,49 +78,64 @@ export default function Reviews() {
             className='absolute ml-16'
           />
         </div>
-        {/* end reviews list + search */}
 
-        {/* start reviews Booklist */}
-        <div className='flex w-full flex-col p-20'>
-          <div className='md:text-md text-sm font-semibold'>
-            25 August 2025, 13:38
-          </div>
-          {/* line bottom */}
-          <div className='mt-16 w-full border-b border-b-[#D5D7DA] md:mt-20'></div>
-          <div className='mt-16 flex md:mt-24'>
-            <img
-              src='../../images/13_img dummy6 my cart.png'
-              alt='books my cart'
-              className='space-y-16'
-            />
-            {/* card Detail */}
-            <div className='ml-12 flex flex-col justify-center gap-y-4 md:ml-16'>
-              <Button className='h-28 w-78 items-center rounded-2xl border-[Neutral/300] bg-white font-bold text-black hover:text-white'>
-                <span>Category</span>
-              </Button>
-              <h3 className='text-md font-bold md:text-lg'>Book Name</h3>
-              <h3 className='md:text-md text-sm font-medium'>Author name</h3>
+        {/* start reviews LIST */}
+        {reviews.map((rev, i) => {
+          const book = getBook(rev.bookId);
+
+          if (!book) return null;
+
+          return (
+            <div key={i} className='flex w-full flex-col p-20'>
+              <div className='md:text-md text-sm font-semibold'>
+                {new Date(rev.date).toLocaleString()}
+              </div>
+
+              {/* line */}
+              <div className='mt-16 w-full border-b border-b-[#D5D7DA] md:mt-20'></div>
+
+              <div className='mt-16 flex md:mt-24'>
+                <img
+                  src={book.image}
+                  alt={book.title}
+                  className='h-138 w-92 space-y-16'
+                />
+                <div className='ml-12 flex flex-col justify-between gap-y-4 md:ml-16'>
+                  <Button className='h-28 w-100 items-center rounded-2xl border border-[#D5D7DA] bg-white font-bold text-black hover:text-white'>
+                    <span>{book.category}</span>
+                  </Button>
+                  <p className='text-md font-bold md:text-lg'>{book.title}</p>
+                  <p className='md:text-md text-sm font-medium'>
+                    {book.author}
+                  </p>
+                  <p className='md:text-md text-sm font-medium'>
+                    Quantity: {book.quantity}
+                  </p>
+                </div>
+              </div>
+
+              {/* line */}
+              <div className='mt-16 w-full border-b border-b-[#D5D7DA] md:mt-20'></div>
+
+              {/* stars */}
+              <div className='mt-16 flex items-center space-x-4 px-3'>
+                {[...Array(5)].map((_, idx) => (
+                  <Star
+                    key={idx}
+                    className='h-[16.35px] w-[17.12px]'
+                    fill={idx < rev.rating ? '#FFAB0D' : 'none'}
+                    color={idx < rev.rating ? '#FFAB0D' : '#D5D7DA'}
+                  />
+                ))}
+              </div>
+
+              {/* comment */}
+              <p className='md:text-md mt-8 text-sm font-semibold'>
+                {rev.comment}
+              </p>
             </div>
-          </div>
-          {/* line bottom */}
-          <div className='mt-16 w-full border-b border-b-[#D5D7DA] md:mt-20'></div>
-          {/* 5 star */}
-          <div className='mt-16 flex items-center space-x-4 px-3'>
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-            <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
-          </div>
-
-          {/* lorem paragraf */}
-          <p className='md:text-md mt-8 text-sm font-semibold'>
-            Lorem ipsum dolor sit amet consectetur. Pulvinar porttitor aliquam
-            viverra nunc sed facilisis. Integer tristique nullam morbi mauris
-            ante.
-          </p>
-        </div>
-        {/* end reviews Booklist */}
+          );
+        })}
       </div>
     </section>
   );
