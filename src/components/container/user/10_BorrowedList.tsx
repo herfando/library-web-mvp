@@ -170,13 +170,13 @@ export default function BorrowedList() {
             {/* STATUS CARD */}
             <div className='mt-15 flex h-auto w-full items-center rounded-2xl shadow-lg md:mt-24'>
               <div className='flex w-full justify-between p-20'>
-                <div className='flex items-center gap-x-12'>
-                  <Button className='md:text-md mr-5 h-32 w-60 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:bg-white'>
+                <div className='flex items-center space-x-12'>
+                  <Button className='md:text-md h-32 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:bg-white md:mr-20'>
                     Status
                   </Button>
 
                   <Button
-                    className={`md:text-md h-32 w-80 rounded-xl text-sm font-bold hover:bg-white ${statusColor(item.status)}`}
+                    className={`md:text-md h-32 w-51 rounded-xl text-sm font-bold hover:bg-white ${statusColor(item.status)}`}
                   >
                     {item.status}
                   </Button>
