@@ -88,9 +88,9 @@ export default function BorrowedList() {
 
   //#region get color for status button
   const statusColor = (status?: string) => {
-    if (status === 'Active') return 'bg-[#24A5000D] text-[#24A500]';
-    if (status === 'Returned') return 'bg-[#1C65DA0D] text-[#1C65DA]';
-    if (status === 'Overdue') return 'bg-[#EE1D521A] text-[#EE1D52]';
+    if (status === 'Active') return 'bg-white text-[#24A500]';
+    if (status === 'Returned') return 'bg-white text-[#1C65DA]';
+    if (status === 'Overdue') return 'bg-white text-[#EE1D52]';
     return 'bg-white text-[#0A0D12]';
   };
   //#endregion
@@ -169,20 +169,20 @@ export default function BorrowedList() {
           <div key={index}>
             {/* STATUS CARD */}
             <div className='mt-15 flex h-auto w-full items-center rounded-2xl shadow-lg md:mt-24'>
-              <div className='flex w-full justify-between p-20'>
+              <div className='flex w-full justify-between p-10'>
                 <div className='flex items-center space-x-12'>
                   <Button className='md:text-md h-32 w-51 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] hover:bg-white md:mr-20'>
                     Status
                   </Button>
 
                   <Button
-                    className={`md:text-md h-32 w-51 rounded-xl text-sm font-bold hover:bg-white ${statusColor(item.status)}`}
+                    className={`md:text-md h-32 w-51 rounded-xl text-sm font-bold hover:bg-white focus:bg-transparent ${statusColor(item.status)}`}
                   >
                     {item.status}
                   </Button>
                 </div>
 
-                <div className='flex gap-x-12'>
+                <div className='flex items-center justify-center gap-x-12'>
                   <Button className='md:text-md h-32 w-62 rounded-xl bg-[#FFFFFF] text-sm font-bold text-[#0A0D12] md:w-72'>
                     Due Date
                   </Button>
