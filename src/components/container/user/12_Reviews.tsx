@@ -25,6 +25,7 @@ type Review = {
 export default function Reviews() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [borrowedList, setBorrowedList] = useState<BorrowedItem[]>([]);
+  const [searchTerm, setSearchTerm] = useState(''); // search input state
 
   // take borrowedList
   useEffect(() => {
@@ -45,6 +46,14 @@ export default function Reviews() {
   // helper: found book from id
   const getBook = (bookId: number) => borrowedList.find((b) => b.id === bookId);
 
+  //#region Filter reviews by search term (book title)
+  const filteredReviews = reviews.filter((rev) => {
+    const book = getBook(rev.bookId);
+    if (!book) return false;
+    return book.title.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+  //#endregion
+
   return (
     <section className='mx-auto mt-16 mb-48 h-auto max-w-1032 pr-16 pl-16 md:mt-48 md:mb-36'>
       {/* start navigasi 1 */}
@@ -58,11 +67,13 @@ export default function Reviews() {
         Reviews
       </p>
       <div>
-        <div className='relaetive mt-15 flex h-44 w-full items-center rounded-full border border-[#D5D7DA] bg-white hover:bg-white md:mt-24 md:w-544'>
+        <div className='relative mt-15 flex h-44 w-full items-center rounded-full border border-[#D5D7DA] bg-white hover:bg-white md:mt-24 md:w-544'>
           <input
             type='text'
-            placeholder='Search Reviews '
-            className='ml-42 text-sm font-medium'
+            placeholder='Search Reviews'
+            className='mr-20 ml-42 h-30 w-full p-5 text-sm font-medium'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <Search
             color='#535862'
@@ -73,7 +84,7 @@ export default function Reviews() {
         </div>
 
         {/* start reviews LIST */}
-        {reviews.map((rev, i) => {
+        {filteredReviews.map((rev, i) => {
           const book = getBook(rev.bookId);
 
           if (!book) return null;
