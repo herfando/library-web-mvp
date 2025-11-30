@@ -1,22 +1,26 @@
 import { Button } from '../../ui/button';
 import { useEffect, useState } from 'react';
-
 import Userinteractive from '../../ui/interactiveButton';
 
 type UserInfo = {
   name: string;
   email: string;
   phoneNumber?: string;
+  image?: string; // added image
 };
 
 export default function Profile() {
+  //#region - State
   const [userData, setUserData] = useState<UserInfo>({
     name: '',
     email: '',
     phoneNumber: '',
+    image: '', // default empty
   });
+  const [editMode, setEditMode] = useState(false); // track if editing
+  //#endregion
 
-  // take data user from local storage checkout
+  //#region - Load user data from localStorage
   useEffect(() => {
     const storedLogin = localStorage.getItem('user');
     const storedRegister = localStorage.getItem('registerUser');
@@ -36,50 +40,145 @@ export default function Profile() {
         name: data.name,
         email: data.email,
         phoneNumber: data.phoneNumber || '',
+        image: data.image || '', // load image if exists
       });
     }
   }, []);
+  //#endregion
+
+  //#region - Handle input change
+  const handleChange = (key: keyof UserInfo, value: string) => {
+    setUserData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setUserData((prev) => ({ ...prev, image: reader.result as string }));
+    };
+    reader.readAsDataURL(file);
+  };
+  //#endregion
+
+  //#region - Save profile to localStorage
+  const handleSave = () => {
+    // Save to registerUser
+    const storedRegister = localStorage.getItem('registerUser');
+    if (storedRegister) {
+      const parsed = JSON.parse(storedRegister);
+      parsed.user = userData;
+      localStorage.setItem('registerUser', JSON.stringify(parsed));
+    }
+
+    // Save to user (login)
+    const storedLogin = localStorage.getItem('user');
+    if (storedLogin) {
+      const parsed = JSON.parse(storedLogin);
+      parsed.data.user = userData;
+      localStorage.setItem('user', JSON.stringify(parsed));
+    }
+
+    setEditMode(false);
+    alert('Profile updated!');
+  };
+  //#endregion
 
   return (
     <section className='mx-auto mt-16 mb-58 w-full -translate-x-0 px-16 md:mt-40 md:mb-110 md:h-440 md:w-557 md:-translate-x-[43%]'>
-      {/* start navigasi 1 */}
+      {/* Top navigation / user interactive */}
       <div className='flex h-56 items-center justify-center gap-x-8 bg-[#F5F5F5] md:w-557'>
         <Userinteractive />
       </div>
-      {/* end navigasi 1*/}
 
-      {/* start profile */}
+      {/* Section title */}
       <p className='md:text-sm-lh text-xs-lh mt-15 font-bold md:mt-24'>
         Profile
       </p>
 
-      {/* profil card */}
+      {/* Profile card */}
       <div className='mt-15 space-y-12 p-20 md:mt-24'>
-        <img
-          src='../../images/01_foto profil.png'
-          alt='profil'
-          className='h-64 w-64'
-        />
-        {/* name */}
+        {/* Image + Change Picture button in one row */}
+        <div className='flex w-full items-center justify-between'>
+          <div className='flex h-64 w-64 items-center justify-center overflow-hidden rounded-full bg-gray-200'>
+            {!userData.image && (
+              <span className='text-4xl text-gray-400'>👤</span>
+            )}
+            {userData.image && <img src={userData.image} alt='profile' />}
+          </div>
+          {editMode && (
+            <div className='flex flex-col'>
+              <label
+                htmlFor='imageUpload'
+                className='cursor-pointer border px-2 py-1 text-center text-sm font-bold hover:bg-gray-100'
+              >
+                Change Picture
+              </label>
+              <input
+                id='imageUpload'
+                type='file'
+                accept='image/*'
+                onChange={handleImageChange}
+                className='hidden'
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Name */}
         <div className='flex w-full items-center justify-between'>
           <p className='md:text-md text-sm font-medium'>Name</p>
-          <p className='md:text-md text-sm font-bold'>{userData.name}</p>
+          {editMode ? (
+            <input
+              className='md:text-md border px-2 py-1 text-sm font-bold'
+              value={userData.name}
+              onChange={(e) => handleChange('name', e.target.value)}
+            />
+          ) : (
+            <p className='md:text-md text-sm font-bold'>{userData.name}</p>
+          )}
         </div>
-        {/* email */}
+
+        {/* Email */}
         <div className='flex w-full items-center justify-between'>
           <p className='md:text-md text-sm font-medium'>Email</p>
-          <p className='md:text-md text-sm font-bold'>{userData.email}</p>
+          {editMode ? (
+            <input
+              className='md:text-md border px-2 py-1 text-sm font-bold'
+              value={userData.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+            />
+          ) : (
+            <p className='md:text-md text-sm font-bold'>{userData.email}</p>
+          )}
         </div>
-        {/* Nomor Handphone */}
+
+        {/* Phone Number */}
         <div className='flex w-full items-center justify-between'>
-          <p className='md:text-md text-sm font-medium'>Nomor Handphone</p>
-          <p className='md:text-md text-sm font-bold'>{userData.phoneNumber}</p>
+          <p className='md:text-md text-sm font-medium'>Phone Number</p>
+          {editMode ? (
+            <input
+              className='md:text-md border px-2 py-1 text-sm font-bold'
+              value={userData.phoneNumber}
+              onChange={(e) => handleChange('phoneNumber', e.target.value)}
+            />
+          ) : (
+            <p className='md:text-md text-sm font-bold'>
+              {userData.phoneNumber}
+            </p>
+          )}
         </div>
-        <Button className='text-md mt-16 h-48 w-full rounded-full font-bold hover:cursor-pointer md:mt-24'>
-          Update Profile{' '}
+
+        {/* Update / Save Button */}
+        <Button
+          className='text-md mt-16 h-48 w-full rounded-full font-bold hover:cursor-pointer md:mt-24'
+          onClick={() => (editMode ? handleSave() : setEditMode(true))}
+        >
+          {editMode ? 'Save Profile' : 'Update Profile'}
         </Button>
       </div>
-      {/* end profile */}
     </section>
   );
 }

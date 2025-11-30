@@ -1,6 +1,8 @@
 import { Button } from '../../ui/button';
+import { useNavigate } from 'react-router-dom';
 
 export default function DropdownMenu() {
+  const navigate = useNavigate();
   return (
     <div>
       {/* start Before login */}
@@ -18,16 +20,28 @@ export default function DropdownMenu() {
 
       {/* start After Login */}
       <section className='space-y-16 p-16 md:h-200 md:w-184 md:rounded-b-2xl'>
-        <h4 className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'>
+        <h4
+          onClick={() => navigate('/profile')}
+          className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'
+        >
           Profile
         </h4>
-        <h4 className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'>
+        <h4
+          onClick={() => navigate('/borrowed')}
+          className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'
+        >
           Borrowed List
         </h4>
-        <h4 className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'>
+        <h4
+          onClick={() => navigate('/reviews')}
+          className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'
+        >
           Reviews
         </h4>
-        <h4 className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'>
+        <h4
+          onClick={() => navigate('/login')}
+          className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'
+        >
           Logout
         </h4>
       </section>
