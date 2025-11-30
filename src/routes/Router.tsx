@@ -22,6 +22,7 @@ import Success from '../components/container/user/09_Success';
 import BorrowedList from '../components/container/user/10_BorrowedList';
 import GiveReview from '../components/container/user/12_GiveReview';
 import Reviews from '../components/container/user/12_Reviews';
+import Profile from '../components/container/user/11_Profile';
 
 // Before Auth
 const BeforeAuthLayout = () => (
@@ -80,6 +81,7 @@ export default function AppRoutes() {
         {/* After Auth */}
         <Route element={<AfterAuthLayout />}>
           <Route path='/home' element={<HomeUser />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/category/:id' element={<Category />} />
           <Route path='/author/:id' element={<BookByAuthor />} />
