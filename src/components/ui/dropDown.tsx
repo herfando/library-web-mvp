@@ -32,19 +32,19 @@ export default function DropDown({}) {
         <div className='fixed top-64 right-0 z-1 h-200 w-full rounded-b-4xl bg-white text-black shadow-sm md:top-80 md:right-50 md:w-184'>
           <div className='custom-container flex h-200 w-full flex-col justify-between gap-12 p-16 text-black'>
             <p
-              onClick={() => navigate('/profil')}
+              onClick={() => navigate('/profile')}
               className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'
             >
               Profile
             </p>
             <p
-              onClick={() => navigate('/BorrowedList')}
+              onClick={() => navigate('/borrowed')}
               className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'
             >
               Borrowed List
             </p>
             <p
-              onClick={() => navigate('/Reviews')}
+              onClick={() => navigate('/reviews')}
               className='md:text-md text-sm font-semibold hover:cursor-pointer hover:text-[#EE1D52]'
             >
               Reviews
