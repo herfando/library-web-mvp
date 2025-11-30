@@ -37,20 +37,20 @@ export default function Register() {
         password: data.password,
       }).unwrap();
 
-      // simpan ke redux
+      // simpan to redux
       dispatch(
         setCredentials({
-          token: '', // register tidak mengembalikan token
-          user: userData.data, // data user dari response
+          token: '',
+          user: userData.data,
         })
       );
 
-      // simpan ke localStorage
+      // save to localStorage
       if (userData.data) {
         localStorage.setItem(
           'registerUser',
           JSON.stringify({
-            token: '', // register tidak punya token
+            token: '',
             user: userData.data,
           })
         );
@@ -58,11 +58,11 @@ export default function Register() {
         console.warn('Register response tidak mengandung user:', userData);
       }
 
-      // toast sukses
+      // toast success
       toast.success('Register sukses!');
 
-      // arahkan ke halaman login atau home
-      navigate('/');
+      // to login
+      navigate('/login');
     } catch (err: any) {
       toast.error(err?.data?.message || 'Register gagal');
     }
@@ -165,7 +165,7 @@ export default function Register() {
         {/* Already have an account?Log In */}
         <p className='text-md text-center font-semibold'>
           Already have an account?
-          <Link to='/' className='ml-4 font-bold text-[#1C65DA]'>
+          <Link to='/login' className='ml-4 font-bold text-[#1C65DA]'>
             Log In
           </Link>
         </p>
