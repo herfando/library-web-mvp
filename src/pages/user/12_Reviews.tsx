@@ -1,7 +1,7 @@
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import { Search, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Userinteractive from '../../ui/interactiveButton';
+import Userinteractive from '../../components/ui/interactiveButton';
 
 type BorrowedItem = {
   id: number;

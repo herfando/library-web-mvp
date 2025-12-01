@@ -1,6 +1,6 @@
 import { Star } from 'lucide-react';
 import { useParams } from 'react-router-dom';
-import { useAuthorBooksQuery } from '../../../query/hooks/02_useAuthors';
+import { useAuthorBooksQuery } from '../../query/hooks/02_useAuthors';
 import { motion } from 'framer-motion';
 
 export default function BookByAuthor() {

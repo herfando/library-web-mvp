@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import GiveReview from './12_GiveReview';
-import Userinteractive from '../../ui/interactiveButton';
+import Userinteractive from '../../components/ui/interactiveButton';
 
 export type BorrowedItem = {
   id: number;

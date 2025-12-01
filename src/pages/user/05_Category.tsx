@@ -1,6 +1,6 @@
 import { Star } from 'lucide-react';
-import { useCategoriesQuery } from '../../../query/hooks/03_useCategories';
-import { useBooksQuery } from '../../../query/hooks/01_useBooks';
+import { useCategoriesQuery } from '../../query/hooks/03_useCategories';
+import { useBooksQuery } from '../../query/hooks/01_useBooks';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';

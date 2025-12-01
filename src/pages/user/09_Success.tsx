@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import dayjs from 'dayjs';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';

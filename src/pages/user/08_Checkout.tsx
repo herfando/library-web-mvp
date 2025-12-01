@@ -1,13 +1,13 @@
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import { Calendar } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { type RootState } from '../../../redux/store';
+import { type RootState } from '../../redux/store';
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
-import { clearCart } from '../../../redux/slices/cartSlice';
+import { clearCart } from '../../redux/slices/cartSlice';
 
 export default function Checkout() {
   //#region clear cart

@@ -1,15 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
-import PaginationBullets from '../../ui/paginationBullets';
+import PaginationBullets from '../../components/ui/paginationBullets';
 import { Star } from 'lucide-react';
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import {
   useRecommendationsQuery,
   useBooksQuery,
-} from '../../../query/hooks/01_useBooks';
-import { useCategoriesQuery } from '../../../query/hooks/03_useCategories';
-import { useAuthorsQuery } from '../../../query/hooks/02_useAuthors';
-import type { Book } from '../../../query/types/01_booksTypes';
+} from '../../query/hooks/01_useBooks';
+import { useCategoriesQuery } from '../../query/hooks/03_useCategories';
+import { useAuthorsQuery } from '../../query/hooks/02_useAuthors';
+import type { Book } from '../../query/types/01_booksTypes';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';

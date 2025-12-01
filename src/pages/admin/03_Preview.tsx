@@ -1,5 +1,5 @@
 import { ArrowLeft, Star } from 'lucide-react';
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 
 export default function Detail() {
   return (

@@ -1,7 +1,7 @@
 import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import ToggleHamburger from '../../ui/togglehamburger';
-import { Button } from '../../ui/button';
+import ToggleHamburger from '../ui/togglehamburger';
+import { Button } from '../ui/button';
 
 export default function NavbarGuest() {
   //#region
