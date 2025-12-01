@@ -1,18 +1,18 @@
-import { Input } from '../../ui/input';
-import { Button } from '../../ui/button';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 import { Eye } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRegisterMutation } from '../../../redux/services/authApi';
-import { useAppDispatch } from '../../../redux/hooks/useAuth';
-import { setCredentials } from '../../../redux/slices/authSlice';
+import { useRegisterMutation } from '../../redux/services/authApi';
+import { useAppDispatch } from '../../redux/hooks/useAuth';
+import { setCredentials } from '../../redux/slices/authSlice';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   registerSchema,
   type RegisterSchema,
-} from '../../../redux/validation/auth';
+} from '../../redux/validation/auth';
 
 export default function Register() {
   const navigate = useNavigate();

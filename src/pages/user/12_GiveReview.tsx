@@ -1,5 +1,5 @@
 import { Star } from 'lucide-react';
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';

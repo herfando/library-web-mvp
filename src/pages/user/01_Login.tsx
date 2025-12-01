@@ -1,15 +1,15 @@
-import { Input } from '../../ui/input';
-import { Button } from '../../ui/button';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 import { Eye } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../../../redux/services/authApi';
-import { useAppDispatch } from '../../../redux/hooks/useAuth';
-import { setCredentials } from '../../../redux/slices/authSlice';
+import { useLoginMutation } from '../../redux/services/authApi';
+import { useAppDispatch } from '../../redux/hooks/useAuth';
+import { setCredentials } from '../../redux/slices/authSlice';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema, type LoginSchema } from '../../../redux/validation/auth';
+import { loginSchema, type LoginSchema } from '../../redux/validation/auth';
 
 export default function Login() {
   const navigate = useNavigate();

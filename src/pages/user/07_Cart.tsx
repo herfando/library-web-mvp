@@ -1,9 +1,9 @@
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import { useDispatch, useSelector } from 'react-redux';
-import { type RootState } from '../../../redux/store';
+import { type RootState } from '../../redux/store';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setCheckoutItems } from '../../../redux/slices/cartSlice';
+import { setCheckoutItems } from '../../redux/slices/cartSlice';
 
 export default function Cart() {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 // Profile.tsx
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import { useEffect, useState, useRef } from 'react';
-import Userinteractive from '../../ui/interactiveButton';
+import Userinteractive from '../../components/ui/interactiveButton';
 
 type UserInfo = {
   name: string;

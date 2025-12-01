@@ -1,10 +1,10 @@
 import { Search } from 'lucide-react';
-import SearchInput from '../../ui/searchInput';
+import SearchInput from '../ui/searchInput';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { type RootState } from '../../../redux/store';
+import { type RootState } from '../../redux/store';
 import { useState, useEffect } from 'react';
-import DropDown from '../../ui/dropDown';
+import DropDown from '../ui/dropDown';
 
 export default function NavbarUser() {
   const [showSearch, setShowSearch] = useState(false);

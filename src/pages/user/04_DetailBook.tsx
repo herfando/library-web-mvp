@@ -1,14 +1,11 @@
 import { ChevronRight, Star } from 'lucide-react';
-import { Button } from '../../ui/button';
+import { Button } from '../../components/ui/button';
 import { useParams, useNavigate } from 'react-router-dom';
-import {
-  useBookByIdQuery,
-  useBooksQuery,
-} from '../../../query/hooks/01_useBooks';
-import type { Book } from '../../../query/types/01_booksTypes';
+import { useBookByIdQuery, useBooksQuery } from '../../query/hooks/01_useBooks';
+import type { Book } from '../../query/types/01_booksTypes';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, setCheckoutItems } from '../../../redux/slices/cartSlice';
-import type { RootState } from '../../../redux/store';
+import { addToCart, setCheckoutItems } from '../../redux/slices/cartSlice';
+import type { RootState } from '../../redux/store';
 
 export default function Detail() {
   const navigate = useNavigate();
