@@ -30,45 +30,49 @@ export default function Register() {
 
   const onSubmit = async (data: RegisterSchema) => {
     try {
-      const userData = await registerUser({
-        name: data.name,
-        email: data.email,
-        phoneNumber: data.phone,
-        password: data.password,
-      }).unwrap();
+      await toast
+        .promise(
+          registerUser({
+            name: data.name,
+            email: data.email,
+            phoneNumber: data.phone,
+            password: data.password,
+          }).unwrap(),
+          {
+            loading: 'Registering...',
+            success: 'Register sukses!',
+            error: (err: any) => err?.data?.message || 'Register gagal',
+          }
+        )
+        .then((userData) => {
+          // simpan ke redux
+          dispatch(
+            setCredentials({
+              token: '',
+              user: userData.data,
+            })
+          );
 
-      // simpan to redux
-      dispatch(
-        setCredentials({
-          token: '',
-          user: userData.data,
-        })
-      );
+          // simpan ke localStorage
+          if (userData.data) {
+            localStorage.setItem(
+              'registerUser',
+              JSON.stringify({
+                token: '',
+                user: userData.data,
+              })
+            );
+          } else {
+            console.warn('Register response tidak mengandung user:', userData);
+          }
 
-      // save to localStorage
-      if (userData.data) {
-        localStorage.setItem(
-          'registerUser',
-          JSON.stringify({
-            token: '',
-            user: userData.data,
-          })
-        );
-      } else {
-        console.warn('Register response tidak mengandung user:', userData);
-      }
-
-      // toast success
-      toast.success('Register sukses!');
-
-      // to login
-      navigate('/login');
-    } catch (err: any) {
-      toast.error(err?.data?.message || 'Register gagal');
+          // navigate ke login setelah sukses
+          navigate('/login');
+        });
+    } catch (err) {
+      // error sudah ditangani oleh toast.promise
     }
   };
-
-  console.log(localStorage.getItem('registerUser'));
 
   return (
     <section className='flex h-auto w-full items-center justify-center pt-75 pr-34 pb-76 pl-24 md:px-520 md:pt-95 md:pb-217'>
@@ -133,7 +137,7 @@ export default function Register() {
               </p>
             )}
           </div>
-          {/* Confirm Password*/}
+          {/* Confirm Password */}
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Confirm Password </div>
             <div className='relative w-full'>

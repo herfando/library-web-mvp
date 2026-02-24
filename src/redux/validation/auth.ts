@@ -9,8 +9,6 @@ export const loginSchema = z.object({
   password: z.string().min(6, 'Password minimal 6 karakter'),
 });
 
-export type LoginInput = z.infer<typeof loginSchema>;
-
 export const registerSchema = z
   .object({
     name: z.string().trim().min(1, 'Nama wajib diisi'),
@@ -31,6 +29,7 @@ export const registerSchema = z
     message: 'Password dan konfirmasi tidak cocok',
   });
 
-export type RegisterInput = z.infer<typeof registerSchema>;
+export type LoginInput = z.infer<typeof loginSchema>;
 export type LoginSchema = z.infer<typeof loginSchema>;
+export type RegisterInput = z.infer<typeof registerSchema>;
 export type RegisterSchema = z.infer<typeof registerSchema>;
