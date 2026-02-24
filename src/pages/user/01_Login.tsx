@@ -28,25 +28,33 @@ export default function Login() {
 
   const onSubmit = async (data: LoginSchema) => {
     try {
-      const userData = await login({
-        email: data.email,
-        password: data.password,
-      }).unwrap();
-      //save to redux
-      dispatch(setCredentials(userData));
+      await toast
+        .promise(
+          login({ email: data.email, password: data.password }).unwrap(),
+          {
+            loading: 'Logging in...',
+            success: 'Login sukses!',
+            error: (err: any) => err?.data?.message || 'Login gagal',
+          }
+        )
+        .then((userData) => {
+          // simpan ke redux
+          dispatch(setCredentials(userData));
 
-      // save to localstorage
-      localStorage.setItem(
-        'loginUser',
-        JSON.stringify({
-          token: userData.token,
-          user: userData.user,
-        })
-      );
-      toast.success('Login sukses!');
-      navigate('/home');
-    } catch (err: any) {
-      toast.error(err?.data?.message || 'Login gagal');
+          // simpan ke localStorage
+          localStorage.setItem(
+            'loginUser',
+            JSON.stringify({
+              token: userData.token,
+              user: userData.user,
+            })
+          );
+
+          // navigate setelah sukses
+          navigate('/home');
+        });
+    } catch (err) {
+      // error sudah ditangani oleh toast.promise
     }
   };
 
@@ -63,8 +71,8 @@ export default function Login() {
         <p className='text-md text-\[\#414651\] mb-20 font-semibold'>
           Sign in to manage your library account.
         </p>
-        {/* Email */}
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Email */}
           <div className='mb-16'>
             <div className='mb-2 text-sm font-bold'>Email</div>
             <Input {...register('email')} placeholder='johndoe@email.com' />
@@ -95,6 +103,7 @@ export default function Login() {
               )}
             </div>
           </div>
+
           {/* Button */}
           <Button
             type='submit'
@@ -104,7 +113,8 @@ export default function Login() {
             {isLoading ? 'Loading...' : 'Login'}
           </Button>
         </form>
-        {/* Don't have an account?Register */}
+
+        {/* Don't have an account? Register */}
         <p className='text-md gap-x-4 text-center font-semibold'>
           Don't have an account?
           <Link to='/register' className='ml-4 font-bold text-[#1C65DA]'>

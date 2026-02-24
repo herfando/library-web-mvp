@@ -1,4 +1,4 @@
-// src/redux/services/authApi.ts
+//FETCH USING RTK QUERY
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ENDPOINTS } from '../../utils/api';
 

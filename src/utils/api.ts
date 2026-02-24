@@ -1,7 +1,7 @@
 export const ENDPOINTS = {
   AUTH: {
-    REGISTER: '/api/auth/register', // POST register user baru
-    LOGIN: '/api/auth/login', // POST login user (balik token)
+    REGISTER: '/auth/register', // POST register user baru
+    LOGIN: '/auth/login', // POST login user (balik token)
   },
 
   BOOKS: {
