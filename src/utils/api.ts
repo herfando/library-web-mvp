@@ -5,27 +5,27 @@ export const ENDPOINTS = {
   },
 
   BOOKS: {
-    LIST: '/api/books', // GET daftar buku + filter + pagination
-    CREATE: '/api/books', // POST tambah buku (admin)
-    RECOMMEND: '/api/books/recommend', // GET recommend books
-    DETAIL: (id: number) => `/api/books/${id}`, // GET detail buku (author, category, reviews)
-    UPDATE: (id: number) => `/api/books/${id}`, // PUT update buku
-    DELETE: (id: number) => `/api/books/${id}`, // DELETE hapus buku (blocked if active loans)
+    LIST: '/books', // GET daftar buku + filter + pagination
+    CREATE: '/books', // POST tambah buku (admin)
+    RECOMMEND: '/books/recommend', // GET recommend books
+    DETAIL: (id: number) => `/books/${id}`, // GET detail buku (author, category, reviews)
+    UPDATE: (id: number) => `/books/${id}`, // PUT update buku
+    DELETE: (id: number) => `/books/${id}`, // DELETE hapus buku (blocked if active loans)
   },
 
   AUTHORS: {
-    LIST: '/api/authors', // GET list authors
-    CREATE: '/api/authors', // POST create author (admin)
-    BOOKS_BY_AUTHOR: (id: number) => `/api/authors/${id}/books`, // GET books by author
-    UPDATE: (id: number) => `/api/authors/${id}`, // PUT update author (admin)
-    DELETE: (id: number) => `/api/authors/${id}`, // DELETE author (blocked if has books)
+    LIST: '/authors', // GET list authors
+    CREATE: '/authors', // POST create author (admin)
+    BOOKS_BY_AUTHOR: (id: number) => `/authors/${id}/books`, // GET books by author
+    UPDATE: (id: number) => `/authors/${id}`, // PUT update author (admin)
+    DELETE: (id: number) => `/authors/${id}`, // DELETE author (blocked if has books)
   },
 
   CATEGORIES: {
-    LIST: '/api/categories', // GET list categories
-    CREATE: '/api/categories', // POST create category (admin)
-    UPDATE: (id: number) => `/api/categories/${id}`, // PUT update category (admin)
-    DELETE: (id: number) => `/api/categories/${id}`, // DELETE category (blocked if has books)
+    LIST: '/categories', // GET list categories
+    CREATE: '/categories', // POST create category (admin)
+    UPDATE: (id: number) => `/categories/${id}`, // PUT update category (admin)
+    DELETE: (id: number) => `/categories/${id}`, // DELETE category (blocked if has books)
   },
 
   LOANS: {

@@ -10,6 +10,7 @@ export interface Book {
   coverImage: string | null;
   price: number;
   rating: number;
+  ratings: string;
   reviewCount: number;
   totalCopies: number;
   availableCopies: number;
