@@ -10,6 +10,7 @@ export interface Book {
   coverImage: string | null;
   price: number;
   rating: number;
+  ratings: string;
   reviewCount: number;
   totalCopies: number;
   availableCopies: number;
@@ -18,6 +19,7 @@ export interface Book {
   categoryId: number;
   createdAt: string;
   updatedAt: string;
+
   Author?: {
     id: number;
     name: string;

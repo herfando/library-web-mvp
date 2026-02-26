@@ -5,6 +5,7 @@ export interface Author {
   bio: string;
   createdAt: string;
   updatedAt: string;
+  countByAuthor: number;
 }
 
 // === 2. Create / Update author input ===
