@@ -1,20 +1,17 @@
 import { Star } from 'lucide-react';
 import { useCategoriesQuery } from '../../query/hooks/03_useCategories';
-import { useBooksQuery } from '../../query/hooks/01_useBooks';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Category() {
-  // navigate
   const navigate = useNavigate();
 
-  // Query categories
-  const { data: categories } = useCategoriesQuery();
+  // === QUERY CATEGORIES ===
+  const { data: categories = [] } = useCategoriesQuery();
 
-  // Query books
-  const { data: books } = useBooksQuery();
-  const allBooks = books ?? [];
+  // === FLATTEN BOOKS FROM CATEGORIES ===
+  const allBooks = categories.flatMap((cat) => cat.books ?? []);
 
   // === FILTER STATES ===
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
@@ -35,20 +32,16 @@ export default function Category() {
   };
 
   // === GO TO DETAIL ===
-  const goToDetail = (id: number) => {
-    navigate(`/detail/${id}`);
-  };
+  const goToDetail = (id: number) => navigate(`/detail/${id}`);
 
   // === APPLY FILTERS ===
   const filteredBooks = allBooks.filter((b) => {
     const matchCategory =
       selectedCategories.length === 0 ||
       selectedCategories.includes(b.categoryId);
-
     const matchRating =
       selectedRatings.length === 0 ||
       selectedRatings.includes(Math.round(b.rating));
-
     return matchCategory && matchRating;
   });
 
@@ -59,7 +52,6 @@ export default function Category() {
           Book List
         </div>
 
-        {/* WRAPPER FLEX UNTUK MEMBUAT KIRI - KANAN */}
         <div className='md:flex md:items-start md:gap-32'>
           {/* ----------------- FILTER KIRI ----------------- */}
           <div className='mb-60 w-226'>
@@ -67,9 +59,8 @@ export default function Category() {
             <div className='hidden md:flex'>
               <div className='space-y-10'>
                 <h4 className='text-lg font-bold'>Category</h4>
-
                 <div className='space-y-4'>
-                  {categories?.map((cat) => (
+                  {categories.map((cat) => (
                     <label key={cat.id} className='flex items-center gap-8'>
                       <input
                         checked={selectedCategories.includes(cat.id)}
@@ -84,9 +75,8 @@ export default function Category() {
 
                 <div className='space-y-10'>
                   <h4 className='text-lg font-bold'>Rating</h4>
-
                   {[5, 4, 3].map((star) => (
-                    <label htmlFor='star 5' className='flex items-center gap-8'>
+                    <label key={star} className='flex items-center gap-8'>
                       <input
                         type='checkbox'
                         checked={selectedRatings.includes(star)}
@@ -115,15 +105,15 @@ export default function Category() {
                   src={b.coverImage || '/placeholder.png'}
                   alt={b.title}
                   whileHover={{
-                    scale: 1.1, // zoom
-                    rotate: [0, 2, -2, 2, -2, 0], // goyang
+                    scale: 1.1,
+                    rotate: [0, 2, -2, 2, -2, 0],
                   }}
                   transition={{ duration: 0.5 }}
                 />
                 <div className='space-y-4 p-12 md:p-16'>
                   <h4 className='text-sm font-bold md:text-lg'>{b.title}</h4>
                   <p className='md:text-md text-sm font-medium'>
-                    {b.Author?.name}
+                    {b.authorName}
                   </p>
                   <div className='flex items-center space-x-3'>
                     <Star className='h-[16.35px] w-[17.12px] fill-[#FFAB0D] text-[#FFAB0D]' />
@@ -136,7 +126,6 @@ export default function Category() {
             ))}
           </div>
         </div>
-        {/* END WRAPPER FLEX */}
 
         {filteredBooks.length === 0 && (
           <p className='text-md mt-20'>No books match the filter.</p>

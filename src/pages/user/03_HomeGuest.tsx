@@ -12,7 +12,6 @@ import { useAuthorsQuery } from '../../query/hooks/02_useAuthors';
 import type { Book } from '../../query/types/01_booksTypes';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function HomeGuest() {
@@ -73,6 +72,7 @@ export default function HomeGuest() {
   // 2. State recommendation
   const [recPage, setRecPage] = useState(1);
   const [recList, setRecList] = useState<Book[]>([]);
+  const [visibleRec, setVisibleRec] = useState(10);
 
   const filteredBooks = recList.filter((book) =>
     book.title.toLowerCase().includes(search.toLowerCase())
@@ -82,6 +82,7 @@ export default function HomeGuest() {
   useEffect(() => {
     setRecPage(1);
     setRecList([]);
+    setVisibleRec(10);
   }, [search]);
 
   // 4. Query rekomendasi + Search
@@ -106,27 +107,12 @@ export default function HomeGuest() {
     isLoading: isAuthorLoading,
     isError: isAuthorError,
   } = useAuthorsQuery();
+
+  const [visibleAuthors, setVisibleAuthors] = useState(8);
   //#endregion
 
   //#region - navigate
   const navigate = useNavigate();
-  //#endregion
-
-  //#region - Calculate total book per author
-  const countByAuthor = React.useMemo(() => {
-    if (!books) return {};
-
-    return books.reduce(
-      (acc, book) => {
-        const name = book.Author?.name;
-        if (!name) return acc;
-
-        acc[name] = (acc[name] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>
-    );
-  }, [books]);
   //#endregion
 
   return (
@@ -183,7 +169,7 @@ export default function HomeGuest() {
       <div className='mt-24 flex flex-wrap justify-between md:mt-48'>
         {isCategoriesLoading && <p>Loading categories...</p>}
         {isCategoriesError && <p>Error loading categories</p>}
-        {categories?.map((cat) => (
+        {categories?.slice(0, 6).map((cat) => (
           <motion.div
             key={cat.id}
             className='flex h-132 w-[112.33px] basis-1/3 flex-col items-center justify-center hover:cursor-pointer md:h-130 md:w-[186.67px] md:flex-auto'
@@ -225,7 +211,7 @@ export default function HomeGuest() {
         {isError && <p>Error loading recommendations</p>}
 
         <div className='flex w-full flex-wrap items-center justify-between space-y-16 md:space-y-20'>
-          {filteredBooks?.map((book) => (
+          {filteredBooks?.slice(0, visibleRec).map((book) => (
             <div
               key={book.id}
               onClick={() => navigate('/login')}
@@ -276,6 +262,7 @@ export default function HomeGuest() {
         </div>
         <div className='mb-24 border-b border-[#D5D7DA] md:mb-48'></div>
       </div>
+
       {/* Popular Authors */}
       <div>
         {/* Title */}
@@ -286,8 +273,9 @@ export default function HomeGuest() {
         <div className='mb-116 flex flex-wrap justify-between'>
           {isAuthorLoading && <p>Loading Author...</p>}
           {isAuthorError && <p>Error loading Author</p>}
+
           {/* start card author */}
-          {authorBooks?.map((author) => (
+          {authorBooks?.slice(0, visibleAuthors).map((author) => (
             <motion.div
               key={author.id}
               className='flex h-84 w-361 flex-wrap items-center p-12 hover:cursor-pointer md:h-113 md:w-285 md:p-16'
@@ -301,27 +289,32 @@ export default function HomeGuest() {
                 repeat: Infinity,
               }}
             >
-              {/* image author */}
-              <img
+              <motion.img
                 src='../../images/10_img dummy3 author.png'
                 alt='author'
                 className='h-60 w-60 md:h-81 md:w-81'
               />
-              {/* Author name */}
               <div className='ml-16'>
-                <p>{author.name}</p>
+                <p className='font-bold'>{author.name}</p>
                 <div className='flex'>
                   <img src='../../images/12_img dummy5 books.png' alt='books' />
-
-                  <p className='ml-5'>
-                    {countByAuthor[author.name] || 0} books
-                  </p>
+                  <p className='ml-5'>{author.countByAuthor || 0} books</p>
                 </div>
               </div>
             </motion.div>
           ))}
           {/* end card author */}
         </div>
+        {visibleAuthors < (authorBooks?.length || 0) && (
+          <div className='flex items-center justify-center pb-24 md:pb-48'>
+            <Button
+              onClick={() => setVisibleAuthors((prev) => prev + 8)}
+              className='md:text-md h-40 w-150 rounded-full border border-[#D5D7DA] bg-white text-sm font-bold text-[#0A0D12] hover:cursor-pointer hover:text-white md:h-48 md:w-200'
+            >
+              Load more
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

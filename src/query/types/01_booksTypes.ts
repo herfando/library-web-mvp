@@ -19,6 +19,7 @@ export interface Book {
   categoryId: number;
   createdAt: string;
   updatedAt: string;
+
   Author?: {
     id: number;
     name: string;
