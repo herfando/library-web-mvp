@@ -4,9 +4,13 @@ A lightweight, fast, and scalable MVP frontend built for digital library systems
 
 ---
 
-## ⚡ Built Using Today’s Best Frontend Stack
+## ⚡ Built Using Today’s Best Stack
 
-React | TypeScript | Vite | Tailwind CSS | Redux Toolkit | TanStack Query | shadcn/ui | Framer Motion (optional)
+**Frontend:** React.js  
+**Backend / Services:** Node.js | PostgreSQL | Swagger | Railway  
+**State Management & Fetch Data:** Redux Toolkit | TanStack Query | Axios  
+**Animations / UI:** Tailwind CSS | Framer Motion  
+**Tooling:** TypeScript | Vite
 
 ---
 
@@ -28,9 +32,12 @@ React | TypeScript | Vite | Tailwind CSS | Redux Toolkit | TanStack Query | shad
 
 ### 🧱 Architecture
 
-- 🧠 Redux Toolkit for global state (auth, filters, cart, UI)
+- 🧠 Redux Toolkit for global state
 - 🔌 API layer with typed TanStack Query hooks
 - 🗂️ Feature-based folder structure for scalability
+- Node.js backend services with PostgreSQL
+- Swagger for API documentation
+- Railway for deployments
 - ✨ Type-safe development with React + TypeScript
 - 🚀 Blazing fast Vite DX
 
@@ -54,24 +61,3 @@ React | TypeScript | Vite | Tailwind CSS | Redux Toolkit | TanStack Query | shad
 | QA         | Jest, React Testing Library, Playwright |
 
 ---
-
-## 🛠️ Getting Started
-
-### 1. Clone & Install
-
-```bash
-git clone https://github.com/<your-username>/library-web-mvp.git
-cd library-web-mvp
-npm install
-2. Run Dev Server
-npm run dev
-
-Visit: http://localhost:5173
-
-3. Build for Production
-npm run build
-npm run preview
-4. Formatting & Linting
-npm run lint
-npm run format
-```
