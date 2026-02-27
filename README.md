@@ -6,13 +6,13 @@ A lightweight, fast, and scalable MVP frontend built for digital library systems
 
 ## ⚡ Built Using Today’s Best Stack
 
-**Frontend:** React.js  
-**Backend / Services:** Node.js | PostgreSQL | Swagger | Railway  
-**State Management & Fetch Data:** Redux Toolkit | TanStack Query | Axios  
-**Animations / UI:** Tailwind CSS | Framer Motion  
-**Tooling:** TypeScript | Vite
-**API Detail 👉:** [https://core-api-production-7554.up.railway.app/api-docs/](https://core-api-production-7554.up.railway.app/api-docs/)
-**Web App Detail 👉:** [https://library-web-mvp.vercel.app/](https://library-web-mvp.vercel.app/)
+• **Frontend:** React.js
+• **Backend / Services:** Node.js | PostgreSQL | Swagger | Railway
+• **State Management & Data Fetching:** Redux Toolkit | TanStack Query | Axios
+• **Animations / UI:** Tailwind CSS | Framer Motion
+• **Tooling:** TypeScript | Vite
+• **API Detail 👉:** [https://core-api-production-7554.up.railway.app/api-docs/](https://core-api-production-7554.up.railway.app/api-docs/)
+• **Web App Detail 👉:** [https://library-web-mvp.vercel.app/](https://library-web-mvp.vercel.app/)
 
 ---
 
